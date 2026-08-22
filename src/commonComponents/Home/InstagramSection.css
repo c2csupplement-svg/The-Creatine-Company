@@ -1,0 +1,224 @@
+.instagram-section {
+  overflow: hidden;
+  background: #fdf1da;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
+}
+
+.instagram-container {
+  width: 100%;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.instagram-heading {
+  margin-bottom: 1.75rem;
+}
+
+.instagram-heading-follow {
+  display: block;
+  color: #502300;
+  font-size: clamp(2rem, 3.5vw, 4rem);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.instagram-heading-company {
+  display: inline-block;
+  margin-top: -0.25rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background: #a87847;
+  color: #fff;
+
+  font-size: clamp(2rem, 3.5vw, 4rem);
+
+  text-transform: uppercase;
+
+  line-height: 1;
+
+  transform: rotate(1deg);
+}
+
+.instagram-cards {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 10px;
+}
+
+.instagram-card {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  text-decoration: none;
+}
+/* =========================================
+   IMAGE
+========================================= */
+
+.instagram-image-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 908 / 1578;
+
+  overflow: hidden;
+}
+
+.instagram-image {
+  object-fit: cover;
+
+  transition: transform 500ms ease;
+}
+
+.instagram-card:hover .instagram-image {
+  transform: scale(1.03);
+}
+
+/* =========================================
+   CARD INFO
+========================================= */
+
+.instagram-card-info {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 0.5rem;
+
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  color: #502300;
+
+  font-size: 9px;
+
+  text-transform: uppercase;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.instagram-button-wrapper {
+  margin-top: 2rem;
+
+  text-align: center;
+}
+
+.instagram-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.75rem;
+
+  background: #a87847;
+
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+
+  color: #fff;
+
+  font-size: 0.875rem;
+
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  transition: transform 300ms ease;
+}
+
+.instagram-button:hover {
+  transform: scale(1.05);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (min-width: 640px) {
+  .instagram-section {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+  }
+
+  .instagram-heading-company {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .instagram-cards {
+    gap: 1.25rem;
+  }
+
+  .instagram-card-info {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    font-size: 0.75rem;
+  }
+
+  .instagram-button {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+  .instagram-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 0.75rem;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .instagram-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .instagram-cards {
+    gap: 0.625rem;
+  }
+
+  .instagram-card-info {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    font-size: 8px;
+  }
+}

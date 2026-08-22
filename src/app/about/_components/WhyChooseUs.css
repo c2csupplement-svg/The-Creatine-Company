@@ -1,0 +1,420 @@
+/* =========================================
+   WHY CHOOSE SECTION
+========================================= */
+
+.why-choose-section {
+  width: 100%;
+  background: #fdf1da;
+  padding: 5rem 1.5rem;
+  color: #3a2416;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.why-choose-heading {
+  width: 100%;
+  max-width: 56rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.why-title {
+  margin: 0;
+  color: #502300;
+  font-size: clamp(5rem, 8vw, 7rem);
+  line-height: 0.95;
+  font-family: "Victory Striker Sans Demo", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.choose-title-wrapper {
+  display: inline-block;
+  margin: -0.5rem auto 0;
+  padding: 0.25rem 1.5rem;
+  background: #a87847;
+  transform: rotate(-2deg);
+}
+
+.choose-title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  line-height: 0.95;
+  font-family: "Victory Striker Sans Demo", sans-serif !important;
+  font-weight: 700;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.why-description {
+  width: 100%;
+  max-width: 48rem;
+  margin: 2.5rem auto 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  font-size: clamp(0.9rem, 1.15vw, 1.1rem);
+  line-height: 2;
+}
+
+.why-description p {
+  margin: 0;
+}
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.features-grid {
+  width: 100%;
+  max-width: 64rem;
+  margin: 3.5rem auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.feature-card {
+  min-width: 0;
+  border-radius: 0.75rem;
+  background: #a87847;
+
+  padding: 2rem 1.5rem;
+
+  color: #fff;
+
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1.375;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.feature-icon {
+  width: clamp(2rem, 2.5vw, 2.5rem);
+  height: clamp(2rem, 2.5vw, 2.5rem);
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+/* =====================================================
+   ULTRA LARGE DESKTOP
+   1920px+
+===================================================== */
+
+@media (min-width: 1920px) {
+  .why-choose-section {
+    padding: 8rem 5rem;
+  }
+
+  .why-choose-heading {
+    max-width: 72rem;
+  }
+
+  .why-description {
+    max-width: 60rem;
+    font-size: 1.15rem;
+  }
+
+  .features-grid {
+    max-width: 82rem;
+    gap: 1.75rem;
+    margin-top: 4.5rem;
+  }
+
+  .feature-card {
+    border-radius: 1rem;
+    padding: 2.5rem;
+    font-size: 1.35rem;
+  }
+
+  .feature-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* =====================================================
+   LARGE DESKTOP
+   1600px - 1919px
+===================================================== */
+
+@media (min-width: 1600px) and (max-width: 1919px) {
+  .why-choose-section {
+    padding: 7rem 4rem;
+  }
+
+  .why-choose-heading {
+    max-width: 64rem;
+  }
+
+  .why-description {
+    max-width: 54rem;
+    font-size: 1.08rem;
+  }
+
+  .features-grid {
+    max-width: 74rem;
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    padding: 2.25rem;
+    font-size: 1.28rem;
+  }
+}
+
+/* =====================================================
+   STANDARD DESKTOP
+   1440px - 1599px
+===================================================== */
+
+@media (min-width: 1440px) and (max-width: 1599px) {
+  .why-choose-section {
+    padding: 6.5rem 3rem;
+  }
+
+  .why-choose-heading {
+    max-width: 60rem;
+  }
+
+  .why-description {
+    max-width: 52rem;
+  }
+
+  .features-grid {
+    max-width: 68rem;
+    gap: 1.4rem;
+  }
+
+  .feature-card {
+    padding: 2rem;
+  }
+}
+
+/* =====================================================
+   LAPTOP
+   1280px - 1439px
+===================================================== */
+
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .why-choose-section {
+    padding: 6rem 2.5rem;
+  }
+
+  .why-choose-heading {
+    max-width: 56rem;
+  }
+
+  .why-description {
+    max-width: 48rem;
+    font-size: 1rem;
+  }
+
+  .features-grid {
+    max-width: 64rem;
+    gap: 1.25rem;
+  }
+
+  .feature-card {
+    padding: 1.75rem;
+    font-size: 1.18rem;
+  }
+}
+
+/* =====================================================
+   SMALL LAPTOP
+   1024px - 1279px
+===================================================== */
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .why-choose-section {
+    padding: 5.5rem 2rem;
+  }
+
+  .why-title,
+  .choose-title {
+    font-size: clamp(3.5rem, 5vw, 4.5rem);
+  }
+
+  .why-description {
+    max-width: 44rem;
+    font-size: 0.98rem;
+  }
+
+  .features-grid {
+    max-width: 58rem;
+    gap: 1rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+    font-size: 1.08rem;
+  }
+}
+
+/* =====================================================
+   TABLET
+   768px - 1023px
+===================================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .why-choose-section {
+    padding: 5rem 1.5rem;
+  }
+
+  .why-title,
+  .choose-title {
+    font-size: clamp(3rem, 7vw, 4rem);
+  }
+
+  .choose-title-wrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .why-description {
+    max-width: 42rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .features-grid {
+    max-width: 44rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .feature-card {
+    padding: 1.25rem;
+    font-size: 1rem;
+  }
+
+  .feature-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+/* =====================================================
+   MOBILE LANDSCAPE
+   640px - 767px
+===================================================== */
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .why-choose-section {
+    padding: 4.5rem 1.25rem;
+  }
+
+  .why-title,
+  .choose-title {
+    font-size: 3.2rem;
+  }
+
+  .choose-title-wrapper {
+    padding: 0.3rem 1.75rem;
+  }
+
+  .why-description {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* =====================================================
+   MOBILE
+   BELOW 639px
+===================================================== */
+
+@media (max-width: 639px) {
+  .why-choose-section {
+    padding: 4rem 1rem;
+  }
+
+  .why-title,
+  .choose-title {
+    font-size: clamp(2.5rem, 11vw, 3.5rem);
+  }
+
+  .choose-title-wrapper {
+    margin-top: -0.35rem;
+    padding: 0.25rem 1.25rem;
+  }
+
+  .why-description {
+    margin-top: 2rem;
+    gap: 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .features-grid {
+    margin-top: 2.5rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+    font-size: 1.05rem;
+    border-radius: 0.7rem;
+  }
+
+  .feature-icon {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+}
+
+/* =====================================================
+   SMALL MOBILE
+   BELOW 375px
+===================================================== */
+
+@media (max-width: 375px) {
+  .why-choose-section {
+    padding: 3.5rem 0.75rem;
+  }
+
+  .why-title,
+  .choose-title {
+    font-size: 2.35rem;
+  }
+
+  .choose-title-wrapper {
+    padding: 0.2rem 1rem;
+  }
+
+  .why-description {
+    font-size: 0.84rem;
+    line-height: 1.65;
+  }
+
+  .feature-card {
+    padding: 1.25rem;
+    font-size: 1rem;
+  }
+}

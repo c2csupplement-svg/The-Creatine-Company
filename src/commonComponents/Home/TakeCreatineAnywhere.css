@@ -1,0 +1,231 @@
+.take-creatine {
+  background: #843b02;
+  color: #fff;
+  width: 100%;
+  height: auto;
+}
+
+.take-creatine-grid {
+  display: grid;
+  min-height: 700px;
+  grid-template-columns: 1fr;
+}
+
+.take-creatine-image {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  min-height: 700px;
+  overflow: hidden;
+}
+
+.take-creatine-image-element {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block;
+}
+
+.take-creatine-content {
+  display: flex;
+  align-items: center;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.take-creatine-content-inner {
+  width: 100%;
+  max-width: 760px;
+}
+
+.take-creatine-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 3.7vw, 5.2rem);
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+
+.take-creatine-highlight {
+  display: inline-block;
+  max-width: 100%;
+  margin-top: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background: #a87847;
+  color: #fff;
+  transform: rotate(-1.4deg);
+}
+
+.take-creatine-highlight span {
+  font-size: clamp(2.2rem, 3.7vw, 5.1rem);
+  line-height: 0.82;
+  text-transform: uppercase;
+}
+
+.take-creatine-description {
+  max-width: 720px;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  font-size: 16px !important;
+}
+
+@media (min-width: 640px) {
+  .take-creatine-content {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .take-creatine-highlight {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+  }
+
+  .take-creatine-description {
+    font-size: 0.75rem;
+  }
+}
+
+/* =========================================
+   TABLET / DESKTOP
+========================================= */
+
+@media (min-width: 768px) {
+  .take-creatine-grid {
+    min-height: 700px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .take-creatine-image {
+    width: 100%;
+    height: 700px;
+    min-height: 700px;
+  }
+
+  .take-creatine-image-element {
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .take-creatine-content {
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1024px) {
+  .take-creatine-grid {
+    min-height: 700px;
+  }
+
+  .take-creatine-image {
+    width: 100%;
+    height: 700px;
+    min-height: 700px;
+  }
+
+  .take-creatine-content {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+
+  .take-creatine-description {
+    font-size: 0.875rem;
+  }
+}
+
+/* =========================================
+   EXTRA LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1440px) {
+  .take-creatine-grid {
+    min-height: 760px;
+  }
+
+  .take-creatine-image {
+    height: 760px;
+    min-height: 760px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+  .take-creatine {
+    height: auto;
+  }
+
+  .take-creatine-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .take-creatine-image {
+    width: 100%;
+    height: 420px;
+    min-height: 420px;
+  }
+
+  .take-creatine-image-element {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .take-creatine-content {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+  .take-creatine-image {
+    height: 380px;
+    min-height: 380px;
+  }
+
+  .take-creatine-content {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .take-creatine-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .take-creatine-highlight span {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .take-creatine-description {
+    font-size: 0.7rem;
+  }
+}

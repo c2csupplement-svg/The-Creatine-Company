@@ -1,0 +1,122 @@
+.site-nav {
+  position: relative;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  color: #fff;
+}
+
+.site-nav-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: none;
+  border-radius: 0.375rem;
+
+  padding: 0.5rem;
+
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+
+  transition: background 150ms ease;
+}
+
+.site-nav-menu-button:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+
+.site-nav-menu-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  flex-shrink: 0;
+}
+
+/* =========================================
+   MOBILE
+   0 - 639px
+========================================= */
+
+@media (max-width: 639px) {
+  .site-nav {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .site-nav-menu-button {
+    padding: 0.45rem;
+  }
+
+  .site-nav-menu-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+   0 - 400px
+========================================= */
+
+@media (max-width: 400px) {
+  .site-nav-menu-button {
+    padding: 0.4rem;
+  }
+
+  .site-nav-menu-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* =========================================
+   TABLET
+   640 - 767px
+========================================= */
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .site-nav {
+    width: 100%;
+  }
+
+  .site-nav-menu-button {
+    padding: 0.5rem;
+  }
+
+  .site-nav-menu-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+/* =========================================
+   DESKTOP
+   768px+
+   ORIGINAL DESIGN
+========================================= */
+
+@media (min-width: 768px) {
+  .site-nav {
+    width: 100%;
+  }
+
+  .site-nav-menu-button {
+    padding: 0.5rem;
+  }
+
+  .site-nav-menu-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

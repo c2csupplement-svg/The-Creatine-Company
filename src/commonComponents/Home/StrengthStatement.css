@@ -1,0 +1,214 @@
+.strength-statement {
+  background: #502300;
+  padding: 80px 24px;
+  text-align: center;
+  color: #fdf1da;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+
+.strength-statement-title {
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+
+  font-size: clamp(1.7rem, 5.8vw, 6.5rem);
+
+  /* HALKA GAP BETWEEN LINES */
+  line-height: 0.95;
+
+  text-transform: uppercase;
+}
+
+.strength-statement-title span {
+  display: inline-block;
+  color: #a87847;
+  transition: color 0.3s ease;
+}
+
+/* =========================================
+   TITLE HOVER
+========================================= */
+
+.strength-statement-title:has(span:nth-of-type(1):hover) span:nth-of-type(1) {
+  color: #fdf1da;
+}
+
+.strength-statement-title:has(span:nth-of-type(2):hover)
+  span:nth-of-type(-n + 2) {
+  color: #fdf1da;
+}
+
+.strength-statement-title:has(span:nth-of-type(3):hover)
+  span:nth-of-type(-n + 3) {
+  color: #fdf1da;
+}
+
+.strength-statement-title:has(span:nth-of-type(4):hover)
+  span:nth-of-type(-n + 4) {
+  color: #fdf1da;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.strength-description-wrapper {
+  width: 100%;
+  max-width: 50rem;
+
+  margin: 1.75rem auto 0;
+
+  min-height: 50px;
+
+  overflow: hidden;
+  position: relative;
+}
+
+.strength-statement-description {
+  width: 100%;
+  margin: 0;
+
+  font-size: 19px !important;
+
+  color: #fdf1da;
+
+  will-change: transform, opacity;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 639px) {
+  .strength-statement {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 55px 16px;
+
+    overflow: hidden;
+  }
+
+  .strength-statement-title {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    font-size: clamp(2rem, 10vw, 3.5rem);
+
+    line-height: 0.94;
+
+    letter-spacing: -0.02em;
+  }
+
+  .strength-statement-title span {
+    max-width: 100%;
+  }
+
+  .strength-description-wrapper {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 28px auto 0;
+
+    min-height: 70px;
+
+    padding: 0 4px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+  }
+
+  .strength-statement-description {
+    width: 100%;
+
+    font-size: 15px !important;
+
+    line-height: 1.45;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+  .strength-statement {
+    padding: 48px 12px;
+  }
+
+  .strength-statement-title {
+    font-size: 9.5vw;
+
+    line-height: 0.94;
+  }
+
+  .strength-description-wrapper {
+    margin-top: 24px;
+
+    padding: 0 2px;
+  }
+
+  .strength-statement-description {
+    font-size: 14px !important;
+
+    line-height: 1.5;
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .strength-statement {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 60px 28px;
+
+    overflow: hidden;
+  }
+
+  .strength-statement-title {
+    width: 100%;
+    max-width: 100%;
+
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
+
+    line-height: 0.94;
+  }
+
+  .strength-description-wrapper {
+    max-width: 600px;
+
+    margin-top: 30px;
+
+    overflow: hidden;
+  }
+
+  .strength-statement-description {
+    font-size: 16px !important;
+
+    line-height: 1.45;
+  }
+}
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 768px) {
+  .strength-statement-title {
+    line-height: 0.95;
+  }
+}

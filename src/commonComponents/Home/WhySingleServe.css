@@ -1,0 +1,257 @@
+.why-single-serve {
+  background: #fdf1da;
+
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.why-single-serve-container {
+  width: 100%;
+  max-width: 1500px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.why-single-serve-header {
+  display: grid;
+
+  gap: 2rem;
+}
+
+/* =========================================
+   LEFT
+========================================= */
+
+.why-single-serve-left {
+  width: 100%;
+}
+
+.why-single-serve-small-title {
+  display: block;
+
+  font-size: clamp(2.2rem, 4vw, 4.8rem);
+
+  line-height: 0.85;
+
+  text-transform: uppercase;
+}
+
+.why-single-serve-highlight {
+  display: inline-block;
+
+  margin-top: 0.25rem;
+
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+
+  background: #a87847;
+
+  color: #fff;
+
+  font-size: clamp(2.2rem, 4vw, 4.8rem);
+
+  line-height: 0.85;
+
+  text-transform: uppercase;
+
+  transform: rotate(-2deg);
+}
+
+.why-single-serve-question {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+
+  font-size: clamp(2.2rem, 4vw, 4.8rem);
+
+  line-height: 0.85;
+
+  text-transform: uppercase;
+}
+
+/* =========================================
+   RIGHT
+========================================= */
+
+.why-single-serve-right {
+  width: 100%;
+}
+
+.why-single-serve-main-title {
+  margin: 0;
+
+  font-size: clamp(2rem, 3.6vw, 4.2rem);
+
+  line-height: 0.85;
+
+  text-transform: uppercase;
+}
+
+.why-single-serve-description {
+  max-width: 48rem;
+
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+
+  font-size: 9px;
+
+  line-height: 1.55;
+}
+
+/* =========================================
+   BENEFIT CARDS
+========================================= */
+
+.why-single-serve-benefits {
+  display: grid;
+
+  gap: 1rem;
+
+  margin-top: 2.5rem;
+}
+
+.why-single-serve-card {
+  border: 1px solid #a87847;
+
+  background: rgb(189 150 110 / 30%);
+
+  padding: 1.25rem;
+}
+
+.why-single-serve-card-title {
+  margin: 0;
+
+  white-space: pre-line;
+
+  font-size: 1.5rem;
+
+  line-height: 0.9;
+
+  text-transform: uppercase;
+}
+
+.why-single-serve-card-body {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+
+  font-size: 9px;
+
+  line-height: 1.5;
+}
+
+/* =========================================
+   AUDIENCE TAGS
+========================================= */
+
+.why-single-serve-audience {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.5rem;
+
+  margin-top: 2rem;
+}
+
+.why-single-serve-tag {
+  display: inline-block;
+
+  background: #502300;
+
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  color: #fff;
+
+  font-size: 0.875rem;
+
+  text-transform: uppercase;
+}
+
+/* =========================================
+   SMALL SCREENS
+========================================= */
+
+@media (min-width: 640px) {
+  .why-single-serve {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .why-single-serve-highlight {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .why-single-serve-description {
+    font-size: 0.75rem;
+  }
+
+  .why-single-serve-card {
+    padding: 1.5rem;
+  }
+
+  .why-single-serve-card-title {
+    font-size: 1.875rem;
+  }
+
+  .why-single-serve-card-body {
+    font-size: 0.75rem;
+  }
+
+  .why-single-serve-tag {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================
+   TABLET / DESKTOP
+========================================= */
+
+@media (min-width: 768px) {
+  .why-single-serve {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .why-single-serve-header {
+    grid-template-columns: 0.85fr 1.15fr;
+
+    align-items: end;
+
+    gap: 2rem;
+  }
+
+  .why-single-serve-benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1024px) {
+  .why-single-serve-benefits {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

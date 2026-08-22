@@ -1,0 +1,449 @@
+/* =========================================
+   FEATURED POST SECTION
+========================================= */
+
+.featured-post-section {
+  width: 100%;
+
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 3.5rem;
+
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* =========================================
+   FEATURED GRID
+========================================= */
+
+.featured-post-grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+
+  gap: 2rem;
+
+  box-sizing: border-box;
+}
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.featured-post-image {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  border-radius: 1.5rem;
+}
+
+.featured-post-image-content {
+  object-fit: cover;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+
+.featured-post-title {
+  margin: 0;
+
+  color: #82572b;
+
+  font-family: "Tungsten Compressed", sans-serif;
+  font-weight: 600;
+
+  font-size: clamp(3.5rem, 6vw, 8rem);
+
+  line-height: 0.9;
+
+  letter-spacing: clamp(0.5px, 0.12vw, 1.8px);
+
+  overflow-wrap: break-word;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.featured-post-description {
+  width: 100%;
+  max-width: 28rem;
+
+  margin-top: 1rem;
+  margin-bottom: 0;
+
+  font-family: "SF Pro Display", sans-serif;
+
+  color: rgb(80 35 0 / 0.9);
+
+  font-size: clamp(0.9rem, 1vw, 1rem);
+
+  line-height: 1.5;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.featured-post-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.75rem;
+
+  margin-top: 1.5rem;
+
+  border: none;
+  border-radius: 0.375rem;
+
+  background: #a87847;
+  color: #fff;
+
+  padding: 0.75rem 1.5rem;
+
+  font-size: clamp(0.8rem, 0.9vw, 0.875rem);
+
+  line-height: 1.2;
+
+  letter-spacing: 0.025em;
+
+  cursor: pointer;
+
+  transition: opacity 150ms ease;
+}
+
+.featured-post-button:hover {
+  opacity: 0.9;
+}
+
+/* =====================================================
+   ULTRA LARGE DESKTOP
+   1920px+
+===================================================== */
+
+@media (min-width: 1920px) {
+  .featured-post-section {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-bottom: 6rem;
+  }
+
+  .featured-post-grid {
+    max-width: 90rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .featured-post-image {
+    border-radius: 1.5rem;
+  }
+
+  .featured-post-title {
+    font-size: 8rem;
+  }
+
+  .featured-post-description {
+    max-width: 32rem;
+    font-size: 1rem;
+  }
+}
+
+/* =====================================================
+   LARGE DESKTOP
+   1600px - 1919px
+===================================================== */
+
+@media (min-width: 1600px) and (max-width: 1919px) {
+  .featured-post-section {
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-bottom: 5.5rem;
+  }
+
+  .featured-post-grid {
+    max-width: 82rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .featured-post-title {
+    font-size: 7rem;
+  }
+
+  .featured-post-description {
+    max-width: 30rem;
+  }
+}
+
+/* =====================================================
+   STANDARD DESKTOP
+   1440px - 1599px
+===================================================== */
+
+@media (min-width: 1440px) and (max-width: 1599px) {
+  .featured-post-section {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  .featured-post-grid {
+    max-width: 76rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .featured-post-title {
+    font-size: 6.2rem;
+  }
+
+  .featured-post-description {
+    max-width: 29rem;
+    font-size: 0.98rem;
+  }
+}
+
+/* =====================================================
+   LAPTOP
+   1280px - 1439px
+===================================================== */
+
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .featured-post-section {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .featured-post-grid {
+    max-width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .featured-post-title {
+    font-size: 5.5rem;
+  }
+
+  .featured-post-description {
+    max-width: 27rem;
+    font-size: 0.95rem;
+  }
+
+  .featured-post-button {
+    margin-top: 1.35rem;
+  }
+}
+
+/* =====================================================
+   SMALL LAPTOP
+   1024px - 1279px
+===================================================== */
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .featured-post-section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 4rem;
+  }
+
+  .featured-post-grid {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .featured-post-title {
+    font-size: 4.6rem;
+  }
+
+  .featured-post-description {
+    max-width: 25rem;
+    font-size: 0.9rem;
+  }
+
+  .featured-post-button {
+    padding: 0.7rem 1.35rem;
+  }
+}
+
+/* =====================================================
+   TABLET
+   768px - 1023px
+===================================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .featured-post-section {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+    padding-bottom: 4rem;
+  }
+
+  .featured-post-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 1.5rem;
+
+    align-items: center;
+  }
+
+  .featured-post-image {
+    border-radius: 1.25rem;
+  }
+
+  .featured-post-title {
+    font-size: 3.8rem;
+  }
+
+  .featured-post-description {
+    max-width: 22rem;
+    font-size: 0.85rem;
+  }
+
+  .featured-post-button {
+    margin-top: 1.2rem;
+    padding: 0.65rem 1.2rem;
+  }
+}
+
+/* =====================================================
+   MOBILE LANDSCAPE
+   640px - 767px
+===================================================== */
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .featured-post-section {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .featured-post-grid {
+    grid-template-columns: 1fr;
+
+    gap: 2rem;
+  }
+
+  .featured-post-title {
+    font-size: 4rem;
+  }
+
+  .featured-post-description {
+    max-width: 100%;
+    font-size: 0.9rem;
+  }
+}
+
+/* =====================================================
+   MOBILE
+   BELOW 640px
+===================================================== */
+
+@media (max-width: 639px) {
+  .featured-post-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 3rem;
+  }
+
+  .featured-post-grid {
+    grid-template-columns: 1fr;
+
+    gap: 1.75rem;
+  }
+
+  .featured-post-image {
+    border-radius: 1rem;
+  }
+
+  .featured-post-title {
+    font-size: clamp(3rem, 14vw, 4rem);
+
+    line-height: 0.9;
+  }
+
+  .featured-post-description {
+    max-width: 100%;
+
+    margin-top: 0.85rem;
+
+    font-size: 0.85rem;
+
+    line-height: 1.5;
+  }
+
+  .featured-post-button {
+    margin-top: 1.25rem;
+
+    padding: 0.7rem 1.25rem;
+
+    font-size: 0.8rem;
+  }
+}
+
+/* =====================================================
+   SMALL MOBILE
+   BELOW 375px
+===================================================== */
+
+@media (max-width: 375px) {
+  .featured-post-section {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .featured-post-grid {
+    gap: 1.5rem;
+  }
+
+  .featured-post-image {
+    border-radius: 0.9rem;
+  }
+
+  .featured-post-title {
+    font-size: 2.8rem;
+  }
+
+  .featured-post-description {
+    font-size: 0.8rem;
+  }
+
+  .featured-post-button {
+    padding: 0.65rem 1.1rem;
+  }
+}

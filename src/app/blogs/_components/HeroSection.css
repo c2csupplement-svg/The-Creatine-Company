@@ -1,0 +1,217 @@
+.blog-hero-section {
+  position: relative;
+  overflow: hidden;
+
+  background: #000;
+
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1.5rem;
+
+  color: #fff;
+}
+
+/* =========================================
+   LOGO
+========================================= */
+
+.blog-hero-logo {
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+
+  z-index: 50;
+}
+
+.blog-hero-logo-image {
+  width: 90px;
+  height: auto;
+}
+
+.blog-hero-title {
+  margin: 0;
+  font-size: 3.75rem;
+  line-height: 0.9;
+  letter-spacing: 0.025em;
+  font-family: "victory striker sans Demo" sans-serif;
+}
+
+.blog-hero-highlight {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  background: #a87847;
+  transform: rotate(-2deg);
+}
+
+.blog-hero-highlight-text {
+  display: block;
+  color: #fdf1da;
+  font-family: "victory striker sans Demo" sans-serif;
+  font-size: 2.25rem;
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.blog-hero-description {
+  max-width: 28rem;
+  font-family: "SF Pro Display" sans-serif;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+
+  color: rgb(255 255 255 / 0.85);
+
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+.blog-hero-mobile {
+  position: relative;
+  z-index: 10;
+
+  display: block;
+
+  margin-top: 2rem;
+  padding-bottom: 3.5rem;
+}
+
+.blog-hero-mobile-image {
+  position: relative;
+
+  width: 100%;
+  max-width: 20rem;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  aspect-ratio: 3 / 4;
+}
+
+.blog-hero-mobile-image-content {
+  object-fit: contain;
+}
+
+.blog-hero-mobile-copy {
+  margin-top: 2rem;
+}
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+.blog-hero-desktop {
+  display: none;
+}
+
+/* =========================================
+   TABLET / DESKTOP
+========================================= */
+
+@media (min-width: 640px) {
+  .blog-hero-section {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 2rem;
+  }
+
+  .blog-hero-logo {
+    left: 2.5rem;
+    top: 2rem;
+  }
+
+  .blog-hero-logo-image {
+    width: 110px;
+  }
+
+  .blog-hero-mobile {
+    display: none;
+  }
+
+  .blog-hero-desktop {
+    position: relative;
+    display: block;
+  }
+
+  .blog-hero-desktop-image {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 58%;
+
+    pointer-events: none;
+  }
+
+  .blog-hero-desktop-image-content {
+    object-fit: contain;
+    object-position: left;
+  }
+
+  .blog-hero-desktop-content {
+    position: relative;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    min-height: 620px;
+
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .blog-hero-copy {
+    width: 50%;
+    max-width: 36rem;
+    margin-right: 5%;
+  }
+
+  .blog-hero-title {
+    font-size: 4.5rem;
+  }
+
+  .blog-hero-highlight {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .blog-hero-highlight-text {
+    font-size: 3rem;
+  }
+}
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1024px) {
+  .blog-hero-logo-image {
+    width: 125px;
+  }
+
+  .blog-hero-title {
+    font-size: 6rem;
+  }
+
+  .blog-hero-highlight-text {
+    font-size: 3.75rem;
+  }
+
+  .blog-hero-desktop-content {
+    min-height: 760px;
+  }
+}

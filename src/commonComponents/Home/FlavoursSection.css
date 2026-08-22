@@ -1,0 +1,884 @@
+/* =========================================
+   FLAVOURS SECTION - BASE
+========================================= */
+
+.flavours-section {
+  width: 100%;
+  background: #fdf1da;
+  padding: 32px 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.flavours-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+
+  gap: 24px;
+
+  transform: translateX(-80px);
+  box-sizing: border-box;
+}
+
+.flavours-heading {
+  position: relative;
+  z-index: 10;
+
+  min-width: 0;
+  padding-left: 8px;
+}
+
+.flavours-main-title {
+  margin: 0;
+
+  color: #502300;
+
+  font-size: clamp(2rem, 5vw, 5.5rem);
+  text-transform: uppercase;
+
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+
+  white-space: nowrap;
+}
+
+.blueberry-image .flavour-image {
+  transform: scale(1);
+}
+
+.flavours-highlight {
+  display: inline-block;
+
+  max-width: 100%;
+  margin-top: 4px;
+  padding: 4px 12px;
+
+  background: #a87847;
+
+  transform: rotate(-2deg);
+  box-sizing: border-box;
+}
+
+.flavours-highlight-text {
+  display: block;
+
+  color: #fdf1da;
+
+  font-size: clamp(2.5rem, 4.8vw, 5.2rem);
+  text-transform: uppercase;
+
+  line-height: 0.82;
+  white-space: nowrap;
+}
+
+.flavours-slider {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.flavours-scroll {
+  display: flex;
+
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  gap: 20px;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  padding: 15px 8px 20px;
+  box-sizing: border-box;
+}
+
+.flavours-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.flavour-slide {
+  position: relative;
+
+  flex: 0 0 100%;
+  width: 100%;
+  height: 450px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  scroll-snap-align: start;
+
+  transform: rotate(-3deg);
+}
+
+.flavour-image-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  border-radius: 30px;
+  overflow: hidden;
+
+  isolation: isolate;
+}
+
+.flavour-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  border-radius: 30px;
+}
+
+/* =========================================
+   STRAWBERRY IMAGE
+========================================= */
+
+.strawberry-slide {
+  overflow: visible;
+  border-radius: 0;
+}
+
+.strawberry-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  border-radius: 40px !important;
+  overflow: hidden !important;
+
+  clip-path: inset(0 round 40px);
+
+  transform: translateZ(0);
+}
+
+.strawberry-wrapper .strawberry-image {
+  position: absolute !important;
+
+  top: 0 !important;
+  left: 5% !important;
+
+  width: 90% !important;
+  height: 100% !important;
+
+  display: block !important;
+
+  object-fit: cover !important;
+  object-position: center !important;
+
+  border-radius: 40px !important;
+
+  clip-path: inset(0 round 40px);
+
+  transform: translateZ(0);
+}
+
+/* =========================================
+   SLIDER ARROWS - BASE
+========================================= */
+
+.flavour-slider-arrows {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 10px;
+
+  padding: 0 150px 0 0;
+
+  box-sizing: border-box;
+}
+
+.flavour-arrow {
+  width: 50px;
+  height: 50px;
+
+  min-width: 50px;
+  min-height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  outline: none;
+
+  background: #502300;
+  color: #fdf1da;
+
+  font-size: 28px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.flavour-arrow:hover:not(:disabled) {
+  background: #502300;
+  color: #fdf1da;
+
+  transform: translateY(-2px);
+}
+
+.flavour-arrow:active:not(:disabled) {
+  background: #502300;
+  color: #fdf1da;
+
+  transform: scale(0.95);
+}
+
+.flavour-arrow:disabled {
+  background: #502300;
+  color: #fdf1da;
+
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   EXTRA SMALL MOBILE
+   320px - 374px
+===================================================== */
+
+@media (max-width: 374px) {
+  .flavours-section {
+    padding: 24px 10px;
+  }
+
+  .flavours-container {
+    width: 100%;
+
+    margin: 0;
+
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+
+    transform: none;
+  }
+
+  .flavours-heading {
+    width: 100%;
+    padding-left: 2px;
+  }
+
+  .flavours-main-title {
+    font-size: clamp(1.8rem, 10vw, 2.5rem);
+
+    line-height: 0.84;
+
+    white-space: normal;
+  }
+
+  .flavours-highlight {
+    margin-top: 5px;
+    padding: 4px 8px;
+  }
+
+  .flavours-highlight-text {
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+
+    line-height: 0.84;
+
+    white-space: normal;
+  }
+
+  .flavours-scroll {
+    gap: 8px;
+
+    padding: 10px 2px 15px;
+  }
+
+  .flavour-slide {
+    flex: 0 0 100%;
+    width: 100%;
+
+    height: clamp(230px, 78vw, 290px);
+  }
+
+  .flavour-image-wrapper,
+  .flavour-image {
+    border-radius: 22px;
+  }
+
+  .strawberry-slide,
+  .strawberry-slide .flavour-image-wrapper {
+    border-radius: 22px !important;
+    overflow: hidden !important;
+  }
+
+  .strawberry-slide .flavour-image {
+    border-radius: 22px !important;
+    clip-path: inset(0 round 22px) !important;
+  }
+
+  .strawberry-wrapper,
+  .strawberry-wrapper .strawberry-image {
+    border-radius: 25px !important;
+    clip-path: inset(0 round 25px) !important;
+  }
+
+  .flavour-slider-arrows {
+    gap: 6px;
+
+    margin-top: 4px;
+
+    padding: 0 10px 0 0;
+  }
+
+  .flavour-arrow {
+    width: 34px;
+    height: 34px;
+
+    min-width: 34px;
+    min-height: 34px;
+
+    font-size: 18px;
+  }
+}
+
+/* =====================================================
+   MOBILE
+   375px - 479px
+===================================================== */
+
+@media (min-width: 375px) and (max-width: 479px) {
+  .flavours-section {
+    padding: 28px 12px;
+  }
+
+  .flavours-container {
+    width: 100%;
+
+    margin: 0;
+
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+
+    transform: none;
+  }
+
+  .flavours-heading {
+    width: 100%;
+    padding-left: 4px;
+  }
+
+  .flavours-main-title {
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+
+    line-height: 0.84;
+
+    white-space: normal;
+  }
+
+  .flavours-highlight {
+    margin-top: 5px;
+
+    padding: 5px 10px;
+  }
+
+  .flavours-highlight-text {
+    font-size: clamp(2rem, 9.5vw, 3rem);
+
+    line-height: 0.84;
+
+    white-space: normal;
+  }
+
+  .flavours-scroll {
+    gap: 12px;
+
+    padding: 12px 4px 18px;
+  }
+
+  .flavour-slide {
+    flex: 0 0 100%;
+    width: 100%;
+
+    height: clamp(270px, 78vw, 360px);
+  }
+
+  .flavour-image-wrapper,
+  .flavour-image {
+    border-radius: 26px;
+  }
+
+  .strawberry-slide,
+  .strawberry-slide .flavour-image-wrapper {
+    border-radius: 26px !important;
+    overflow: hidden !important;
+  }
+
+  .strawberry-slide .flavour-image {
+    border-radius: 26px !important;
+    clip-path: inset(0 round 26px) !important;
+  }
+
+  .flavour-slider-arrows {
+    gap: 8px;
+
+    margin-top: 4px;
+
+    padding: 0 20px 0 0;
+  }
+
+  .flavour-arrow {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+    min-height: 38px;
+
+    font-size: 20px;
+  }
+}
+
+/* =====================================================
+   LARGE MOBILE
+   480px - 639px
+===================================================== */
+
+@media (min-width: 480px) and (max-width: 639px) {
+  .flavours-section {
+    padding: 32px 20px;
+  }
+
+  .flavours-container {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+
+    transform: none;
+  }
+
+  .flavours-heading {
+    padding-left: 8px;
+  }
+
+  .flavours-main-title {
+    font-size: clamp(2.8rem, 9vw, 4.2rem);
+
+    white-space: nowrap;
+  }
+
+  .flavours-highlight {
+    padding: 6px 14px;
+  }
+
+  .flavours-highlight-text {
+    font-size: clamp(2.5rem, 8.5vw, 4rem);
+  }
+
+  .flavours-scroll {
+    gap: 14px;
+
+    padding: 14px 6px 20px;
+  }
+
+  .flavour-slide {
+    height: clamp(340px, 72vw, 430px);
+  }
+
+  .flavour-slider-arrows {
+    padding: 0 30px 0 0;
+  }
+
+  .flavour-arrow {
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+    min-height: 42px;
+
+    font-size: 22px;
+  }
+
+  .strawberry-slide,
+  .strawberry-slide .flavour-image-wrapper {
+    border-radius: 30px !important;
+    overflow: hidden !important;
+  }
+
+  .strawberry-slide .flavour-image {
+    border-radius: 30px !important;
+    clip-path: inset(0 round 30px) !important;
+  }
+}
+
+/* =====================================================
+   SMALL TABLET
+   640px - 767px
+===================================================== */
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .flavours-section {
+    padding: 40px 32px;
+  }
+
+  .flavours-container {
+    width: 100%;
+    max-width: 100%;
+
+    grid-template-columns: 1fr;
+
+    gap: 32px;
+
+    transform: none;
+  }
+
+  .flavours-heading {
+    padding-left: 16px;
+  }
+
+  .flavours-main-title {
+    font-size: clamp(3.5rem, 8vw, 5rem);
+  }
+
+  .flavours-highlight {
+    padding: 8px 20px;
+  }
+
+  .flavours-highlight-text {
+    font-size: clamp(3rem, 7vw, 4.5rem);
+  }
+
+  .flavours-scroll {
+    gap: 16px;
+  }
+
+  .flavour-slide {
+    height: 400px;
+  }
+
+  .flavour-slider-arrows {
+    gap: 8px;
+
+    margin-top: 8px;
+
+    padding: 0 50px 0 0;
+  }
+
+  .flavour-arrow {
+    width: 44px;
+    height: 44px;
+
+    min-width: 44px;
+    min-height: 44px;
+
+    font-size: 24px;
+  }
+
+  .strawberry-slide,
+  .strawberry-slide .flavour-image-wrapper {
+    border-radius: 30px !important;
+    overflow: hidden !important;
+  }
+
+  .strawberry-slide .flavour-image {
+    border-radius: 30px !important;
+    clip-path: inset(0 round 30px) !important;
+  }
+}
+
+/* =====================================================
+   TABLET
+   768px - 1023px
+===================================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .flavours-section {
+    padding: 45px 32px;
+  }
+
+  .flavours-container {
+    width: 100%;
+
+    grid-template-columns: 0.85fr 1.15fr;
+
+    gap: 24px;
+
+    transform: none;
+  }
+
+  .flavours-heading {
+    padding-left: 0;
+  }
+
+  .flavours-main-title {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    /* margin-left: 50px; */
+    white-space: nowrap;
+  }
+
+  .flavours-highlight {
+    padding: 7px 16px;
+  }
+
+  .flavours-highlight-text {
+    font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+  }
+
+  .flavours-scroll {
+    gap: 18px;
+
+    padding: 15px 6px 20px;
+  }
+
+  .flavour-slide {
+    height: 420px;
+  }
+
+  .flavour-slider-arrows {
+    gap: 10px;
+
+    padding: 0 70px 0 0;
+  }
+
+  .flavour-arrow {
+    width: 46px;
+    height: 46px;
+
+    min-width: 46px;
+    min-height: 46px;
+
+    font-size: 25px;
+  }
+
+  .strawberry-slide,
+  .strawberry-slide .flavour-image-wrapper {
+    border-radius: 30px !important;
+    overflow: hidden !important;
+  }
+
+  .strawberry-slide .flavour-image {
+    border-radius: 30px !important;
+    clip-path: inset(0 round 30px) !important;
+  }
+}
+
+/* =====================================================
+   SMALL LAPTOP
+   1024px - 1199px
+===================================================== */
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .flavours-section {
+    padding: 50px 40px;
+  }
+
+  .flavours-container {
+    grid-template-columns: 0.85fr 1.15fr;
+
+    gap: 32px;
+
+    transform: translateX(-40px);
+  }
+
+  .flavours-main-title {
+    font-size: clamp(3.5rem, 5.5vw, 5rem);
+  }
+
+  .flavours-highlight {
+    padding: 8px 18px;
+  }
+
+  .flavours-highlight-text {
+    font-size: clamp(3.2rem, 5vw, 4.8rem);
+  }
+
+  .flavour-slide {
+    height: 440px;
+  }
+
+  .flavour-slider-arrows {
+    padding: 0 100px 0 0;
+  }
+}
+
+/* =====================================================
+   LAPTOP / DESKTOP
+   1200px - 1439px
+===================================================== */
+
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .flavours-section {
+    padding: 55px 50px;
+  }
+
+  .flavours-container {
+    grid-template-columns: 0.85fr 1.15fr;
+
+    gap: 40px;
+
+    transform: translateX(-60px);
+  }
+
+  .flavours-main-title {
+    font-size: clamp(4rem, 5vw, 5.5rem);
+  }
+
+  .flavours-highlight {
+    padding: 8px 20px;
+  }
+
+  .flavours-highlight-text {
+    font-size: clamp(3.5rem, 4.8vw, 5.2rem);
+  }
+
+  .flavour-slide {
+    height: 470px;
+  }
+
+  .flavour-slider-arrows {
+    padding: 0 130px 0 0;
+  }
+}
+
+/* =====================================================
+   LARGE DESKTOP
+   1440px - 1919px
+===================================================== */
+
+/* =====================================================
+   LARGE LAPTOP / DESKTOP
+   1440px - 1919px
+===================================================== */
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .flavours-section {
+    padding: 65px 60px;
+  }
+
+  .flavours-container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+
+    grid-template-columns: 0.85fr 1.15fr;
+
+    gap: 48px;
+
+    /* Left se text ko andar lane ke liye */
+    transform: none;
+  }
+
+  .flavours-heading {
+    padding-left: 80px;
+  }
+
+  .flavours-main-title {
+    font-size: clamp(4.5rem, 5vw, 5.5rem);
+  }
+
+  .flavours-highlight {
+    padding: 10px 22px;
+  }
+
+  .flavours-highlight-text {
+    font-size: clamp(4rem, 4.8vw, 5.2rem);
+  }
+
+  .flavour-slide {
+    height: 500px;
+  }
+
+  .flavour-slider-arrows {
+    padding: 0 150px 0 0;
+  }
+}
+
+/* =====================================================
+   EXTRA LARGE DESKTOP / 2K+
+   1920px+
+===================================================== */
+
+@media (min-width: 1920px) {
+  .flavours-section {
+    padding: 80px 80px;
+  }
+
+  .flavours-container {
+    max-width: 1700px;
+
+    grid-template-columns: 0.85fr 1.15fr;
+
+    gap: 60px;
+
+    transform: translateX(-90px);
+  }
+
+  .flavours-main-title {
+    font-size: 6rem;
+  }
+
+  .flavours-highlight {
+    padding: 12px 26px;
+  }
+
+  .flavours-highlight-text {
+    font-size: 5.6rem;
+  }
+
+  .flavours-scroll {
+    gap: 24px;
+
+    padding: 20px 10px 25px;
+  }
+
+  .flavour-slide {
+    height: 580px;
+  }
+
+  .flavour-image-wrapper,
+  .flavour-image {
+    border-radius: 40px;
+  }
+
+  .flavour-slider-arrows {
+    padding: 0 180px 0 0;
+  }
+
+  .flavour-arrow {
+    width: 58px;
+    height: 58px;
+
+    min-width: 58px;
+    min-height: 58px;
+
+    font-size: 32px;
+  }
+}

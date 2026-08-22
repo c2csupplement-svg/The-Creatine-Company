@@ -1,0 +1,107 @@
+import { anton } from './fonts';
+import {
+  IconPinterest,
+  IconInstagram,
+  IconX,
+  IconYoutube,
+} from '../app/about/_components/icons';
+
+import './Footer.css';
+
+export default function Footer() {
+  return (
+    <footer className="footer">
+      {/* Wave divider */}
+      <svg
+        viewBox="0 0 1920 263"
+        preserveAspectRatio="none"
+        className="footer-wave"
+        aria-hidden="true"
+      >
+        <path
+          d="M221.5 192.499C127.9 215.699 34.8333 161.166 0 130.999V0H1919C1922.17 83.3333 1927.6 248 1920 226C1912.4 204 1840.5 180 1800 195.5C1761 206 1721.5 252.3 1685.5 261.5C1640.5 273 1574.5 156.499 1526.5 216.999C1488.1 265.399 1434.83 249.166 1413 234.999C1411.17 230.333 1406.3 215.099 1401.5 191.499C1396.7 167.899 1350 153.333 1327.5 148.5C1323.5 147 1331.1 142.399 1293.5 91.9993C1255.9 41.5992 1222 58 1201.5 77.4993C1176.5 113 1158.6 197.399 1123 216.999C1087.4 236.599 989.167 195.166 944.5 171.999C877.5 173 823 206 814 202.999C771.167 179.333 671.1 144.1 613.5 192.499C555.9 240.899 513.5 226.999 499.5 214C482.5 202 464.5 157.5 402.5 163.5C325 171 344 110 337.5 63.9997C332.3 27.1997 293.667 36.9997 275 46.4997C268.2 126.9 261 177.5 221.5 192.499Z"
+          fill="#FDF1DA"
+        />
+      </svg>
+
+      <div className="footer-content">
+
+        <h2 className={`${anton.className} footer-title`}>
+          #TheCreatineCompany
+        </h2>
+
+        {/* Social Icons */}
+        <div className="footer-socials">
+          <a href="#" aria-label="Pinterest">
+            <IconPinterest className="footer-social-icon" />
+          </a>
+
+          <a href="#" aria-label="Instagram">
+            <IconInstagram className="footer-social-icon" />
+          </a>
+
+          <a href="#" aria-label="X">
+            <IconX className="footer-social-icon" />
+          </a>
+
+          <a href="#" aria-label="YouTube">
+            <IconYoutube className="footer-youtube-icon" />
+          </a>
+        </div>
+
+        {/* Footer Links */}
+        <div className="footer-links">
+
+          <div className={`${anton.className} footer-flavour`}>
+            <a href="#">
+              CREATINE FLAVOUR
+            </a>
+          </div>
+
+          <nav className={`${anton.className} footer-nav`}>
+            <a href="/about">ABOUT</a>
+            <a href="/contact">CONTACT</a>
+            <a href="/shop">SHOP</a>
+          </nav>
+
+          {/* Newsletter */}
+          <div className="footer-newsletter">
+            <p>
+              Get Exclusive Early Access and Stay Informed About Product
+              Updates, Events, and More!
+            </p>
+
+            <form className="newsletter-form">
+              <input
+                type="email"
+                required
+                placeholder="ENTER YOUR EMAIL"
+                className={anton.className}
+              />
+
+              <button type="submit" aria-label="Subscribe">
+                →
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+        {/* Bottom */}
+        <div className="footer-bottom">
+
+          <p>
+            Copyright © {new Date().getFullYear()} the creatine company -
+            All Rights Reserved
+          </p>
+
+          <a href="/privacy-policy">
+            Privacy Policy
+          </a>
+
+        </div>
+
+      </div>
+    </footer>
+  );
+}
