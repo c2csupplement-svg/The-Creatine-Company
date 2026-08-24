@@ -1,21 +1,75 @@
-import { anton } from './fonts';
+import { anton } from "./fonts";
 import {
   IconPinterest,
   IconInstagram,
   IconX,
   IconYoutube,
-} from '../app/about/_components/icons';
-
-import './Footer.css';
+} from "../app/about/_components/icons";
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      {/* Wave divider */}
+    <footer
+      className="
+        relative
+        box-border
+        w-full
+        overflow-hidden
+        bg-[#462300]
+        px-4
+        py-6
+        text-white
+
+        min-[375px]:px-5
+        min-[375px]:py-7
+
+        sm:px-6
+        sm:py-8
+
+        md:px-10
+        md:py-12
+
+        lg:px-12
+        lg:py-14
+
+        xl:px-16
+        xl:py-16
+
+        min-[1440px]:px-20
+        min-[1440px]:py-[4.5rem]
+
+        min-[1920px]:px-24
+        min-[1920px]:py-20
+      "
+    >
       <svg
         viewBox="0 0 1920 263"
         preserveAspectRatio="none"
-        className="footer-wave"
+        className="
+          pointer-events-none
+          absolute
+          left-0
+          top-[-1px]
+          h-12
+          w-full
+
+          max-[374px]:h-12
+
+          min-[375px]:h-14
+
+          min-[480px]:h-16
+
+          sm:h-20
+
+          md:h-24
+
+          lg:h-24
+
+          xl:h-[6.5rem]
+
+          min-[1440px]:h-28
+
+          min-[1920px]:h-32
+        "
         aria-hidden="true"
       >
         <path
@@ -24,83 +78,416 @@ export default function Footer() {
         />
       </svg>
 
-      <div className="footer-content">
+      <div
+        className="
+          relative
+          mx-auto
+          box-border
+          w-full
+          max-w-[1600px]
+          pt-10
 
-        <h2 className={`${anton.className} footer-title`}>
+          max-[374px]:pt-10
+
+          min-[375px]:pt-12
+
+          min-[480px]:pt-14
+
+          sm:pt-16
+
+          md:pt-20
+
+          lg:pt-20
+
+          xl:pt-[5.5rem]
+
+          min-[1440px]:pt-24
+
+          min-[1920px]:max-w-[1800px]
+          min-[1920px]:pt-28
+        "
+      >
+        <h2
+          className={`
+            ${anton.className}
+            m-0
+            text-center
+            text-[clamp(1.5rem,8vw,2rem)]
+            leading-none
+            tracking-[0.025em]
+
+            min-[375px]:text-[clamp(1.8rem,8vw,2.5rem)]
+
+            min-[480px]:text-[clamp(2.25rem,7vw,3rem)]
+
+            sm:text-[clamp(2.75rem,6vw,3.5rem)]
+
+            md:text-[clamp(3rem,6vw,4rem)]
+
+            lg:text-[4rem]
+
+            xl:text-[4.5rem]
+
+            min-[1440px]:text-[5rem]
+
+            min-[1920px]:text-[6rem]
+          `}
+        >
           #TheCreatineCompany
         </h2>
 
-        {/* Social Icons */}
-        <div className="footer-socials">
-          <a href="#" aria-label="Pinterest">
-            <IconPinterest className="footer-social-icon" />
+        <div
+          className="
+            mt-5
+            flex
+            items-center
+            justify-center
+            gap-7
+
+            min-[375px]:mt-6
+            min-[375px]:gap-9
+
+            min-[480px]:gap-12
+
+            sm:gap-14
+
+            md:gap-16
+
+            xl:gap-16
+
+            min-[1440px]:gap-[4.5rem]
+
+            min-[1920px]:mt-8
+            min-[1920px]:gap-20
+          "
+        >
+          <a
+            href="https://www.pinterest.com/thecreatinecompany/"
+            aria-label="Pinterest"
+            className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
+          >
+            <IconPinterest
+              className="
+                block
+                h-6
+                w-6
+
+                min-[375px]:h-7
+                min-[375px]:w-7
+
+                sm:h-8
+                sm:w-8
+
+                min-[1440px]:h-9
+                min-[1440px]:w-9
+
+                min-[1920px]:h-10
+                min-[1920px]:w-10
+              "
+            />
           </a>
 
-          <a href="#" aria-label="Instagram">
-            <IconInstagram className="footer-social-icon" />
+          <a
+            href="https://www.instagram.com/the.creatine.company/"
+            aria-label="Instagram"
+            className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
+          >
+            <IconInstagram
+              className="
+                block
+                h-6
+                w-6
+
+                min-[375px]:h-7
+                min-[375px]:w-7
+
+                sm:h-8
+                sm:w-8
+
+                min-[1440px]:h-9
+                min-[1440px]:w-9
+
+                min-[1920px]:h-10
+                min-[1920px]:w-10
+              "
+            />
           </a>
 
-          <a href="#" aria-label="X">
-            <IconX className="footer-social-icon" />
+          <a
+            href="https://x.com/CreatineCompany"
+            aria-label="X"
+            className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
+          >
+            <IconX
+              className="
+                block
+                h-6
+                w-6
+
+                min-[375px]:h-7
+                min-[375px]:w-7
+
+                sm:h-8
+                sm:w-8
+
+                min-[1440px]:h-9
+                min-[1440px]:w-9
+
+                min-[1920px]:h-10
+                min-[1920px]:w-10
+              "
+            />
           </a>
 
-          <a href="#" aria-label="YouTube">
-            <IconYoutube className="footer-youtube-icon" />
+          <a
+            href="https://www.youtube.com/@TheCreatineCompany"
+            aria-label="YouTube"
+            className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
+          >
+            <IconYoutube
+              className="
+                block
+                h-11
+                w-11
+
+                min-[375px]:h-13
+                min-[375px]:w-13
+
+                sm:h-[3.75rem]
+                sm:w-[3.75rem]
+
+                min-[1440px]:h-16
+                min-[1440px]:w-16
+
+                min-[1920px]:h-[4.5rem]
+                min-[1920px]:w-[4.5rem]
+              "
+            />
           </a>
         </div>
 
-        {/* Footer Links */}
-        <div className="footer-links">
+        <div
+          className="
+            mx-auto
+            mt-10
+            grid
+            w-full
+            max-w-4xl
+            grid-cols-1
+            gap-7
 
-          <div className={`${anton.className} footer-flavour`}>
-            <a href="#">
+            min-[375px]:mt-12
+            min-[375px]:gap-8
+
+            min-[480px]:mt-14
+
+            sm:mt-14
+            sm:gap-9
+
+            md:mt-16
+            md:grid-cols-3
+            md:gap-6
+
+            lg:max-w-[900px]
+            lg:gap-10
+
+            xl:mt-[5.5rem]
+            xl:max-w-[1100px]
+
+            min-[1440px]:max-w-[1300px]
+            min-[1440px]:gap-16
+
+            min-[1920px]:mt-20
+            min-[1920px]:max-w-[1600px]
+            min-[1920px]:gap-20
+          "
+        >
+          <div
+            className={`
+              ${anton.className}
+              text-[0.95rem]
+              [overflow-wrap:anywhere]
+
+              min-[375px]:text-base
+
+              min-[480px]:text-[1.05rem]
+
+              min-[640px]:text-lg
+
+              min-[1440px]:text-xl
+
+              min-[1920px]:text-[1.4rem]
+            `}
+          >
+            <a
+              href="#"
+              className="transition-opacity duration-200 hover:opacity-70"
+            >
               CREATINE FLAVOUR
             </a>
           </div>
 
-          <nav className={`${anton.className} footer-nav`}>
-            <a href="/about">ABOUT</a>
-            <a href="/contact">CONTACT</a>
-            <a href="/shop">SHOP</a>
+          <nav
+            className={`
+              ${anton.className}
+              flex
+              flex-col
+              gap-1
+              text-[0.95rem]
+
+              min-[375px]:text-base
+
+              min-[480px]:text-[1.05rem]
+
+              min-[640px]:text-lg
+
+              min-[1440px]:text-xl
+
+              min-[1920px]:text-[1.4rem]
+            `}
+          >
+            <a href="/about" className="transition-opacity hover:opacity-70">
+              ABOUT
+            </a>
+
+            <a href="/contact" className="transition-opacity hover:opacity-70">
+              CONTACT
+            </a>
+
+            <a href="/shop" className="transition-opacity hover:opacity-70">
+              SHOP
+            </a>
           </nav>
 
-          {/* Newsletter */}
-          <div className="footer-newsletter">
-            <p>
+          <div className="w-full min-w-0">
+            <p
+              className="
+                m-0
+                text-[0.7rem]
+                leading-[1.625]
+                text-white/80
+
+                sm:text-xs
+
+                min-[1440px]:text-[0.85rem]
+
+                min-[1920px]:text-base
+              "
+            >
               Get Exclusive Early Access and Stay Informed About Product
               Updates, Events, and More!
             </p>
 
-            <form className="newsletter-form">
+            <form
+              className="
+                mt-4
+                flex
+                w-full
+                items-end
+                gap-3
+                border-b
+                border-white/60
+                pb-2
+              "
+            >
               <input
                 type="email"
                 required
                 placeholder="ENTER YOUR EMAIL"
-                className={anton.className}
+                className={`
+                  ${anton.className}
+                  min-w-0
+                  w-full
+                  border-0
+                  bg-transparent
+                  text-sm
+                  tracking-[0.025em]
+                  text-white
+                  outline-none
+                  placeholder:text-white/70
+
+                  min-[1920px]:text-base
+                `}
               />
 
-              <button type="submit" aria-label="Subscribe">
+              <button
+                type="submit"
+                aria-label="Subscribe"
+                className="
+                  flex-none
+                  border-0
+                  bg-transparent
+                  p-0
+                  text-base
+                  text-white
+                  transition-opacity
+                  duration-200
+                  hover:opacity-70
+                  min-[1920px]:text-xl
+                "
+              >
                 →
               </button>
             </form>
           </div>
-
         </div>
 
-        {/* Bottom */}
-        <div className="footer-bottom">
+        <div
+          className="
+            mx-auto
+            mt-8
+            flex
+            w-full
+            max-w-4xl
+            flex-col-reverse
+            items-center
+            gap-3
+            border-t
+            border-white/10
+            pt-5
+            text-[0.68rem]
+            text-white/70
 
-          <p>
+            min-[375px]:mt-8
+
+            sm:text-xs
+
+            md:flex-row
+            md:justify-between
+            md:items-center
+
+            lg:max-w-[900px]
+
+            xl:max-w-[1100px]
+
+            min-[1440px]:max-w-[1300px]
+            min-[1440px]:text-[0.85rem]
+
+            min-[1920px]:mt-14
+            min-[1920px]:max-w-[1600px]
+            min-[1920px]:text-[0.95rem]
+          "
+        >
+          <p
+            className="
+              m-0
+              text-center
+              [overflow-wrap:anywhere]
+
+              md:text-left
+            "
+          >
             Copyright © {new Date().getFullYear()} the creatine company -
             All Rights Reserved
           </p>
 
-          <a href="/privacy-policy">
+          <a
+            href="/privacy-policy"
+            className="text-center transition-opacity duration-200 hover:opacity-70"
+          >
             Privacy Policy
           </a>
-
         </div>
-
       </div>
     </footer>
   );
