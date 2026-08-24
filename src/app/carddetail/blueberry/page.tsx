@@ -71,7 +71,7 @@ const reviews: Review[] = [
     name: "RAHUL S.",
     date: "12-07-26",
     rating: 5,
-    text:"Being a college student, dropping ₹1500 upfront on a big tub was always a stretch. Getting elite quality for just ₹10 a day is a complete game changer for my budget. Hits exactly the same as the expensive imported brands."
+    text:"Being a college student, dropping  Dhs. 15 upfront on a big tub was always a stretch. Getting elite quality for just  Dhs. 1 a day is a complete game changer for my budget. Hits exactly the same as the expensive imported brands."
 
   },
    {
@@ -79,7 +79,7 @@ const reviews: Review[] = [
     name: "KABIR M.",
     date: '05-08-26',
     rating: 3,
-    text:"I am not going to lie, I thought ₹10 creatine was a scam. But I scanned the QR code, checked the NABL lab report for my exact batch, and took a chance. It dissolves perfectly and my lifts have gone up. It puts the ₹2000 tubs to shame."
+    text:"I am not going to lie, I thought  Dhs. 1 creatine was a scam. But I scanned the QR code, checked the NABL lab report for my exact batch, and took a chance. It dissolves perfectly and my lifts have gone up. It puts the  Dhs. 20 tubs to shame."
 
   },
    {
@@ -282,7 +282,7 @@ export default function Page() {
             </div>
 
             <div className="creatine-feature-card">
-              <strong>3G</strong>
+              <strong>5G</strong>
               <span>CREATINE</span>
             </div>
 
@@ -359,7 +359,7 @@ export default function Page() {
 
             <div className="nutrition-row nutrition-top-row">
               <span>CREATINE MONOHYDRATE</span>
-              <strong>3G</strong>
+              <strong>5G</strong>
             </div>
 
             <div className="nutrition-row">
