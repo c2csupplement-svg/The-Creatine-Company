@@ -163,6 +163,8 @@ export default function Footer() {
         >
           <a
             href="https://www.pinterest.com/thecreatinecompany/"
+            target="_blank" 
+            rel="noopener noreferrer"
             aria-label="Pinterest"
             className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
           >
@@ -189,6 +191,8 @@ export default function Footer() {
 
           <a
             href="https://www.instagram.com/the.creatine.company/"
+            target="_blank" 
+            rel="noopener noreferrer"
             aria-label="Instagram"
             className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
           >
@@ -215,6 +219,8 @@ export default function Footer() {
 
           <a
             href="https://x.com/CreatineCompany"
+            target="_blank" 
+            rel="noopener noreferrer"
             aria-label="X"
             className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
           >
@@ -241,6 +247,8 @@ export default function Footer() {
 
           <a
             href="https://www.youtube.com/@TheCreatineCompany"
+            target="_blank" 
+            rel="noopener noreferrer"
             aria-label="YouTube"
             className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
           >
