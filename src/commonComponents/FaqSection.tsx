@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
 import { anton, mono } from "./fonts";
+import { useLanguage} from "@/app/context/languageUseContent";
 
 const FAQS = [
   {
@@ -15,7 +16,7 @@ const FAQS = [
   },
   {
     q: "Why single-serve sachets instead of a tub?",
-    a: "Because tubs fail in Indian humidity. The moment you open a jar in the monsoon, moisture gets in. The powder cakes, degrades into creatinine, and the scoop inevitably goes missing by week two. We sealed 5g of 100% micronised creatine (200 mesh) into high-barrier foil. It stays dry. It is perfectly pre-measured. No clumped powder, no spoon-hunting, and no guesswork.",
+    a: "Because tubs fail in Arabic humidity. The moment you open a jar in the monsoon, moisture gets in. The powder cakes, degrades into creatinine, and the scoop inevitably goes missing by week two. We sealed 5g of 100% micronised creatine (200 mesh) into high-barrier foil. It stays dry. It is perfectly pre-measured. No clumped powder, no spoon-hunting, and no guesswork.",
   },
   {
     q: "When should I take it, and do I need to load?",
@@ -31,11 +32,41 @@ const FAQS = [
   },
 ];
 
+const arFAQS = [
+  {
+    q: "إذا كان الكرياتين الخام رخيصًا، فلماذا تبلغ تكلفة العبوات 69 درهمًا؟",
+    a: "تبلغ تكلفة الكرياتين مونوهيدرات الخام في الحصة القياسية البالغة 5 غرامات حوالي 0.19 درهم فقط. فهو مكوّن رخيص ومتوافر بكثرة. يبدو نموذج العبوة التقليدي مكلفًا لأنك تُجبر على شراء كمية تكفي لـ90 يومًا مقدمًا. لقد قمنا بتقسيم المنتج إلى جرعة يومية واحدة. تدفع 1 درهم مقابل ظرف واحد، وليس 150 درهمًا مقابل عبوة بلاستيكية. أنت تشتري بالضبط الكمية التي تحتاجها."
+  },
+  {
+    q: "كيف يمكن أن يكون الكرياتين بسعر 1 درهم آمنًا وأصليًا؟",
+    a: "السعر المنخفض لا يعني جودة منخفضة. يذهب باقي مبلغ الدرهم الواحد إلى التورين، ورق الألمنيوم عالي الحاجز، والتعبئة، والتوصيل، وضريبة GST، وهامش ربح معتدل، بالإضافة إلى اختبارات الدُفعات الصارمة في مختبرات معتمدة من NABL. ننشر تفاصيل التكلفة بالكامل على موقعنا. والأهم من ذلك، لست مضطرًا إلى الاكتفاء بكلامنا. يحتوي كل ظرف على رمز QR في الواجهة الأمامية. امسحه لقراءة شهادة التحليل (COA) بصيغة PDF من مختبر معتمد من NABL للدُفعة نفسها. اتخذ قرارك بناءً على الأدلة، وليس على السعر."
+  },
+  {
+    q: "لماذا الأظرف الفردية بدلًا من العبوة الكبيرة؟",
+    a: "لأن العبوات الكبيرة لا تتحمل الرطوبة في المنطقة العربية. بمجرد فتح العبوة في موسم الرطوبة، تتسلل الرطوبة إلى الداخل. يبدأ المسحوق بالتكتل وقد يتحلل إلى كرياتينين، وغالبًا ما تختفي الملعقة بعد الأسبوع الثاني. قمنا بإغلاق 5 غرامات من الكرياتين الميكروني بنسبة 100% (200 ميش) داخل رقائق عالية الحاجز. يبقى المنتج جافًا، ومقاسًا مسبقًا بدقة. لا مسحوق متكتل، ولا بحث عن الملعقة، ولا تخمين للجرعة."
+  },
+  {
+    q: "متى يجب أن أتناوله؟ وهل أحتاج إلى مرحلة تحميل؟",
+    a: "تناوله في الوقت الذي يسهل عليك تذكره، كل يوم دون انقطاع. يعمل الكرياتين من خلال الحفاظ على مخزون الكرياتين داخل العضلات ممتلئًا مع مرور الوقت، لذلك فإن الانتظام اليومي أهم بكثير من توقيت تناوله. مرحلة التحميل (20 غرامًا يوميًا لمدة أسبوع) تملأ مخزون العضلات بشكل أسرع، لكنها اختيارية تمامًا. تناول ظرف واحد بجرعة 5 غرامات يوميًا سيؤدي إلى تشبع عضلاتك بالكامل خلال حوالي 28 يومًا."
+  },
+  {
+    q: "أنا نباتي. هل يؤثر ذلك على طريقة عمل الكرياتين بالنسبة لي؟",
+    a: "نعم. يأتي الكرياتين الغذائي تقريبًا بشكل كامل من اللحوم والأسماك. وتُظهر الدراسات الخاضعة للرقابة باستخدام خزعات العضلات أن النباتيين يبدأون بمخزون أقل بشكل ملحوظ من الكرياتين في العضلات أثناء الراحة (117 مقابل 130 مليمول/كغ). وبما أن لديهم مساحة أكبر لزيادة المخزون، فإن النباتيين غالبًا ما يظهرون استجابة أقوى للمكملات اليومية. أظرفنا نباتية 100%."
+  },
+  {
+    q: "هل يسبب الكرياتين تساقط الشعر أو تلف الكلى؟",
+    a: "تخلص الجمعية الدولية للتغذية الرياضية (ISSN) إلى أن الكرياتين مونوهيدرات آمن وجيد التحمل لدى الأشخاص الأصحاء. ولا يسبب ضررًا لوظائف الكلى لدى الأشخاص الأصحاء. أما أسطورة تساقط الشعر فتعود إلى دراسة واحدة أُجريت عام 2009 وقاست مستوى هرمون DHT، ولم يتم تكرار نتائجها. كما وجدت مراجعة تحليلية شاملة نُشرت عام 2021 ودراسة عشوائية محكمة (RCT) عام 2025، قامت بقياس بصيلات الشعر بشكل مباشر، عدم وجود علاقة بين الكرياتين وتساقط الشعر."
+  }
+]
+
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
+  const {language} = useLanguage();
+
   return (
     <section
+    dir={language === "ar"?"rtl" : "ltr"}
       className="
         relative
         w-full
@@ -63,7 +94,7 @@ export default function FaqSection() {
               md:text-[4.375rem]
             `}
           >
-            FREQUENTLT
+            {language !== "ar"?"FREQUENTLT":"غالبًا"}
           </h2>
 
           <div
@@ -91,7 +122,7 @@ export default function FaqSection() {
                 md:text-[4.375rem]
               `}
             >
-              ASKED QUESTIONS
+              {language !== "ar"?"ASKED QUESTIONS":"الأسئلة الشائعة"}
             </h2>
           </div>
         </div>
@@ -105,7 +136,7 @@ export default function FaqSection() {
             gap-4
           "
         >
-          {FAQS.map((item, i) => {
+          {language !== "ar"?(FAQS.map((item, i) => {
             const isOpen = openIndex === i;
 
             return (
@@ -134,10 +165,9 @@ export default function FaqSection() {
 
                     sm:text-2xl
 
-                    ${
-                      isOpen
-                        ? "bg-[#5c3a22]"
-                        : "bg-[#82572b]"
+                    ${isOpen
+                      ? "bg-[#5c3a22]"
+                      : "bg-[#82572b]"
                     }
                   `}
                 >
@@ -177,10 +207,9 @@ export default function FaqSection() {
                     duration-[900ms]
                     ease-in-out
 
-                    ${
-                      isOpen
-                        ? "grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0"
+                    ${isOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
                     }
                   `}
                 >
@@ -203,7 +232,104 @@ export default function FaqSection() {
                 </div>
               </div>
             );
-          })}
+          })):
+          (arFAQS.map((item, i) => {
+            const isOpen = openIndex === i;
+
+            return (
+              <div key={item.q} className="w-full">
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? -1 : i)}
+                  aria-expanded={isOpen}
+                  className={`
+                    ${anton.className}
+                    flex
+                    w-full
+                    cursor-pointer
+                    items-center
+                    justify-between
+                    rounded-md
+                    border-0
+                    px-5
+                    py-5
+                    text-left
+                    text-lg
+                    font-medium
+                    text-white
+                    transition-colors
+                    duration-300
+
+                    sm:text-2xl
+
+                    ${isOpen
+                      ? "bg-[#5c3a22]"
+                      : "bg-[#82572b]"
+                    }
+                  `}
+                >
+                  <span className="pr-4">
+                    {item.q.toUpperCase()}
+                  </span>
+
+                  <span
+                    className="
+                      ml-4
+                      flex
+                      h-14
+                      w-14
+                      flex-none
+                      items-center
+                      justify-center
+                      rounded
+                      border-2
+                      border-white
+                    "
+                  >
+                    {isOpen ? (
+                      <X className="h-6 w-6 sm:h-7 sm:w-7" />
+                    ) : (
+                      <Plus className="h-6 w-6 sm:h-7 sm:w-7" />
+                    )}
+                  </span>
+                </button>
+
+                <div
+                  className={`
+                    grid
+                    overflow-hidden
+                    rounded-b-md
+                    bg-[#bd966e]
+                    transition-[grid-template-rows,opacity]
+                    duration-[900ms]
+                    ease-in-out
+
+                    ${isOpen
+                      ? "grid-rows-[1fr] opacity-100"
+                      : "grid-rows-[0fr] opacity-0"
+                    }
+                  `}
+                >
+                  <div className="min-h-0 overflow-hidden">
+                    <div
+                      className={`
+                        ${mono.className}
+                        px-5
+                        py-4
+                        text-sm
+                        leading-[1.625]
+                        text-[#3a2416]
+
+                        sm:text-base
+                      `}
+                    >
+                      {item.a}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }))}
         </div>
       </div>
     </section>

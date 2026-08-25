@@ -1,11 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { anton, mono } from "../fonts";
 import NavigationMenu from "../NavigationMenu";
+import {useLanguage} from "../../app/context/languageUseContent"
 
 export default function HomeHero() {
+  const { language, setLanguage } = useLanguage();
+
   return (
     <section
+    
       className="
         relative
         w-full
@@ -70,6 +76,7 @@ export default function HomeHero() {
           z-10
           flex
           items-start
+          justify-between
           p-3
 
           min-[375px]:p-4
@@ -108,6 +115,82 @@ export default function HomeHero() {
             min-[1920px]:w-[180px]
           "
         />
+
+        <fieldset
+          className={`
+            ${mono.className}
+            flex
+            items-center
+            gap-1
+            rounded-full
+            border
+            border-white/30
+            bg-black/20
+            px-1.5
+            py-1
+            text-[0.65rem]
+            backdrop-blur-sm
+
+            min-[480px]:gap-1.5
+            min-[480px]:px-2
+            min-[480px]:text-[0.7rem]
+
+            sm:text-xs
+            lg:text-sm
+          `}
+        >
+          <legend className="sr-only">Choose language</legend>
+
+          <label
+            className={`
+              flex
+              cursor-pointer
+              items-center
+              gap-1
+              rounded-full
+              px-2
+              py-0.5
+              transition-colors
+              duration-150
+              ${language === "en" ? "bg-[#fdf1da] text-[#502300]" : "text-white/80"}
+            `}
+          >
+            <input
+              type="radio"
+              name="language"
+              value="en"
+              checked={language === "en"}
+              onChange={() => setLanguage("en")}
+              className="sr-only"
+            />
+            EN
+          </label>
+
+          <label
+            className={`
+              flex
+              cursor-pointer
+              items-center
+              gap-1
+              rounded-full
+              px-2
+              py-0.5
+              transition-colors
+              duration-150
+              ${language === "ar" ? "bg-[#fdf1da] text-[#502300]" : "text-white/80"}
+            `}
+          >
+            <input
+              type="radio"
+              name="language"
+              value="ar"
+              checked={language === "ar"}
+              onChange={() => setLanguage("ar")}
+              className="sr-only"
+            />
+            AR
+          </label>
+        </fieldset>
       </header>
 
       <div
@@ -180,7 +263,7 @@ export default function HomeHero() {
             min-[1920px]:text-[6.8rem]
           `}
         >
-          CREATINE, ONE DAY A TIME.
+          {(language !== "ar")?"CREATINE, ONE DAY A TIME.":"الكرياتين: يوماً بيوم."}
         </h1>
 
         <div
@@ -247,7 +330,7 @@ export default function HomeHero() {
               min-[1920px]:text-[3.1rem]
             `}
           >
-            5G CREATINE. 250MG TAURINE
+            {language !== "ar"?"5G CREATINE. 250MG TAURINE":"5 غرام كرياتين. 250 ملغ تورين."}
           </span>
         </div>
 
@@ -293,13 +376,10 @@ export default function HomeHero() {
             min-[1920px]:leading-[1.5]
 
             max-[639px]:max-[600px]:mt-2
-          `}
-        >
-          One pre-measured sachet.  Dhs. 1/- No 90-day tubs. No lost scoops.
-          Supports high-intensity capacity and lean mass.
+          `}>
+          {language !== "ar"? "One pre-measured sachet.  Dhs. 1/- No 90-day tubs. No lost scoops.Supports high-intensity capacity and lean mass."
+          :"كيس واحد بمقدار مُحدَّد مسبقاً. لا حاجة لعبوات ضخمة تكفي لـ 90 يوماً، ولا قلق من ضياع مكيال القياس. يدعم القدرة على أداء التمارين عالية الكثافة ويعزز الكتلة العضلية الصافية."}
           <br />
-          Scan the QR on the pack to read the NABL-accredited lab report for
-          your exact batch before you mix it.
         </p>
 
         <Link
@@ -370,7 +450,7 @@ export default function HomeHero() {
             max-[639px]:max-[600px]:text-[0.75rem]
           `}
         >
-          KNOW MORE <span>&rarr;</span>
+          {language !== "ar"?"KNOW MORE":"اكتشف أكثر"} <span>&rarr;</span>
         </Link>
       </div>
     </section>

@@ -4,27 +4,38 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import NavigationMenu from "@/commonComponents/NavigationMenu";
+import { useLanguage } from "@/app/context/languageUseContent";
+import { anton, mono } from "@/commonComponents/fonts";
 
 const HERO_SLIDES = [
   {
     type: "title",
     content: "ABOUT THE CREATINE COMPANY",
+    arContent: "عن شركة الكرياتين",
   },
   {
     type: "description",
     content:
       "At The Creatine Company, we believe that great performance starts with the right foundation. Our mission is to make premium-quality creatine simple, accessible, and convenient for everyone—from first-time gym-goers to professional athletes.",
+    arContent:
+      "في شركة الكرياتين، نؤمن بأن الأداء المتميز يبدأ من الأساس الصحيح. تتمثل مهمتنا في جعل الكرياتين عالي الجودة بسيطًا وسهل الوصول ومريحًا للجميع، بدءًا من المبتدئين في صالات الرياضة وحتى الرياضيين المحترفين.",
   },
   {
     type: "description",
     content:
       "We focus on clean, science-backed formulations with no unnecessary fillers, delivering effective daily nutrition that supports strength, power, recovery, and long-term performance. Every product is designed to fit seamlessly into your lifestyle, whether you're at the gym, at work, or on the move.",
+    arContent:
+      "نركز على تركيبات نظيفة ومدعومة علميًا، دون إضافات أو مواد مالئة غير ضرورية، لنقدم تغذية يومية فعالة تدعم القوة والطاقة والتعافي والأداء على المدى الطويل. تم تصميم كل منتج ليندمج بسلاسة مع أسلوب حياتك، سواء كنت في صالة الرياضة أو العمل أو أثناء التنقل.",
   },
-];
+]
 
 function HeroSlides({ activeIndex }: { activeIndex: number }) {
+
+  const { language } = useLanguage();
+
   return (
     <div
+    dir={language === "ar"?"rtl" : "ltr"}
       className="
         relative
         mx-auto
@@ -82,12 +93,11 @@ function HeroSlides({ activeIndex }: { activeIndex: number }) {
               transition-[transform,opacity]
               ease-[cubic-bezier(0.76,0,0.24,1)]
 
-              ${
-                isActive
-                  ? "translate-y-0 opacity-100 duration-700"
-                  : isPrevious
-                    ? "-translate-y-full opacity-0 duration-[1200ms]"
-                    : "translate-y-full opacity-0 duration-700"
+              ${isActive
+                ? "translate-y-0 opacity-100 duration-700"
+                : isPrevious
+                  ? "-translate-y-full opacity-0 duration-[1200ms]"
+                  : "translate-y-full opacity-0 duration-700"
               }
             `}
           >
@@ -125,9 +135,9 @@ function HeroSlides({ activeIndex }: { activeIndex: number }) {
                   min-[1920px]:text-[clamp(4.5rem,4.2vw,6rem)]
                 "
               >
-                ABOUT THE CREATINE
+                {language !== "ar"?"ABOUT THE CREATINE":"عن الكرياتين"}
                 <br />
-                COMPANY
+                {language !== "ar"? "COMPANY":"شركة"}
               </h1>
             ) : (
               <p
@@ -167,7 +177,7 @@ function HeroSlides({ activeIndex }: { activeIndex: number }) {
                   min-[1920px]:text-[clamp(1.15rem,1.35vw,1.5rem)]
                 "
               >
-                {slide.content}
+                {language !== "ar"?slide.content:slide.arContent}
               </p>
             )}
           </div>
@@ -179,6 +189,8 @@ function HeroSlides({ activeIndex }: { activeIndex: number }) {
 
 export default function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const firstTimer = window.setTimeout(() => {
@@ -262,6 +274,7 @@ export default function HeroSection() {
 
         <header
           className="
+          w-full
             absolute
             left-3
             top-3
@@ -343,6 +356,86 @@ export default function HeroSection() {
           </Link>
 
           <NavigationMenu backgroundImage="/images/hero-bg.jpg" />
+
+          <fieldset
+            className={`
+                      ${mono.className}
+                      absolute
+                      right-10
+                      lg:right-15
+                      top-0
+                      flex
+                      items-center
+                      gap-1
+                      rounded-full
+                      border
+                      border-white/30
+                      bg-black/20
+                      px-1.5
+                      py-1
+                      text-[0.65rem]
+                      backdrop-blur-sm
+          
+                      min-[480px]:gap-1.5
+                      min-[480px]:px-2
+                      min-[480px]:text-[0.7rem]
+          
+                      sm:text-xs
+                      lg:text-sm
+                    `}
+          >
+            <legend className="sr-only">Choose language</legend>
+
+            <label
+              className={`
+                        flex
+                        cursor-pointer
+                        items-center
+                        gap-1
+                        rounded-full
+                        px-2
+                        py-0.5
+                        transition-colors
+                        duration-150
+                        ${language === "en" ? "bg-[#fdf1da] text-[#502300]" : "text-white/80"}
+                      `}
+            >
+              <input
+                type="radio"
+                name="language"
+                value="en"
+                checked={language === "en"}
+                onChange={() => setLanguage("en")}
+                className="sr-only"
+              />
+              EN
+            </label>
+
+            <label
+              className={`
+                        flex
+                        cursor-pointer
+                        items-center
+                        gap-1
+                        rounded-full
+                        px-2
+                        py-0.5
+                        transition-colors
+                        duration-150
+                        ${language === "ar" ? "bg-[#fdf1da] text-[#502300]" : "text-white/80"}
+                      `}
+            >
+              <input
+                type="radio"
+                name="language"
+                value="ar"
+                checked={language === "ar"}
+                onChange={() => setLanguage("ar")}
+                className="sr-only"
+              />
+              AR
+            </label>
+          </fieldset>
         </header>
 
         <div

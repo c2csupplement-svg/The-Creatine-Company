@@ -1,3 +1,6 @@
+"use client"
+
+
 import { anton } from "./fonts";
 import {
   IconPinterest,
@@ -6,9 +9,15 @@ import {
   IconYoutube,
 } from "../app/about/_components/icons";
 
+import { useLanguage } from "@/app/context/languageUseContent";
+
 export default function Footer() {
+
+  const {language} = useLanguage();
+
   return (
     <footer
+    dir={language === "ar"?"rtl" : "ltr"}
       className="
         relative
         box-border
@@ -331,7 +340,7 @@ export default function Footer() {
               href="#"
               className="transition-opacity duration-200 hover:opacity-70"
             >
-              CREATINE FLAVOUR
+              {language !== "ar"?"CREATINE FLAVOUR":"نكهة الكرياتين"}
             </a>
           </div>
 
@@ -355,15 +364,15 @@ export default function Footer() {
             `}
           >
             <a href="/about" className="transition-opacity hover:opacity-70">
-              ABOUT
+              {language !== "ar"?"ABOUT":"حو"}
             </a>
 
-            <a href="/contact" className="transition-opacity hover:opacity-70">
-              CONTACT
+            <a href="/contactUs" className="transition-opacity hover:opacity-70">
+              {language !== "ar"?"CONTACT":"اتصل"}
             </a>
 
-            <a href="/shop" className="transition-opacity hover:opacity-70">
-              SHOP
+            <a href="/blogs" className="transition-opacity hover:opacity-70">
+              {language !== "ar"?"BLOGS":"مدونات"}
             </a>
           </nav>
 
@@ -382,8 +391,8 @@ export default function Footer() {
                 min-[1920px]:text-base
               "
             >
-              Get Exclusive Early Access and Stay Informed About Product
-              Updates, Events, and More!
+              {language !== "ar"?<span>Get Exclusive Early Access and Stay Informed About Product
+              Updates, Events, and More!</span>:<span>احصل على وصول مبكر حصري وابقَ على اطلاع حول تحديثات المنتجات والفعاليات والمزيد!</span>}
             </p>
 
             <form
@@ -401,7 +410,7 @@ export default function Footer() {
               <input
                 type="email"
                 required
-                placeholder="ENTER YOUR EMAIL"
+                placeholder={language !== "ar"?"ENTER YOUR EMAIL":"أدخل بريدك الإلكتروني"}
                 className={`
                   ${anton.className}
                   min-w-0
@@ -485,15 +494,15 @@ export default function Footer() {
               md:text-left
             "
           >
-            Copyright © {new Date().getFullYear()} the creatine company -
-            All Rights Reserved
+            {language !== "ar"?<span>Copyright © {new Date().getFullYear()} the creatine company -
+            All Rights Reserved</span>:<span>حقوق النشر © {new Date().getFullYear()} شركة الكرياتين - جميع الحقوق محفوظة</span>}
           </p>
 
           <a
             href="/privacy-policy"
             className="text-center transition-opacity duration-200 hover:opacity-70"
           >
-            Privacy Policy
+            {language !== "ar"?"Privacy Policy":"سياسة الخصوصية"}
           </a>
         </div>
       </div>

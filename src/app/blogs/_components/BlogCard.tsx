@@ -2,10 +2,14 @@ import type { BlogPost } from "./data";
 import Image from "next/image";
 import Link from "next/link";
 import { anton, mono } from "@/commonComponents/fonts";
+import { useLanguage } from "@/app/context/languageUseContent";
 
 export default function BlogCard({ post }: { post: BlogPost }) {
+
+  const {language} = useLanguage();
+
   return (
-    <article>
+    <article dir={language === "ar"?"rtl" : "ltr"}>
       <Link
         href={`/blogs/${post.slug}`}
         className="group block"
