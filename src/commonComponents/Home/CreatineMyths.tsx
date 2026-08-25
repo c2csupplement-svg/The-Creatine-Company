@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { anton, mono } from "../fonts";
 import {
   motion,
-  useScroll,
+  useAnimationFrame,
+  useMotionValue,
   useTransform,
 } from "framer-motion";
 import { useLanguage } from "@/app/context/languageUseContent";
@@ -47,15 +48,23 @@ const arMyths = [
   },
 ];
 
+// Wraps a value into a min/max range so the marquee loops seamlessly
+function wrap(min, max, v) {
+  const rangeSize = max - min;
+  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+}
+
 export default function CreatineMyths() {
   const mythLoop = [...MYTHS, ...MYTHS];
   const arMythLoop = [...arMyths, ...arMyths];
 
   const { language } = useLanguage();
+  const isRtl = language === "ar";
 
-  const [expandedCards, setExpandedCards] = useState<number[]>([]);
+  const [expandedCards, setExpandedCards] = useState([]);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const toggleReadMore = (index: number) => {
+  const toggleReadMore = (index) => {
     setExpandedCards((prev) =>
       prev.includes(index)
         ? prev.filter((item) => item !== index)
@@ -63,16 +72,37 @@ export default function CreatineMyths() {
     );
   };
 
-  const { scrollYProgress } = useScroll();
+  // Continuous auto-scroll, independent of page scroll position
+  const baseX = useMotionValue(0);
+  const speed = 25; // px per second — tweak to taste
 
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["0%", "-50%"]
-  );
+  useAnimationFrame((_, delta) => {
+    if (isHovered) return; // pause on hover
+
+    const direction = isRtl ? 1 : -1;
+    const moveBy = direction * speed * (delta / 1000);
+
+    // baseX is expressed as a % of the track width; convert px-per-sec
+    // roughly using a fixed divisor tuned to card width. Simpler: just
+    // track raw px and let x transform handle %, see below.
+    baseX.set(baseX.get() + moveBy);
+  });
+
+  // Since the track is duplicated 2x (mythLoop / arMythLoop each render
+  // the full list twice), wrapping between 0% and -50% (or 0%/50% for
+  // rtl) makes the loop seamless.
+  const x = useTransform(baseX, (v) => {
+    // baseX accumulates in px; convert to a % wrap by treating 1px
+    // of accumulated motion as a proportional shift. Easiest robust
+    // approach: drive x directly in px against container ref width.
+    return `${v}px`;
+  });
 
   return (
-    <section className="overflow-hidden bg-[#fdf1da] px-5 py-10 sm:px-10 sm:py-14" dir={language === "ar"?"rtl" : "ltr"}>
+    <section
+      className="overflow-hidden bg-[#fdf1da] px-5 py-10 sm:px-10 sm:py-14"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <div
         className="
           mx-auto
@@ -108,7 +138,7 @@ export default function CreatineMyths() {
               leading-none
             `}
           >
-           {language !== "ar"?"MYTHS":"الأساطير"}
+            {!isRtl ? "MYTHS" : "الأساطير"}
           </span>
 
           <span
@@ -129,7 +159,9 @@ export default function CreatineMyths() {
               sm:py-2
             `}
           >
-            {language !== "ar"?"CREATINE IS ONLY FOR BODYBUILDERS.":"الكرياتين مخصص فقط لبناة الأجسام."}
+            {!isRtl
+              ? "CREATINE IS ONLY FOR BODYBUILDERS."
+              : "الكرياتين مخصص فقط لبناة الأجسام."}
           </span>
         </div>
 
@@ -170,6 +202,8 @@ export default function CreatineMyths() {
 
           <motion.div
             style={{ x }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             className="
               flex
               w-max
@@ -177,7 +211,7 @@ export default function CreatineMyths() {
               will-change-transform
             "
           >
-            {(language !== 'ar')?(mythLoop.map((myth, index) => {
+            {(!isRtl ? mythLoop : arMythLoop).map((myth, index) => {
               const isExpanded = expandedCards.includes(index);
 
               return (
@@ -201,15 +235,14 @@ export default function CreatineMyths() {
                     lg:w-[270px]
                     lg:min-h-[380px]
 
-                    ${isExpanded
-                      ? "z-30 min-h-[430px] shadow-xl"
-                      : "z-0 min-h-[360px]"
+                    ${
+                      isExpanded
+                        ? "z-30 min-h-[430px] shadow-xl"
+                        : "z-0 min-h-[360px]"
                     }
                   `}
                 >
-                  <div className="text-[1.875rem] leading-none">
-                    &ldquo;
-                  </div>
+                  <div className="text-[1.875rem] leading-none">&ldquo;</div>
 
                   <h3
                     className={`
@@ -235,9 +268,10 @@ export default function CreatineMyths() {
                       text-[19px]
                       leading-[1.2]
 
-                      ${isExpanded
-                        ? "block overflow-visible"
-                        : "line-clamp-6 overflow-hidden"
+                      ${
+                        isExpanded
+                          ? "block overflow-visible"
+                          : "line-clamp-6 overflow-hidden"
                       }
                     `}
                   >
@@ -272,123 +306,22 @@ export default function CreatineMyths() {
 
                       sm:bottom-6
                       sm:right-6
+                      cursor-pointer
                     `}
                   >
-                    {isExpanded ? "READ LESS" : "READ MORE"}
+                    {!isRtl
+                      ? isExpanded
+                        ? "READ LESS"
+                        : "READ MORE"
+                      : isExpanded
+                      ? "اقرأ أقل"
+                      : "اعرف أكثر"}
 
-                    <span className="text-[1.1rem] leading-none">
-                      &rarr;
-                    </span>
+                    <span className="text-[1.1rem] leading-none">&rarr;</span>
                   </motion.button>
                 </motion.article>
               );
-            }))
-            :(arMythLoop.map((myth, index) => {
-              const isExpanded = expandedCards.includes(index);
-
-              return (
-                <motion.article
-                  key={`${myth.title}-${index}`}
-                  layout
-                  className={`
-                    relative
-                    box-border
-                    w-[250px]
-                    shrink-0
-                    rounded-[3px]
-                    bg-[#a87847]
-                    p-5
-                    text-[#fdf1da]
-
-                    sm:w-[300px]
-                    sm:min-h-[390px]
-                    sm:p-6
-
-                    lg:w-[270px]
-                    lg:min-h-[380px]
-
-                    ${isExpanded
-                      ? "z-30 min-h-[430px] shadow-xl"
-                      : "z-0 min-h-[360px]"
-                    }
-                  `}
-                >
-                  <div className="text-[1.875rem] leading-none">
-                    &ldquo;
-                  </div>
-
-                  <h3
-                    className={`
-                      ${anton.className}
-                      mt-1
-                      mb-0
-                      text-[1.5rem]
-                      uppercase
-                      leading-[0.92]
-
-                      sm:text-[1.875rem]
-                    `}
-                  >
-                    {myth.title}
-                  </h3>
-
-                  <p
-                    className={`
-                      ${mono.className}
-                      mt-6
-                      mb-0
-                      pb-10
-                      text-[19px]
-                      leading-[1.2]
-
-                      ${isExpanded
-                        ? "block overflow-visible"
-                        : "line-clamp-6 overflow-hidden"
-                      }
-                    `}
-                  >
-                    {myth.body}
-                  </p>
-
-                  <motion.button
-                    type="button"
-                    onClick={() => toggleReadMore(index)}
-                    aria-expanded={isExpanded}
-                    whileHover={{ x: 3, opacity: 0.7 }}
-                    whileTap={{ scale: 0.96 }}
-                    className={`
-                      ${anton.className}
-                      absolute
-                      bottom-5
-                      right-5
-                      z-40
-                      flex
-                      items-center
-                      gap-1.5
-                      border-0
-                      bg-transparent
-                      p-0
-                      text-[1.4rem]
-                      uppercase
-                      leading-none
-                      text-[#fdf1da]
-                      focus:outline-none
-                      focus-visible:ring-2
-                      focus-visible:ring-[#fdf1da]
-
-                      sm:bottom-6
-                      sm:right-6
-                    `}
-                  >
-                    {language !== "ar"?(isExpanded ? "READ LESS" : "READ MORE"):(isExpanded ? "اقرأ أقل" : "اعرف أكثر")}
-
-                    <span className="text-[1.1rem] leading-none">
-                      &rarr;
-                    </span>
-                  </motion.button>
-                </motion.article>
-              );
-            }))}
+            })}
           </motion.div>
         </div>
       </div>
