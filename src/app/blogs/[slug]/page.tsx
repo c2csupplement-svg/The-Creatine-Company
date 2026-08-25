@@ -1,42 +1,39 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { useParams } from "next/navigation";
 import { anton, mono } from "@/commonComponents/fonts";
-import { POSTS } from "../_components/data";
+import { POSTS, AR_POSTS } from "../_components/data";
+import { useLanguage } from "@/app/context/languageUseContent";
 
-type BlogDetailPageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
+export default function BlogDetailPage() {
+  const { language } = useLanguage();
+  const params = useParams<{ slug: string }>();
 
-export function generateStaticParams() {
-  return POSTS.map((post) => ({
-    slug: post.slug,
-  }));
-}
+  const isArabic = language === "ar";
 
-export default async function BlogDetailPage({
-  params,
-}: BlogDetailPageProps) {
-  const { slug } = await params;
+  const posts = isArabic ? AR_POSTS : POSTS;
 
-  const post = POSTS.find((item) => item.slug === slug);
+  const post = posts.find((item) => item.slug === params.slug);
 
   if (!post) {
-    notFound();
+    return null;
   }
 
   return (
-    <main className="min-h-screen bg-[#fdf1da] text-[#502300]">
+    <main
+      dir={isArabic ? "rtl" : "ltr"}
+      className="min-h-screen bg-[#fdf1da] text-[#502300]"
+    >
       <section className="px-4 pb-12 pt-6 sm:px-6 sm:pb-16 sm:pt-8 md:px-10 md:pb-20 lg:px-16 xl:px-20">
         <div className="mx-auto w-full max-w-6xl">
           <Link
             href="/blogs"
             className={`${anton.className} inline-flex items-center gap-2 text-xs uppercase tracking-wide text-[#502300] transition-opacity hover:opacity-60 sm:text-sm`}
           >
-            <span aria-hidden>←</span>
-            Back to blogs
+            <span aria-hidden>{isArabic ? "→" : "←"}</span>
+            {isArabic ? "العودة إلى المدونة" : "Back to blogs"}
           </Link>
 
           <div className="mt-6 grid gap-6 sm:mt-8 sm:gap-8 md:mt-12 md:grid-cols-[1.05fr_0.95fr] md:items-center md:gap-12 lg:gap-16">
@@ -60,7 +57,7 @@ export default async function BlogDetailPage({
               </span>
 
               <h1
-                className={`${anton.className} mt-4 break-words text-[clamp(2.25rem,9vw,6.5rem)] uppercase leading-[0.9] text-[#502300] sm:mt-5 sm:leading-[0.88]`}
+                className={`${anton.className} mt-4 break-words text-[clamp(2.25rem,9vw,6.5rem)] leading-[0.9] text-[#502300] sm:mt-5 sm:leading-[0.88]`}
               >
                 {post.title}
               </h1>

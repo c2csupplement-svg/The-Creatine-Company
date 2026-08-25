@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { anton } from "../fonts";
+import { useLanguage } from "@/app/context/languageUseContent"; 
 
 const INSTAGRAM_POSTS = [
   "1.png",
@@ -14,8 +15,12 @@ const INSTAGRAM_URL =
   "https://www.instagram.com/the.creatine.company/";
 
 export default function InstagramSection() {
+
+  const {language} = useLanguage();
+
   return (
     <section
+    dir={language === "ar"?"rtl" : "ltr"}
       className="
         overflow-hidden
         bg-[#fdf1da]
@@ -42,7 +47,7 @@ export default function InstagramSection() {
               text-[#502300]
             `}
           >
-            Follow
+            {language !== "ar"?"Follow":"تابع"}
           </span>
 
           <span
@@ -63,7 +68,7 @@ export default function InstagramSection() {
               sm:py-2
             `}
           >
-            The Creatine Company
+            {language !== "ar"?"The Creatine Company":"شركة الكرياتين"}
           </span>
         </div>
 
@@ -171,7 +176,7 @@ export default function InstagramSection() {
               sm:text-base
             `}
           >
-            Explore Our Instagram
+            {language !== "ar"?"Explore Our Instagram":"اكتشف حسابنا على إنستغرام"}
 
             <span>&rarr;</span>
           </a>

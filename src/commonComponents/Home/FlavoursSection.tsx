@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { anton } from "../fonts";
+import { useLanguage } from "@/app/context/languageUseContent";
 
 type Flavour = {
   title: string;
@@ -35,6 +36,9 @@ const FLAVOURS: Flavour[] = [
 ];
 
 export default function FlavoursSection() {
+
+  const { language } = useLanguage();
+
   const sliderRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -72,6 +76,7 @@ export default function FlavoursSection() {
 
   return (
     <section
+    dir={language === "ar"?"rtl" : "ltr"}
       className="
         box-border
         w-full
@@ -127,8 +132,9 @@ export default function FlavoursSection() {
           min-[1920px]:gap-[60px]
         "
       >
-        <div
-          className="
+        <div>
+          <div
+            className="
             relative
             z-10
             min-w-0
@@ -140,9 +146,9 @@ export default function FlavoursSection() {
             md:pl-0
             min-[1440px]:pl-20
           "
-        >
-          <h2
-            className={`
+          >
+            <h2
+              className={`
               ${anton.className}
               m-0
               text-[#502300]
@@ -160,12 +166,12 @@ export default function FlavoursSection() {
               min-[1440px]:text-[clamp(4.5rem,5vw,5.5rem)]
               min-[1920px]:text-[6rem]
             `}
-          >
-            We Have 30
-          </h2>
+            >
+              {language !== "ar" ? "We Have 30" : "لدينا 30"}
+            </h2>
 
-          <div
-            className="
+            <div
+              className="
               mt-1
               inline-block
               max-w-full
@@ -186,9 +192,9 @@ export default function FlavoursSection() {
               min-[1440px]:py-2.5
               min-[1920px]:py-3
             "
-          >
-            <span
-              className={`
+            >
+              <span
+                className={`
                 ${anton.className}
                 block
                 whitespace-normal
@@ -207,13 +213,13 @@ export default function FlavoursSection() {
                 min-[1440px]:text-[clamp(4rem,4.8vw,5.2rem)]
                 min-[1920px]:text-[5.6rem]
               `}
-            >
-              Freaking
-            </span>
-          </div>
+              >
+                {language !== "ar" ? "Freaking" : "مثير للدهشة"}
+              </span>
+            </div>
 
-          <h2
-            className={`
+            <h2
+              className={`
               ${anton.className}
               m-0
               text-[#502300]
@@ -231,9 +237,30 @@ export default function FlavoursSection() {
               min-[1440px]:text-[clamp(4.5rem,5vw,5.5rem)]
               min-[1920px]:text-[6rem]
             `}
-          >
-            Delicious Flavours
-          </h2>
+            >
+              {language !== "ar" ? "Delicious Flavours" : "نَكهات لذيذة"}
+            </h2>
+          </div>
+
+          <Link href="/carddetail/blueberry" className="group inline-block mt-10">
+  <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-amber-500 hover:to-amber-600 hover:shadow-xl active:translate-y-0">
+    {language !== "ar" ? (
+      <>
+        View Details
+        <span className="transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
+      </>
+    ) : (
+      <>
+        <span className="transition-transform duration-300 group-hover:-translate-x-1">
+          ←
+        </span>
+        عرض التفاصيل
+      </>
+    )}
+  </span>
+</Link>
         </div>
 
         <div className="w-full min-w-0 overflow-hidden">
@@ -304,10 +331,9 @@ export default function FlavoursSection() {
                     min-[1440px]:h-[500px]
                     min-[1920px]:h-[580px]
 
-                    ${
-                      isStrawberry
-                        ? "overflow-visible rounded-none"
-                        : ""
+                    ${isStrawberry
+                      ? "overflow-visible rounded-none"
+                      : ""
                     }
                   `}
                 >
@@ -329,9 +355,8 @@ export default function FlavoursSection() {
                       min-[1440px]:rounded-[40px]
                       min-[1920px]:rounded-[40px]
 
-                      ${
-                        isStrawberry
-                          ? `
+                      ${isStrawberry
+                        ? `
                             rounded-[25px]
                             [clip-path:inset(0_round_25px)]
                             translate-z-0
@@ -342,7 +367,7 @@ export default function FlavoursSection() {
                             md:rounded-[30px]
                             min-[1440px]:rounded-[40px]
                           `
-                          : ""
+                        : ""
                       }
                     `}
                   >
@@ -355,9 +380,8 @@ export default function FlavoursSection() {
                         object-contain
                         object-center
 
-                        ${
-                          isStrawberry
-                            ? `
+                        ${isStrawberry
+                          ? `
                               !absolute
                               !left-[5%]
                               !top-0
@@ -376,7 +400,7 @@ export default function FlavoursSection() {
                               md:!rounded-[30px]
                               min-[1440px]:!rounded-[40px]
                             `
-                            : `
+                          : `
                               rounded-[22px]
 
                               min-[375px]:rounded-[26px]

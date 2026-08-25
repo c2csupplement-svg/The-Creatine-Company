@@ -2,12 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import { anton, mono } from "../fonts";
+import {useLanguage} from "../../app/context/languageUseContent"
 
 export default function StrengthStatement() {
   const sectionRef = useRef<HTMLElement>(null);
 
   const [progress, setProgress] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const {language}= useLanguage();
+
 
   useEffect(() => {
     const updateProgress = () => {
@@ -60,8 +64,16 @@ export default function StrengthStatement() {
     "BATCH REPORT TODAY",
   ];
 
+  const arLines = [
+    "يقرر",
+    "مع الأدلة.",
+    "اقرأ الخاص بك",
+    "تقرير الدفعة اليوم"
+  ]
+
   return (
     <section
+    dir={language === "ar"?"rtl" : "ltr"}
       ref={sectionRef}
       id="why"
       className="
@@ -106,7 +118,7 @@ export default function StrengthStatement() {
           md:leading-[0.95]
         `}
       >
-        {lines.map((line, index) => {
+        {(language !== "ar")?(lines.map((line, index) => {
           const isActive =
             hoveredIndex !== null && index <= hoveredIndex;
 
@@ -122,10 +134,9 @@ export default function StrengthStatement() {
                   transition-colors
                   duration-300
 
-                  ${
-                    isActive
-                      ? "text-[#fdf1da]"
-                      : "text-[#a87847]"
+                  ${isActive
+                    ? "text-[#fdf1da]"
+                    : "text-[#a87847]"
                   }
                 `}
               >
@@ -135,7 +146,35 @@ export default function StrengthStatement() {
               {index < lines.length - 1 && <br />}
             </span>
           );
-        })}
+        })):(arLines.map((line, index) => {
+          const isActive =
+            hoveredIndex !== null && index <= hoveredIndex;
+
+          return (
+            <span key={line}>
+              <span
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`
+                  inline-block
+                  max-w-full
+                  cursor-default
+                  transition-colors
+                  duration-300
+
+                  ${isActive
+                    ? "text-[#fdf1da]"
+                    : "text-[#a87847]"
+                  }
+                `}
+              >
+                {line}
+              </span>
+
+              {index < lines.length - 1 && <br />}
+            </span>
+          );
+        }))}
       </h2>
 
       <div
@@ -182,10 +221,8 @@ export default function StrengthStatement() {
             opacity: progress,
           }}
         >
-          Most brands ask for your trust. We give you the data. Scan the QR
-          code on your Dhs. 1 sachet to open the NABL-accredited certificate of
-          analysis for your exact batch. No marketing hype, just a permanent
-          PDF showing exactly what you are about to drink.
+          {language !== "ar"?"Most brands ask for your trust. We give you the data. No marketing hype, just a permanent PDF showing exactly what you are about to drink."
+      :"معظم العلامات التجارية تطلب ثقتك. نحن نقدم لك البيانات. لا دعاية تسويقية، مجرد ملف PDF دائم يظهر بالضبط ما على وشك أن تشربه."}
         </p>
       </div>
     </section>

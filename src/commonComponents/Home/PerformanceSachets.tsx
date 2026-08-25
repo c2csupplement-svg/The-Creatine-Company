@@ -1,9 +1,16 @@
+"use client"
+
 import Image from "next/image";
 import { anton, mono } from "../fonts";
+import { useLanguage } from "@/app/context/languageUseContent";
 
 export default function PerformanceSachets() {
+
+  const {language} = useLanguage();
+
   return (
     <section
+    dir={language === "ar"?"rtl" : "ltr"}
       className="
         relative
         w-full
@@ -162,7 +169,7 @@ export default function PerformanceSachets() {
               min-[1920px]:text-[6.5rem]
             `}
           >
-            10 Daily
+            {language !== "ar"?"10 Daily":"10 يوميًا"}
           </h2>
 
           <div
@@ -226,7 +233,7 @@ export default function PerformanceSachets() {
                 min-[1920px]:text-[5rem]
               `}
             >
-              Performance Sachets
+              {language !== "ar"?"Performance Sachets":"أكياس الأداء"}
             </span>
           </div>
 
@@ -267,11 +274,11 @@ export default function PerformanceSachets() {
               min-[1920px]:leading-[1.5]
             `}
           >
-            Stop overpaying for basic creatine. While big brands charge massive
+            {language !== "ar"?(<span>Stop overpaying for basic creatine. While big brands charge massive
             markups on bulky tubs, we’re disrupting the entire market. Get our
             10 Daily Performance Sachets for just  Dhs. 9/- That’s 10 days of
             pure strength and peak power for under  Dhs. 1/- a serving. Claim
-            yours today!
+            yours today!</span>):(<span>توقف عن دفع مبالغ زائدة مقابل الكرياتين الأساسي. بينما تفرض العلامات التجارية الكبرى زيادات ضخمة على العلب الكبيرة، نحن نحدث ثورة في السوق بأكمله. احصل على 10 أكياس أداء يومية مقابل فقط 9 دراهم. هذا يعني 10 أيام من القوة النقية والطاقة القصوى بأقل من درهم واحد لكل جرعة. احصل على حصتك اليوم!</span>)}
           </p>
         </div>
       </div>

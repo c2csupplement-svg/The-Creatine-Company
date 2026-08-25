@@ -1,24 +1,34 @@
+"use client"
+
 import { anton } from "../../../commonComponents/fonts";
 import { IconPurity, IconSachet, IconFlask } from "./icons";
+import { useLanguage } from "@/app/context/languageUseContent";
 
 const FEATURES = [
   {
     title: "100% Pure & High-Quality Creatine",
+    arTitle: "كرياتين نقي وعالي الجودة بنسبة 100%",
     icon: IconPurity,
   },
   {
     title: "Easy-to-Carry Single-Serve Sachets",
+    arTitle: "أظرف فردية سهلة الحمل والاستخدام",
     icon: IconSachet,
   },
   {
     title: "Lab-Tested & Trusted Quality",
+    arTitle: "جودة موثوقة ومختبرة في المختبر",
     icon: IconFlask,
   },
 ];
 
 export default function WhyChooseUs() {
+
+  const { language } = useLanguage()
+
   return (
     <section
+    dir={language === "ar"?"rtl" : "ltr"}
       className="
         w-full
         overflow-hidden
@@ -96,7 +106,7 @@ export default function WhyChooseUs() {
             min-[1920px]:text-[7rem]
           `}
         >
-          WHY
+          {language !== "ar" ? "WHY" : "لماذا"}
         </h2>
 
         <div
@@ -156,7 +166,7 @@ export default function WhyChooseUs() {
               min-[1920px]:text-[5.5rem]
             `}
           >
-            CHOOSE US
+            {language !== "ar" ? "CHOOSE US" : "اخترنا"}
           </h2>
         </div>
 
@@ -196,17 +206,21 @@ export default function WhyChooseUs() {
           "
         >
           <p className="m-0">
-            At The Creatine Company, we believe creatine should be simple,
-            effective, and uncompromising in quality. That&apos;s why we focus
-            on delivering premium-grade creatine with exceptional purity,
-            rigorous quality testing, and convenient single-serve sachets that
-            fit seamlessly into your daily routine.
+            {language !== "ar" ? <span>At The Creatine Company, we believe creatine should be simple,
+              effective, and uncompromising in quality. That&apos;s why we focus
+              on delivering premium-grade creatine with exceptional purity,
+              rigorous quality testing, and convenient single-serve sachets that
+              fit seamlessly into your daily routine.</span>
+              : <span>في شركة الكرياتين، نحن نؤمن بأن الكرياتين يجب أن يكون بسيطًا وفعالًا وبدون التهاون في الجودة. لهذا السبب نركز على تقديم كرياتين عالي الجودة بنقاء استثنائي، واختبارات جودة صارمة، وأكياس فردية مريحة تناسب روتينك اليومي بسهولة.</span>}
           </p>
 
           <p className="m-0">
-            Whether you&apos;re training for strength, muscle growth, or
+           {language !== "ar"
+           ?<span> Whether you&apos;re training for strength, muscle growth, or
             improved performance, every serving is designed to help you perform
-            at your best—without unnecessary fillers or complexity.
+            at your best—without unnecessary fillers or complexity.</span>
+            :<span>سواء كنت تتدرب من أجل القوة أو زيادة العضلات أو تحسين الأداء، كل حصة مصممة لمساعدتك على تقديم أفضل أداء لديك—دون إضافات غير ضرورية أو تعقيدات.</span>
+            }
           </p>
         </div>
       </div>
@@ -347,7 +361,7 @@ export default function WhyChooseUs() {
                   min-[1920px]:text-[1.35rem]
                 `}
               >
-                {feature.title}
+                {language !== "ar"?feature.title:feature.arTitle}
               </span>
             </article>
           );

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { victory } from '../commonComponents/fonts';
 import './globals.css';
+import {LanguageProvider} from './context/languageUseContent';
 
 export const metadata: Metadata = {
   title: 'The Creatine Company',
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className={`min-h-full flex flex-col ${victory.variable}`}>
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

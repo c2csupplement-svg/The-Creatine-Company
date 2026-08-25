@@ -2,10 +2,15 @@ import type { BlogPost } from "./data";
 import { mono } from "@/commonComponents/fonts";
 import BlogCard from "./BlogCard";
 import Pagination from "./Pagination";
+import { useLanguage } from "@/app/context/languageUseContent";
 
 export default function BlogGrid({ posts }: { posts: BlogPost[] }) {
+
+  const { language } = useLanguage();
+
   return (
     <section
+    dir={language === "ar"?"rtl" : "ltr"}
       className="
         w-full
         overflow-hidden
@@ -40,28 +45,113 @@ export default function BlogGrid({ posts }: { posts: BlogPost[] }) {
         min-[1920px]:pb-24
       "
     >
-      {posts.length === 0 ? (
-        <p
-          className={`
-            ${mono.className}
-            m-0
-            text-[0.78rem]
-            leading-[1.5]
-            text-[#502300]/80
 
-            min-[376px]:text-[0.8rem]
+<div className="flex flex-col items-center justify-center gap-3 py-16 px-6 text-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#502300]/10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-7 w-7 text-[#502300]/60"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
+              />
+            </svg>
+          </div>
 
-            sm:text-[0.85rem]
+          <p
+            className={`
+      ${mono.className}
+      m-0
+      text-[0.85rem]
+      leading-[1.5]
+      font-medium
+      text-[#502300]
 
-            md:text-[0.9rem]
+      min-[376px]:text-[0.9rem]
 
-            lg:text-[0.92rem]
+      sm:text-[0.95rem]
 
-            xl:text-[0.95rem]
-          `}
-        >
-          No articles match your search.
-        </p>
+      md:text-[1rem]
+    `}
+          >
+            No articles match your search
+          </p>
+
+          <p
+            className={`
+      ${mono.className}
+      m-0
+      max-w-[280px]
+      text-[0.72rem]
+      leading-[1.5]
+      text-[#502300]/60
+
+      sm:text-[0.78rem]
+    `}
+          >
+            Try different keywords or check your spelling
+          </p>
+        </div>
+
+      {/* {posts.length === 0 ? (
+        <div className="flex flex-col items-center justify-center gap-3 py-16 px-6 text-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#502300]/10">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-7 w-7 text-[#502300]/60"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
+              />
+            </svg>
+          </div>
+
+          <p
+            className={`
+      ${mono.className}
+      m-0
+      text-[0.85rem]
+      leading-[1.5]
+      font-medium
+      text-[#502300]
+
+      min-[376px]:text-[0.9rem]
+
+      sm:text-[0.95rem]
+
+      md:text-[1rem]
+    `}
+          >
+            No articles match your search
+          </p>
+
+          <p
+            className={`
+      ${mono.className}
+      m-0
+      max-w-[280px]
+      text-[0.72rem]
+      leading-[1.5]
+      text-[#502300]/60
+
+      sm:text-[0.78rem]
+    `}
+          >
+            Try different keywords or check your spelling
+          </p>
+        </div>
       ) : (
         <div
           className="
@@ -111,7 +201,7 @@ export default function BlogGrid({ posts }: { posts: BlogPost[] }) {
             />
           ))}
         </div>
-      )}
+      )} */}
 
       {/* <Pagination /> */}
     </section>

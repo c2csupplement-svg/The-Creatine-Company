@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { anton, mono } from "@/commonComponents/fonts";
+import { useLanguage } from "@/app/context/languageUseContent";
 
 type ContactFormData = {
   fullName: string;
@@ -26,6 +27,9 @@ export default function ContactForm() {
   const [form, setForm] = useState<ContactFormData>(initialForm);
   const [status, setStatus] = useState<FormStatus>("idle");
 
+  const { language } = useLanguage();
+  const isArabic = language === "ar";
+
   function handleChange(field: keyof ContactFormData) {
     return (
       e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -42,7 +46,6 @@ export default function ContactForm() {
 
     setStatus("submitting");
 
-    // TODO: Replace with your actual API/email endpoint.
     await new Promise((resolve) => setTimeout(resolve, 600));
 
     setStatus("sent");
@@ -71,6 +74,7 @@ export default function ContactForm() {
 
   return (
     <div
+      dir={isArabic ? "rtl" : "ltr"}
       className="
         w-full
         box-border
@@ -102,7 +106,6 @@ export default function ContactForm() {
         min-[1920px]:scale-[1.06]
       "
     >
-      {/* Heading */}
       <h2
         className={`
           ${anton.className}
@@ -124,13 +127,21 @@ export default function ContactForm() {
           min-[1920px]:text-[3.3rem]
         `}
       >
-        DON&apos;T BE SHY.
-        <br className="sm:hidden" />
-        {" "}
-        HIT US UP AND WE&apos;LL GET BACK TO YOU!
+        {isArabic ? (
+          <>
+            لا تتردد.
+            <br />
+            تواصل معنا وسنعاود التواصل معك!
+          </>
+        ) : (
+          <>
+            DON&apos;T BE SHY.
+            <br className="sm:hidden" />
+            {" "}HIT US UP AND WE&apos;LL GET BACK TO YOU!
+          </>
+        )}
       </h2>
 
-      {/* Form */}
       <form
         onSubmit={handleSubmit}
         className="
@@ -145,7 +156,6 @@ export default function ContactForm() {
           sm:gap-4
         "
       >
-        {/* Name + Email */}
         <div
           className="
             grid
@@ -160,7 +170,7 @@ export default function ContactForm() {
           <input
             type="text"
             required
-            placeholder="Full name"
+            placeholder={isArabic ? "الاسم الكامل" : "Full name"}
             value={form.fullName}
             onChange={handleChange("fullName")}
             className={`
@@ -183,7 +193,7 @@ export default function ContactForm() {
           <input
             type="email"
             required
-            placeholder="Email address"
+            placeholder={isArabic ? "البريد الإلكتروني" : "Email address"}
             value={form.email}
             onChange={handleChange("email")}
             className={`
@@ -204,7 +214,6 @@ export default function ContactForm() {
           />
         </div>
 
-        {/* Subject + Order */}
         <div
           className="
             grid
@@ -219,7 +228,7 @@ export default function ContactForm() {
           <input
             type="text"
             required
-            placeholder="Subject"
+            placeholder={isArabic ? "الموضوع" : "Subject"}
             value={form.subject}
             onChange={handleChange("subject")}
             className={fieldClassName}
@@ -227,18 +236,21 @@ export default function ContactForm() {
 
           <input
             type="text"
-            placeholder="Order number ( optional )"
+            placeholder={
+              isArabic
+                ? "رقم الطلب (اختياري)"
+                : "Order number ( optional )"
+            }
             value={form.orderNumber}
             onChange={handleChange("orderNumber")}
             className={fieldClassName}
           />
         </div>
 
-        {/* Message */}
         <textarea
           required
           rows={5}
-          placeholder="Message"
+          placeholder={isArabic ? "الرسالة" : "Message"}
           value={form.message}
           onChange={handleChange("message")}
           className={`
@@ -257,7 +269,6 @@ export default function ContactForm() {
           `}
         />
 
-        {/* Submit */}
         <div className="flex justify-center pt-2">
           <button
             type="submit"
@@ -300,10 +311,16 @@ export default function ContactForm() {
             `}
           >
             {status === "submitting"
-              ? "SENDING..."
+              ? isArabic
+                ? "جارٍ الإرسال..."
+                : "SENDING..."
               : status === "sent"
-                ? "SENT!"
-                : "SUBMIT"}
+                ? isArabic
+                  ? "تم الإرسال!"
+                  : "SENT!"
+                : isArabic
+                  ? "إرسال"
+                  : "SUBMIT"}
           </button>
         </div>
       </form>

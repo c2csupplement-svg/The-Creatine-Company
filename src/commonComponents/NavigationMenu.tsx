@@ -4,23 +4,28 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { anton } from './fonts';
+import { useLanguage } from '@/app/context/languageUseContent';
 
 const NAV_ITEMS = [
   {
-    label: 'HOME',
-    href: '/',
+    label: "HOME",
+    arlabel: "الرئيسية",
+    href: "/",
   },
   {
-    label: 'ABOUT US',
-    href: '/about',
+    label: "ABOUT US",
+    arlabel: "من نحن",
+    href: "/about",
   },
   {
-    label: 'CONTACT',
-    href: '/contactUs',
+    label: "CONTACT",
+    arlabel: "اتصل بنا",
+    href: "/contactUs",
   },
   {
-    label: 'BLOG',
-    href: '/blogs',
+    label: "BLOG",
+    arlabel: "المدونة",
+    href: "/blogs",
   },
 ];
 
@@ -32,6 +37,8 @@ export default function NavigationMenu({
   backgroundImage = null,
 }: NavigationMenuProps) {
   const [open, setOpen] = useState(false);
+
+  const {language} = useLanguage();
 
   // Prevent background page scrolling when menu is open
   useEffect(() => {
@@ -236,7 +243,7 @@ export default function NavigationMenu({
                     tracking-tight
                   `}
                 >
-                  {item.label}
+                  {language !== "ar"?item.label:item.arlabel}
                 </span>
 
                 {/* Underline */}
@@ -283,7 +290,7 @@ export default function NavigationMenu({
             hover:opacity-60
           `}
         >
-          CLOSE
+          {language !== "ar"?"CLOSE":"أغلق"}
         </button>
       </div>
     </>

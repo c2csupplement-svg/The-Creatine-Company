@@ -1,9 +1,18 @@
+"use client"
+
 import Image from "next/image";
 import { anton, mono } from "../fonts";
+import { useLanguage } from "@/app/context/languageUseContent";
 
 export default function TakeCreatineAnywhere() {
+
+  const {language} = useLanguage();
+
   return (
-    <section className="w-full bg-[#843b02] text-white">
+    <section 
+    dir={language === "ar"?"rtl" : "ltr"}
+    className="w-full bg-[#843b02] text-white"
+    >
       <div
         className="
           grid
@@ -79,7 +88,7 @@ export default function TakeCreatineAnywhere() {
                 md:text-[clamp(2.2rem,3.7vw,5.2rem)]
               `}
             >
-              Take Your Daily Creatine
+              {language !== "ar"?"Take Your Daily Creatine":"خذ الكرياتين اليومي الخاص بك"}
             </h2>
 
             <div
@@ -112,7 +121,7 @@ export default function TakeCreatineAnywhere() {
                   md:text-[clamp(2.2rem,3.7vw,5.1rem)]
                 `}
               >
-                Anywhere. Anytime.
+                {language !== "ar"?"Anywhere. Anytime.":"في أي مكان. في أي وقت."}
               </span>
             </div>
 
@@ -134,10 +143,10 @@ export default function TakeCreatineAnywhere() {
                 lg:text-sm
               `}
             >
-              A SINGLE  Dhs. 1/- sachet fits in a wallet, a gym bag, or a
+              {language !== "ar"?<span>A SINGLE  Dhs. 1/- sachet fits in a wallet, a gym bag, or a
               laptop sleeve. Tear, pour into 200-500ml of water, stir, done. No
               plastic tub dominating the kitchen counter. No spoon hunting. No
-              half-scoop guesswork. Your daily 5g goes where you go.
+              half-scoop guesswork. Your daily 5g goes where you go.</span>:<span>كيس واحد بسعر 1 درهم يناسب المحفظة، حقيبة الرياضة، أو غلاف الكمبيوتر المحمول. امزقه، صبه في 200-500 مل من الماء، حرك، انتهى. لا توجد عبوات بلاستيكية تسيطر على سطح المطبخ. لا البحث عن ملعقة. لا تقدير نصف الملعقة. 5 جرام اليومية معك أينما ذهبت.</span>}
             </p>
           </div>
         </div>

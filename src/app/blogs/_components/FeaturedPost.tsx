@@ -1,9 +1,15 @@
 import Image from "next/image";
 import { anton } from "@/commonComponents/fonts";
+import { useLanguage } from "@/app/context/languageUseContent";
 
 export default function FeaturedPost() {
+
+  const {language} = useLanguage();
+
   return (
-    <section className="w-full overflow-hidden box-border px-4 pb-12 sm:px-5 sm:pb-14 md:px-7 md:pb-16 lg:px-8 lg:pb-16 xl:px-10 2xl:px-20 2xl:pb-24">
+    <section
+    dir={language === "ar"?"rtl" : "ltr"}
+    className="w-full overflow-hidden box-border px-4 pb-12 sm:px-5 sm:pb-14 md:px-7 md:pb-16 lg:px-8 lg:pb-16 xl:px-10 2xl:px-20 2xl:pb-24">
       <div
         className="
           mx-auto grid w-full max-w-[1440px]
@@ -62,9 +68,9 @@ export default function FeaturedPost() {
               2xl:text-[8rem]
             `}
           >
-            POWER YOUR TRAINING, BUILD
+            {language !== "ar"?"POWER YOUR TRAINING, BUILD":"عَزِّز تَمرينك، ابنِ"}
             <br />
-            YOUR STRENGTH
+            {language !== "ar"?"YOUR STRENGTH":"قوتك"}
           </h2>
 
           <p
@@ -91,11 +97,13 @@ export default function FeaturedPost() {
               2xl:text-base
             "
           >
-            Creatine is one of the most researched and effective supplements
+            {language !== "ar"
+            ?<span>Creatine is one of the most researched and effective supplements
             for improving strength, power, and high-intensity training
             performance. By supporting your muscles&apos; ability to produce
             quick energy, creatine can help you train harder, recover better,
-            and make consistent progress over time.
+            and make consistent progress over time.</span>
+            :<span>الكرياتين هو واحد من المكملات الغذائية الأكثر دراسة وفعالية لتحسين القوة والطاقة وأداء التدريبات عالية الشدة. من خلال دعم قدرة عضلاتك على إنتاج الطاقة بسرعة، يمكن للكرياتين أن يساعدك على التدريب بشكل أقوى، والتعافي بشكل أفضل، وإحراز تقدم مستمر مع مرور الوقت.</span>}
           </p>
 
           <button
@@ -139,7 +147,7 @@ export default function FeaturedPost() {
               2xl:text-sm
             `}
           >
-            READ MORE
+            {language !== "ar"?"READ MORE":"اقرأ المزيد"}
             <span aria-hidden>→</span>
           </button>
         </div>
