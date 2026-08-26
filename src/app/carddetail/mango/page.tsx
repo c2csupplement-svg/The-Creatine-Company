@@ -6,7 +6,7 @@ import Navbar from "@/commonComponents/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import "@/app/styles/mango.css";
+import "./mango.css";
 import { useLanguage } from "@/app/context/languageUseContent";
 
 const ratings = [
@@ -20,36 +20,24 @@ const ratings = [
 const products = [
   {
     id: 1,
-    link: "/carddetail/mango",
-    image: "/images/image 404.jpg",
-    title: "mango",
-  },
-  {
-    id: 2,
     link: "/carddetail/strawberry",
     image: "/images/image 405.jpg",
     title: "strawberry",
   },
   {
-    id: 3,
+    id: 2,
     link: "/carddetail/blueberry",
     image: "/images/blue.png",
     title: "blueberry",
   },
   {
-    id: 4,
-    link: "/carddetail/mango",
-    image: "/images/image 404.jpg",
-    title: "mango",
-  },
-  {
-    id: 5,
+    id: 3,
     link: "/carddetail/strawberry",
     image: "/images/image 405.jpg",
     title: "strawberry",
   },
   {
-    id: 6,
+    id: 4,
     link: "/carddetail/mango",
     image: "/images/image 404.jpg",
     title: "mango",

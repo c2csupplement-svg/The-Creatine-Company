@@ -9,7 +9,7 @@ import {
 import Footer from "@/commonComponents/Footer";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import "@/app/styles/blueberry.css";
+import styles from "./blueberry.module.css";
 import Link from "next/link";
 import { useLanguage } from "@/app/context/languageUseContent";
 import Navbar from "@/commonComponents/Navbar";
@@ -31,33 +31,21 @@ const products = [
   },
   {
     id: 2,
-    link: "/carddetail/strawberry",
-    image: "/images/image 405.jpg",
-    title: "strawberry",
-  },
-  {
-    id: 3,
     link: "/carddetail/mango",
     image: "/images/image 404.jpg",
     title: "mango",
   },
   {
-    id: 4,
+    id: 3,
     link: "/carddetail/green-apple",
     image: "/images/image 403.jpg",
     title: "green-apple",
   },
   {
-    id: 5,
+    id: 4,
     link: "/carddetail/strawberry",
     image: "/images/image 405.jpg",
     title: "strawberry",
-  },
-  {
-    id: 6,
-    link: "/carddetail/mango",
-    image: "/images/image 404.jpg",
-    title: "mango",
   },
 ];
 
@@ -222,7 +210,7 @@ export default function Page() {
     if (!slider) return;
 
     const slides = Array.from(
-      slider.querySelectorAll<HTMLElement>(".green-slide")
+      slider.querySelectorAll<HTMLElement>(`.${styles["blueberry-slide"]}`)
     );
 
     if (!slides.length) return;
@@ -236,9 +224,10 @@ export default function Page() {
 
     if (!targetSlide) return;
 
-    slider.scrollTo({
-      left: targetSlide.offsetLeft,
+    targetSlide.scrollIntoView({
       behavior: "smooth",
+      block: "nearest",
+      inline: "start",
     });
 
     setGreenCurrentIndex(nextIndex);
@@ -251,7 +240,7 @@ export default function Page() {
 
     const handleScroll = () => {
       const slides = Array.from(
-        slider.querySelectorAll<HTMLElement>(".green-slide")
+        slider.querySelectorAll<HTMLElement>(`.${styles["blueberry-slide"]}`)
       );
 
       if (!slides.length) return;
@@ -291,16 +280,17 @@ export default function Page() {
 
     const handleResize = () => {
       const slides = Array.from(
-        slider.querySelectorAll<HTMLElement>(".green-slide")
+        slider.querySelectorAll<HTMLElement>(`.${styles["blueberry-slide"]}`)
       );
 
       const targetSlide = slides[greenCurrentIndex];
 
       if (!targetSlide) return;
 
-      slider.scrollTo({
-        left: targetSlide.offsetLeft,
+      targetSlide.scrollIntoView({
         behavior: "auto",
+        block: "nearest",
+        inline: "start",
       });
     };
 
@@ -328,9 +318,9 @@ export default function Page() {
       dir={isRTL ? "rtl" : "ltr"}
       lang={isFarsi ? "fa" : isArabic ? "ar" : "en"}
     >
-      <div className="blueberry-page">
+      <div className={`${styles["blueberry-page"]}`}>
         <div
-          className="blueberry-bg"
+          className={`${styles["blueberry-bg"]}`}
           dir="ltr"
           aria-hidden="true"
         >
@@ -340,14 +330,14 @@ export default function Page() {
             fill
             priority
             sizes="100vw"
-            className="background-image"
+            className={`${styles["background-image"]}`}
           />
         </div>
 
         <Navbar />
 
-        <section className="product-hero">
-          <div className="flavour-title">
+        <section className={`${styles["product-hero"]}`}>
+          <div className={`${styles["flavour-title"]}`}>
             <h1>
               {isArabic ? (
                 <>
@@ -371,7 +361,7 @@ export default function Page() {
             </h1>
           </div>
 
-          <div className="product-description">
+          <div className={`${styles["product-description"]}`}>
             <p>
               {isArabic
                 ? "استمتع بطعم التوت الأزرق المنعش والجريء في كل حصة. تركيبة لذيذة وسهلة الشرب، صُممت لتدعم أداءك وقوتك وتركيزك وطاقتك وتعافيك مع كل تمرين."
@@ -381,8 +371,8 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="creatine-features">
-            <div className="creatine-feature-card">
+          <div className={`${styles["creatine-features"]}`}>
+            <div className={`${styles["creatine-feature-card"]}`}>
               <strong>
                 {isArabic ? "٢٥٠" : isFarsi ? "۲۵۰" : "250"}
               </strong>
@@ -396,7 +386,7 @@ export default function Page() {
               </span>
             </div>
 
-            <div className="creatine-feature-card">
+            <div className={`${styles["creatine-feature-card"]}`}>
               <strong>
                 {isArabic ? "٥ غ" : isFarsi ? "۵ گرم" : "5G"}
               </strong>
@@ -410,7 +400,7 @@ export default function Page() {
               </span>
             </div>
 
-            <div className="creatine-feature-card">
+            <div className={`${styles["creatine-feature-card"]}`}>
               <strong>
                 {isArabic ? "صفر" : isFarsi ? "صفر" : "ZERO"}
               </strong>
@@ -424,7 +414,7 @@ export default function Page() {
               </span>
             </div>
 
-            <div className="creatine-feature-card">
+            <div className={`${styles["creatine-feature-card"]}`}>
               <strong>
                 {isArabic
                   ? "مختبر"
@@ -442,7 +432,7 @@ export default function Page() {
               </span>
             </div>
 
-            <div className="creatine-feature-card">
+            <div className={`${styles["creatine-feature-card"]}`}>
               <strong>
                 {isArabic ? "١٠٠٪" : isFarsi ? "۱۰۰٪" : "100%"}
               </strong>
@@ -459,10 +449,10 @@ export default function Page() {
         </section>
       </div>
 
-      <section className="nutrition-section">
-        <div className="nutrition-wrapper">
-          <div className="nutrition-left">
-            <div className="nutrition-heading">
+      <section className={`${styles["nutrition-section"]}`}>
+        <div className={`${styles["nutrition-wrapper"]}`}>
+          <div className={`${styles["nutrition-left"]}`}>
+            <div className={`${styles["nutrition-heading"]}`}>
               <h2>
                 {isArabic
                   ? "التغذية"
@@ -480,7 +470,7 @@ export default function Page() {
               </h2>
             </div>
 
-            <div className="nutrition-description">
+            <div className={`${styles["nutrition-description"]}`}>
               <p>
                 {isArabic ? (
                   <>
@@ -504,8 +494,8 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="nutrition-features">
-              <div className="nutrition-feature">
+            <div className={`${styles["nutrition-features"]}`}>
+              <div className={`${styles["nutrition-feature"]}`}>
                 <FaBan />
 
                 <h3>
@@ -517,7 +507,7 @@ export default function Page() {
                 </h3>
               </div>
 
-              <div className="nutrition-feature">
+              <div className={`${styles["nutrition-feature"]}`}>
                 <FaCanadianMapleLeaf />
 
                 <h3>
@@ -543,7 +533,7 @@ export default function Page() {
                 </h3>
               </div>
 
-              <div className="nutrition-feature">
+              <div className={`${styles["nutrition-feature"]}`}>
                 <FaFlask />
 
                 <h3>
@@ -557,207 +547,208 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="nutrition-table" dir="ltr">
-            {[
-              [
-                isArabic
-                  ? "كرياتين مونوهيدرات"
-                  : isFarsi
-                    ? "کراتین مونوهیدرات"
-                    : "CREATINE MONOHYDRATE",
-                isArabic
-                  ? "5 غ"
-                  : isFarsi
-                    ? "۵ گرم"
-                    : "5G",
-              ],
-              [
-                isArabic
-                  ? "تورين"
-                  : isFarsi
-                    ? "تائورین"
-                    : "TAURINE",
-                isArabic
-                  ? "250 ملغ"
-                  : isFarsi
-                    ? "۲۵۰ میلی‌گرم"
-                    : "250 MG",
-              ],
-              [
-                isArabic
-                  ? "الطاقة"
-                  : isFarsi
-                    ? "انرژی"
-                    : "ENERGY",
-                isArabic
-                  ? "12 سعرة حرارية"
-                  : isFarsi
-                    ? "۱۲ کیلوکالری"
-                    : "12 KCAL",
-              ],
-              [
-                isArabic
-                  ? "البروتين"
-                  : isFarsi
-                    ? "پروتئین"
-                    : "PROTEIN",
-                isArabic
-                  ? "3.0 غ"
-                  : isFarsi
-                    ? "۳.۰ گرم"
-                    : "3.0 G",
-              ],
-              [
-                isArabic
-                  ? "الكربوهيدرات"
-                  : isFarsi
-                    ? "کربوهیدرات"
-                    : "CARBOHYDRATE",
-                isArabic
-                  ? "0 غ"
-                  : isFarsi
-                    ? "۰ گرم"
-                    : "0 G",
-              ],
-              [
-                isArabic
-                  ? "إجمالي السكر"
-                  : isFarsi
-                    ? "قند کل"
-                    : "TOTAL SUGAR",
-                isArabic
-                  ? "0 غ"
-                  : isFarsi
-                    ? "۰ گرم"
-                    : "0 G",
-              ],
-              [
-                isArabic
-                  ? "السكر المضاف"
-                  : isFarsi
-                    ? "شکر افزوده"
-                    : "ADDED SUGAR",
-                isArabic
-                  ? "0 غ"
-                  : isFarsi
-                    ? "۰ گرم"
-                    : "0 G",
-              ],
-              [
-                isArabic
-                  ? "إجمالي الدهون"
-                  : isFarsi
-                    ? "چربی کل"
-                    : "TOTAL FAT",
-                isArabic
-                  ? "0 غ"
-                  : isFarsi
-                    ? "۰ گرم"
-                    : "0 G",
-              ],
-              [
-                isArabic
-                  ? "الدهون المشبعة"
-                  : isFarsi
-                    ? "چربی اشباع"
-                    : "SATURATED FAT",
-                isArabic
-                  ? "0 غ"
-                  : isFarsi
-                    ? "۰ گرم"
-                    : "0 G",
-              ],
-              [
-                isArabic
-                  ? "الدهون المتحولة"
-                  : isFarsi
-                    ? "چربی ترانس"
-                    : "TRANS FAT",
-                isArabic
-                  ? "0 غ"
-                  : isFarsi
-                    ? "۰ گرم"
-                    : "0 G",
-              ],
-              [
-                isArabic
-                  ? "الكوليسترول"
-                  : isFarsi
-                    ? "کلسترول"
-                    : "CHOLESTEROL",
-                isArabic
-                  ? "0 ملغ"
-                  : isFarsi
-                    ? "۰ میلی‌گرم"
-                    : "0 MG",
-              ],
-              [
-                isArabic
-                  ? "الصوديوم"
-                  : isFarsi
-                    ? "سدیم"
-                    : "SODIUM",
-                isArabic
-                  ? "0 ملغ"
-                  : isFarsi
-                    ? "۰ میلی‌گرم"
-                    : "0 MG",
-              ],
-            ].map(([label, value], index) => (
-              <div
-                key={`${label}-${index}`}
-                className={`nutrition-row ${
-                  index === 0 ? "nutrition-top-row" : ""
-                }`}
-              >
-                <span
-                  dir={isRTL ? "rtl" : "ltr"}
-                  className="text-right"
-                >
-                  {label}
-                </span>
+            <div className={styles["nutrition-table"]}>
+    {[
+      [
+        isArabic
+          ? "كرياتين مونوهيدرات"
+          : isFarsi
+            ? "کراتین مونوهیدرات"
+            : "CREATINE MONOHYDRATE",
+        isArabic
+          ? "5 غ"
+          : isFarsi
+            ? "۵ گرم"
+            : "5G",
+      ],
+      [
+        isArabic
+          ? "تورين"
+          : isFarsi
+            ? "تائورین"
+            : "TAURINE",
+        isArabic
+          ? "250 ملغ"
+          : isFarsi
+            ? "۲۵۰ میلی‌گرم"
+            : "250 MG",
+      ],
+      [
+        isArabic
+          ? "الطاقة"
+          : isFarsi
+            ? "انرژی"
+            : "ENERGY",
+        isArabic
+          ? "12 سعرة حرارية"
+          : isFarsi
+            ? "۱۲ کیلوکالری"
+            : "12 KCAL",
+      ],
+      [
+        isArabic
+          ? "البروتين"
+          : isFarsi
+            ? "پروتئین"
+            : "PROTEIN",
+        isArabic
+          ? "3.0 غ"
+          : isFarsi
+            ? "۳.۰ گرم"
+            : "3.0 G",
+      ],
+      [
+        isArabic
+          ? "الكربوهيدرات"
+          : isFarsi
+            ? "کربوهیدرات"
+            : "CARBOHYDRATE",
+        isArabic
+          ? "0 غ"
+          : isFarsi
+            ? "۰ گرم"
+            : "0 G",
+      ],
+      [
+        isArabic
+          ? "إجمالي السكر"
+          : isFarsi
+            ? "قند کل"
+            : "TOTAL SUGAR",
+        isArabic
+          ? "0 غ"
+          : isFarsi
+            ? "۰ گرم"
+            : "0 G",
+      ],
+      [
+        isArabic
+          ? "السكر المضاف"
+          : isFarsi
+            ? "شکر افزوده"
+            : "ADDED SUGAR",
+        isArabic
+          ? "0 غ"
+          : isFarsi
+            ? "۰ گرم"
+            : "0 G",
+      ],
+      [
+        isArabic
+          ? "إجمالي الدهون"
+          : isFarsi
+            ? "چربی کل"
+            : "TOTAL FAT",
+        isArabic
+          ? "0 غ"
+          : isFarsi
+            ? "۰ گرم"
+            : "0 G",
+      ],
+      [
+        isArabic
+          ? "الدهون المشبعة"
+          : isFarsi
+            ? "چربی اشباع"
+            : "SATURATED FAT",
+        isArabic
+          ? "0 غ"
+          : isFarsi
+            ? "۰ گرم"
+            : "0 G",
+      ],
+      [
+        isArabic
+          ? "الدهون المتحولة"
+          : isFarsi
+            ? "چربی ترانس"
+            : "TRANS FAT",
+        isArabic
+          ? "0 غ"
+          : isFarsi
+            ? "۰ گرم"
+            : "0 G",
+      ],
+      [
+        isArabic
+          ? "الكوليسترول"
+          : isFarsi
+            ? "کلسترول"
+            : "CHOLESTEROL",
+        isArabic
+          ? "0 ملغ"
+          : isFarsi
+            ? "۰ میلی‌گرم"
+            : "0 MG",
+      ],
+      [
+        isArabic
+          ? "الصوديوم"
+          : isFarsi
+            ? "سدیم"
+            : "SODIUM",
+        isArabic
+          ? "0 ملغ"
+          : isFarsi
+            ? "۰ میلی‌گرم"
+            : "0 MG",
+      ],
+    ].map(([label, value], index) => (
+      <div
+        key={`${label}-${index}`}
+        className={`${styles["nutrition-row"]} ${
+          index === 0 ? styles["nutrition-top-row"] : ""
+        }`}
+      >
+        <span
+          dir={isRTL ? "rtl" : "ltr"}
+          className={styles["nutrition-label"]}
+        >
+          {label}
+        </span>
 
-                <strong
-                  dir={isRTL ? "rtl" : "ltr"}
-                  className="text-left"
-                >
-                  {value}
-                </strong>
-              </div>
-            ))}
-          </div>
+        <strong
+          dir={isRTL ? "rtl" : "ltr"}
+          className={styles["nutrition-value"]}
+        >
+          {value}
+        </strong>
+      </div>
+    ))}
+  </div>
 
-          <div className="nutrition-product">
-            <Image
-              src="/images/tt.png"
-              alt={
-                isArabic
-                  ? "كرياتين مونوهيدرات"
-                  : isFarsi
-                    ? "کراتین مونوهیدرات"
-                    : "Creatine Monohydrate"
-              }
-              width={200}
-              height={550}
-              className="nutrition-pack"
-            />
-          </div>
+  <div className={styles["nutrition-product"]}>
+    <Image
+      src="/images/tt.png"
+      alt={
+        isArabic
+          ? "كرياتين مونوهيدرات"
+          : isFarsi
+            ? "کراتین مونوهیدرات"
+            : "Creatine Monohydrate"
+      }
+      width={300}
+      height={825}
+      priority
+      className={styles["nutrition-pack"]}
+    />
+  </div>
         </div>
       </section>
 
-      <section className="level-up">
-        <div className="level-image" dir="ltr">
+      <section className={`${styles["level-up"]}`}>
+        <div className={`${styles["level-image"]}`} dir="ltr">
           <Image
             src="/images/Rectangle.png"
             alt="Creatine Company"
             fill
             priority
-            className="level-background"
+            className={`${styles["level-background"]}`}
           />
         </div>
 
-        <div className="level-marquee">
-          <div className="level-marquee-track">
+        <div className={`${styles["level-marquee"]}`}>
+          <div className={`${styles["level-marquee-track"]}`}>
             <h1>
               {isArabic ? (
                 <>
@@ -795,11 +786,11 @@ export default function Page() {
 
       <section
         ref={suggestRef}
-        className={`suggest-page ${
-          suggestVisible ? "suggest-visible" : ""
+        className={`${styles["suggest-page"]} ${
+          suggestVisible ? styles["suggest-visible"] : ""
         }`}
       >
-        <div className="suggest-h2">
+        <div className={`${styles["suggest-h2"]}`}>
           <h2>
             {isArabic
               ? "طريقة"
@@ -807,7 +798,7 @@ export default function Page() {
                 ? "روش"
                 : "HOW TO"}
 
-            <span className="suggest-box">
+            <span className={`${styles["suggest-box"]}`}>
               {isArabic
                 ? "الاستخدام المقترحة"
                 : isFarsi
@@ -825,7 +816,7 @@ export default function Page() {
           </p>
         </div>
 
-        <div className="suggest-image">
+        <div className={`${styles["suggest-image"]}`}>
           <Image
             src="/images/group3.png"
             alt={
@@ -836,12 +827,12 @@ export default function Page() {
                   : "Creatine"
             }
             fill
-            className="suggest-img"
+            className={`${styles["suggest-img"]}`}
             priority
           />
 
-          <div className="suggest-steps">
-            <div className="suggest-step suggest-step-1">
+          <div className={`${styles["suggest-steps"]}`}>
+            <div className={`${styles["suggest-step"]} ${styles["suggest-step-1"]}`}>
               <p>
                 {isArabic
                   ? "اخلط حصة واحدة مع 250–300 مل من الماء البارد أو مشروبك المفضل."
@@ -851,7 +842,7 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="suggest-step suggest-step-2">
+            <div className={`${styles["suggest-step"]} ${styles["suggest-step-2"]}`}>
               <p>
                 {isArabic
                   ? "رُجّ أو حرّك جيدًا حتى يذوب المسحوق بالكامل."
@@ -861,7 +852,7 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="suggest-step suggest-step-3">
+            <div className={`${styles["suggest-step"]} ${styles["suggest-step-3"]}`}>
               <p>
                 {isArabic
                   ? "تناوله يوميًا واحرص على شرب كمية كافية من الماء طوال اليوم أثناء استخدام الكرياتين."
@@ -874,8 +865,8 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="green-apple">
-        <div className="green-apple-h2">
+      <section className={`${styles["blueberry"]}`}>
+        <div className={`${styles["blueberry-h2"]}`}>
           <h2>
             {isArabic
               ? "قد يعجبك"
@@ -883,7 +874,7 @@ export default function Page() {
                 ? "شاید این را"
                 : "YOU MAY"}
 
-            <span className="like-span">
+            <span className={`${styles["like-span"]}`}>
               {isArabic
                 ? "أيضًا"
                 : isFarsi
@@ -893,27 +884,27 @@ export default function Page() {
           </h2>
         </div>
 
-        <div className="green-right">
+        <div className={`${styles["blueberry-right"]}`}>
           <div
             ref={greenSliderRef}
-            className="green-apple-scroll"
+            className={`${styles["blueberry-scroll"]}`}
           >
             {products.map((item) => (
               <div
-                className="green-slide"
+                className={`${styles["blueberry-slide"]}`}
                 key={item.id}
               >
                 <Link
                   href={item.link}
-                  className="green-card-link"
+                  className={`${styles["blueberry-card-link"]}`}
                 >
-                  <div className="green-card">
+                  <div className={`${styles["blueberry-card"]}`}>
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
                       sizes="(max-width: 768px) 85vw, 500px"
-                      className="green-card-image"
+                      className={`${styles["blueberry-card-image"]}`}
                     />
                   </div>
                 </Link>
@@ -921,10 +912,10 @@ export default function Page() {
             ))}
           </div>
 
-          <div className="green-slider-arrows">
+          <div className={`${styles["blueberry-slider-arrows"]}`}>
             <button
               type="button"
-              className="green-slider-arrow"
+              className={`${styles["blueberry-slider-arrow"]}`}
               onClick={() => scrollGreenSlider("left")}
               disabled={greenCurrentIndex === 0}
               aria-label={
@@ -940,7 +931,7 @@ export default function Page() {
 
             <button
               type="button"
-              className="green-slider-arrow"
+              className={`${styles["blueberry-slider-arrow"]}`}
               onClick={() => scrollGreenSlider("right")}
               disabled={
                 greenCurrentIndex === products.length - 1
@@ -959,10 +950,10 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="order-rating-section">
-        <div className="order-rating-container">
-          <div className="rating-left">
-            <h2 className="rating-title">
+      <section className={`${styles["order-rating-section"]}`}>
+        <div className={`${styles["order-rating-container"]}`}>
+          <div className={`${styles["rating-left"]}`}>
+            <h2 className={`${styles["rating-title"]}`}>
               {isArabic
                 ? "تقييم الطلب"
                 : isFarsi
@@ -970,12 +961,12 @@ export default function Page() {
                   : "ORDER RATING"}
             </h2>
 
-            <div className="rating-score">
-              <span className="score">4.4</span>
-              <FaStar className="score-star" />
+            <div className={`${styles["rating-score"]}`}>
+              <span className={`${styles["score"]}`}>4.4</span>
+              <FaStar className={`${styles["score-star"]}`} />
             </div>
 
-            <p className="rating-info">
+            <p className={`${styles["rating-info"]}`}>
               {isArabic
                 ? "بناءً على 98 تقييمًا"
                 : isFarsi
@@ -983,7 +974,7 @@ export default function Page() {
                   : "BASED ON 98 RATINGS"}
             </p>
 
-            <p className="rating-date">
+            <p className={`${styles["rating-date"]}`}>
               {isArabic
                 ? "التقييمات منذ 13 مارس 2026"
                 : isFarsi
@@ -991,7 +982,7 @@ export default function Page() {
                   : "RATING SINCE MAR. 13 2026"}
             </p>
 
-            <p className="review-product">
+            <p className={`${styles["review-product"]}`}>
               {isArabic
                 ? "قيّم المنتج"
                 : isFarsi
@@ -999,13 +990,13 @@ export default function Page() {
                   : "REVIEW THE PRODUCT"}
             </p>
 
-            <div className="review-stars">
+            <div className={`${styles["review-stars"]}`}>
               {[1, 2, 3, 4, 5].map((star) => (
                 <FaStar key={star} />
               ))}
             </div>
 
-            <h3 className="add-review-title">
+            <h3 className={`${styles["add-review-title"]}`}>
               {isArabic
                 ? "أضف تقييمك"
                 : isFarsi
@@ -1013,7 +1004,7 @@ export default function Page() {
                   : "ADD YOUR REVIEW"}
             </h3>
 
-            <p className="review-note">
+            <p className={`${styles["review-note"]}`}>
               {isArabic
                 ? "لن يتم نشر بريدك الإلكتروني. الحقول المطلوبة مميزة بعلامة *"
                 : isFarsi
@@ -1022,13 +1013,13 @@ export default function Page() {
             </p>
           </div>
 
-          <div className="rating-right">
+          <div className={`${styles["rating-right"]}`}>
             {ratings.map((rating) => (
               <div
-                className="rating-row"
+                className={`${styles["rating-row"]}`}
                 key={rating.stars}
               >
-                <span className="rating-label">
+                <span className={`${styles["rating-label"]}`}>
                   {rating.stars}{" "}
                   {isArabic
                     ? "نجوم"
@@ -1037,25 +1028,25 @@ export default function Page() {
                       : "STARS"}
                 </span>
 
-                <div className="rating-bar">
+                <div className={`${styles["rating-bar"]}`}>
                   <div
-                    className="rating-fill"
+                    className={`${styles["rating-fill"]}`}
                     style={{
                       width: `${rating.percentage}%`,
                     }}
                   />
                 </div>
 
-                <span className="rating-count">
+                <span className={`${styles["rating-count"]}`}>
                   {rating.count}
                 </span>
               </div>
             ))}
           </div>
 
-          <div className="review-form">
+          <div className={`${styles["review-form"]}`}>
             <textarea
-              className="review-input"
+              className={`${styles["review-input"]}`}
               placeholder={
                 isArabic
                   ? "اكتب تقييمك..."
@@ -1065,8 +1056,8 @@ export default function Page() {
               }
             />
 
-            <div className="review-upload">
-              <span className="upload-icon">▧</span>
+            <div className={`${styles["review-upload"]}`}>
+              <span className={`${styles["upload-icon"]}`}>▧</span>
 
               <span>
                 {isArabic
@@ -1080,8 +1071,8 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="reviews-section">
-        <div className="reviews-info-bar">
+      <section className={`${styles["reviews-section"]}`}>
+        <div className={`${styles["reviews-info-bar"]}`}>
           <span>
             {isArabic
               ? "إذا كنت ترغب في كتابة تقييم، اضغط على الصورة أدناه لتسجيل الدخول"
@@ -1091,8 +1082,8 @@ export default function Page() {
           </span>
         </div>
 
-        <div className="reviews-submit-wrapper">
-          <button className="reviews-submit">
+        <div className={`${styles["reviews-submit-wrapper"]}`}>
+          <button className={`${styles["reviews-submit"]}`}>
             {isArabic
               ? "إرسال"
               : isFarsi
@@ -1101,8 +1092,8 @@ export default function Page() {
           </button>
         </div>
 
-        <div className="reviews-header">
-          <p className="reviews-count">
+        <div className={`${styles["reviews-header"]}`}>
+          <p className={`${styles["reviews-count"]}`}>
             {isArabic
               ? "1-10 من أصل 98 تقييمًا"
               : isFarsi
@@ -1110,11 +1101,11 @@ export default function Page() {
                 : "1-10 OF 98 REVIEWS"}
           </p>
 
-          <div className="sort-wrapper">
+          <div className={`${styles["sort-wrapper"]}`}>
             <button
               type="button"
-              className={`sort-button ${
-                isOpen ? "active" : ""
+              className={`${styles["sort-button"]} ${
+                isOpen ? styles["active"] : ""
               }`}
               onClick={() =>
                 setIsOpen((prev: boolean) => !prev)
@@ -1138,7 +1129,7 @@ export default function Page() {
             </button>
 
             {isOpen && (
-              <div className="sort-menu">
+              <div className={`${styles["sort-menu"]}`}>
                 <button
                   type="button"
                   onClick={() =>
@@ -1182,23 +1173,23 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="reviews-list">
+        <div className={`${styles["reviews-list"]}`}>
           {sortedReviews.map((review) => (
             <article
-              className="single-review"
+              className={`${styles["single-review"]}`}
               key={review.id}
               dir={isRTL ? "rtl" : "ltr"}
             >
-              <div className="review-details">
-                <h3 className="review-name">
+              <div className={`${styles["review-details"]}`}>
+                <h3 className={`${styles["review-name"]}`}>
                   {review.name}
                 </h3>
 
-                <p className="review-date">
+                <p className={`${styles["review-date"]}`}>
                   {review.date}
                 </p>
 
-                <div className="review-rating">
+                <div className={`${styles["review-rating"]}`}>
                   {[1, 2, 3, 4, 5].map((star) => (
                     <FaStar
                       key={star}
@@ -1211,7 +1202,7 @@ export default function Page() {
                   ))}
                 </div>
 
-                <p className="review-text">
+                <p className={`${styles["review-text"]}`}>
                   "{getReviewText(review)}"
                 </p>
               </div>
