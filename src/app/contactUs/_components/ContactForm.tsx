@@ -23,12 +23,68 @@ const initialForm: ContactFormData = {
   message: "",
 };
 
+const CONTENT = {
+  en: {
+    heading: (
+      <>
+        DON&apos;T BE SHY.
+        <br className="sm:hidden" /> HIT US UP AND WE&apos;LL GET BACK TO YOU!
+      </>
+    ),
+    fullName: "Full name",
+    email: "Email address",
+    subject: "Subject",
+    orderNumber: "Order number ( optional )",
+    message: "Message",
+    sending: "SENDING...",
+    sent: "SENT!",
+    submit: "SUBMIT",
+  },
+
+  ar: {
+    heading: (
+      <>
+        لا تتردد.
+        <br />
+        تواصل معنا وسنعاود التواصل معك!
+      </>
+    ),
+    fullName: "الاسم الكامل",
+    email: "البريد الإلكتروني",
+    subject: "الموضوع",
+    orderNumber: "رقم الطلب (اختياري)",
+    message: "الرسالة",
+    sending: "جارٍ الإرسال...",
+    sent: "تم الإرسال!",
+    submit: "إرسال",
+  },
+
+  fa: {
+    heading: (
+      <>
+        خجالت نکشید.
+        <br />
+        با ما تماس بگیرید و ما با شما در ارتباط خواهیم بود!
+      </>
+    ),
+    fullName: "نام کامل",
+    email: "آدرس ایمیل",
+    subject: "موضوع",
+    orderNumber: "شماره سفارش (اختیاری)",
+    message: "پیام",
+    sending: "در حال ارسال...",
+    sent: "ارسال شد!",
+    submit: "ارسال",
+  },
+};
+
 export default function ContactForm() {
   const [form, setForm] = useState<ContactFormData>(initialForm);
   const [status, setStatus] = useState<FormStatus>("idle");
 
-  const { language } = useLanguage();
-  const isArabic = language === "ar";
+  const { language, isRTL } = useLanguage();
+
+  const content = CONTENT[language];
 
   function handleChange(field: keyof ContactFormData) {
     return (
@@ -74,13 +130,14 @@ export default function ContactForm() {
 
   return (
     <div
-      dir={isArabic ? "rtl" : "ltr"}
-      className="
+      dir={isRTL ? "rtl" : "ltr"}
+      className={`
         w-full
         box-border
         rounded-[1.5rem]
         bg-[#5c3a22]
         p-4
+        text-${isRTL ? "right" : "left"}
         backdrop-blur-sm
 
         min-[375px]:p-5
@@ -104,7 +161,7 @@ export default function ContactForm() {
         min-[1920px]:translate-x-[-70px]
         min-[1920px]:translate-y-[-25px]
         min-[1920px]:scale-[1.06]
-      "
+      `}
     >
       <h2
         className={`
@@ -127,19 +184,7 @@ export default function ContactForm() {
           min-[1920px]:text-[3.3rem]
         `}
       >
-        {isArabic ? (
-          <>
-            لا تتردد.
-            <br />
-            تواصل معنا وسنعاود التواصل معك!
-          </>
-        ) : (
-          <>
-            DON&apos;T BE SHY.
-            <br className="sm:hidden" />
-            {" "}HIT US UP AND WE&apos;LL GET BACK TO YOU!
-          </>
-        )}
+        {content.heading}
       </h2>
 
       <form
@@ -170,9 +215,11 @@ export default function ContactForm() {
           <input
             type="text"
             required
-            placeholder={isArabic ? "الاسم الكامل" : "Full name"}
+            placeholder={content.fullName}
+            aria-label={content.fullName}
             value={form.fullName}
             onChange={handleChange("fullName")}
+            dir={isRTL ? "rtl" : "ltr"}
             className={`
               ${fieldClassName}
 
@@ -193,9 +240,11 @@ export default function ContactForm() {
           <input
             type="email"
             required
-            placeholder={isArabic ? "البريد الإلكتروني" : "Email address"}
+            placeholder={content.email}
+            aria-label={content.email}
             value={form.email}
             onChange={handleChange("email")}
+            dir="ltr"
             className={`
               ${fieldClassName}
 
@@ -228,21 +277,21 @@ export default function ContactForm() {
           <input
             type="text"
             required
-            placeholder={isArabic ? "الموضوع" : "Subject"}
+            placeholder={content.subject}
+            aria-label={content.subject}
             value={form.subject}
             onChange={handleChange("subject")}
+            dir={isRTL ? "rtl" : "ltr"}
             className={fieldClassName}
           />
 
           <input
             type="text"
-            placeholder={
-              isArabic
-                ? "رقم الطلب (اختياري)"
-                : "Order number ( optional )"
-            }
+            placeholder={content.orderNumber}
+            aria-label={content.orderNumber}
             value={form.orderNumber}
             onChange={handleChange("orderNumber")}
+            dir={isRTL ? "rtl" : "ltr"}
             className={fieldClassName}
           />
         </div>
@@ -250,9 +299,11 @@ export default function ContactForm() {
         <textarea
           required
           rows={5}
-          placeholder={isArabic ? "الرسالة" : "Message"}
+          placeholder={content.message}
+          aria-label={content.message}
           value={form.message}
           onChange={handleChange("message")}
+          dir={isRTL ? "rtl" : "ltr"}
           className={`
             ${fieldClassName}
             resize-none
@@ -311,16 +362,10 @@ export default function ContactForm() {
             `}
           >
             {status === "submitting"
-              ? isArabic
-                ? "جارٍ الإرسال..."
-                : "SENDING..."
+              ? content.sending
               : status === "sent"
-                ? isArabic
-                  ? "تم الإرسال!"
-                  : "SENT!"
-                : isArabic
-                  ? "إرسال"
-                  : "SUBMIT"}
+                ? content.sent
+                : content.submit}
           </button>
         </div>
       </form>

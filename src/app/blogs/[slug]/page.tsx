@@ -4,16 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { anton, mono } from "@/commonComponents/fonts";
-import { POSTS, AR_POSTS } from "../_components/data";
+import {
+  POSTS,
+  AR_POSTS,
+  FA_POSTS,
+} from "../_components/data";
 import { useLanguage } from "@/app/context/languageUseContent";
 
 export default function BlogDetailPage() {
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
   const params = useParams<{ slug: string }>();
 
-  const isArabic = language === "ar";
-
-  const posts = isArabic ? AR_POSTS : POSTS;
+  const posts =
+    language === "ar"
+      ? AR_POSTS
+      : language === "fa"
+        ? FA_POSTS
+        : POSTS;
 
   const post = posts.find((item) => item.slug === params.slug);
 
@@ -21,9 +28,16 @@ export default function BlogDetailPage() {
     return null;
   }
 
+  const backText =
+    language === "ar"
+      ? "العودة إلى المدونة"
+      : language === "fa"
+        ? "بازگشت به وبلاگ"
+        : "Back to blogs";
+
   return (
     <main
-      dir={isArabic ? "rtl" : "ltr"}
+      dir={isRTL ? "rtl" : "ltr"}
       className="min-h-screen bg-[#fdf1da] text-[#502300]"
     >
       <section className="px-4 pb-12 pt-6 sm:px-6 sm:pb-16 sm:pt-8 md:px-10 md:pb-20 lg:px-16 xl:px-20">
@@ -32,8 +46,14 @@ export default function BlogDetailPage() {
             href="/blogs"
             className={`${anton.className} inline-flex items-center gap-2 text-xs uppercase tracking-wide text-[#502300] transition-opacity hover:opacity-60 sm:text-sm`}
           >
-            <span aria-hidden>{isArabic ? "→" : "←"}</span>
-            {isArabic ? "العودة إلى المدونة" : "Back to blogs"}
+            <span
+              aria-hidden
+              className={isRTL ? "rotate-180" : ""}
+            >
+              ←
+            </span>
+
+            {backText}
           </Link>
 
           <div className="mt-6 grid gap-6 sm:mt-8 sm:gap-8 md:mt-12 md:grid-cols-[1.05fr_0.95fr] md:items-center md:gap-12 lg:gap-16">
@@ -48,7 +68,7 @@ export default function BlogDetailPage() {
               />
             </div>
 
-            <div>
+            <div className={isRTL ? "text-right" : "text-left"}>
               <span
                 className={`${anton.className} inline-flex items-center gap-2 rounded-full bg-[#82572b] px-3 py-1.5 text-[11px] uppercase tracking-wide text-white sm:text-xs`}
               >
@@ -74,7 +94,9 @@ export default function BlogDetailPage() {
 
       <article className="px-4 pb-14 sm:px-6 sm:pb-20 md:px-10 lg:px-16 xl:px-20">
         <div
-          className={`${mono.className} mx-auto max-w-3xl whitespace-pre-line break-words text-[13px] leading-6 text-[#3a2416] sm:text-sm sm:leading-7 md:text-base md:leading-8`}
+          className={`${mono.className} mx-auto max-w-3xl whitespace-pre-line break-words text-[13px] leading-6 text-[#3a2416] sm:text-sm sm:leading-7 md:text-base md:leading-8 ${
+            isRTL ? "text-right" : "text-left"
+          }`}
         >
           {post.content}
         </div>

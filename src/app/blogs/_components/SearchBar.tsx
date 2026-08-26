@@ -3,18 +3,39 @@
 import type { ChangeEvent } from "react";
 import { anton } from "@/commonComponents/fonts";
 import { SearchIcon } from "./icons";
+import { useLanguage } from "@/app/context/languageUseContent";
 
 type SearchBarProps = {
   value: string;
   onChange: (value: string) => void;
 };
 
+const SEARCH_CONTENT = {
+  en: {
+    placeholder: "SEARCH...",
+    ariaLabel: "Search articles",
+  },
+  ar: {
+    placeholder: "بحث...",
+    ariaLabel: "البحث في المقالات",
+  },
+  fa: {
+    placeholder: "جستجو...",
+    ariaLabel: "جستجوی مقالات",
+  },
+};
+
 export default function SearchBar({
   value,
   onChange,
 }: SearchBarProps) {
+  const { language, isRTL } = useLanguage();
+
+  const content = SEARCH_CONTENT[language];
+
   return (
     <div
+      dir={isRTL ? "rtl" : "ltr"}
       className="
         mt-4
         flex
@@ -69,8 +90,9 @@ export default function SearchBar({
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           onChange(e.target.value)
         }
-        placeholder="SEARCH..."
-        aria-label="Search articles"
+        placeholder={content.placeholder}
+        aria-label={content.ariaLabel}
+        dir={isRTL ? "rtl" : "ltr"}
         className={`
           ${anton.className}
 

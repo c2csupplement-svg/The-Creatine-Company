@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { anton, mono } from "../fonts";
 import {
   motion,
   useAnimationFrame,
   useMotionValue,
-  useTransform,
 } from "framer-motion";
 import { useLanguage } from "@/app/context/languageUseContent";
 
@@ -48,23 +47,103 @@ const arMyths = [
   },
 ];
 
-// Wraps a value into a min/max range so the marquee loops seamlessly
-function wrap(min, max, v) {
-  const rangeSize = max - min;
-  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
-}
+const faMyths = [
+  {
+    title: "کراتین فراتر از باشگاه است.",
+    body: "طبق نظر انجمن بین‌المللی تغذیه ورزشی (ISSN)، مصرف روزانه ۵ گرم کراتین در طولانی‌مدت می‌تواند از سلامت عمومی و آمادگی جسمانی حمایت کند، نه فقط عملکرد ورزشکاران حرفه‌ای. کراتین غذایی تقریباً به طور کامل از گوشت و ماهی دریافت می‌شود.",
+  },
+  {
+    title: "کراتین باعث ریزش مو می‌شود.",
+    body: "داده‌های موجود چنین چیزی را تأیید نمی‌کنند. این نگرانی از یک مطالعه در سال ۲۰۰۹ روی ۱۶ بازیکن راگبی ناشی شد که یک هورمون (DHT) را اندازه‌گیری کرد، نه ریزش واقعی مو را. این نتیجه تاکنون در مطالعات دیگر تکرار نشده است.",
+  },
+  {
+    title: "کراتین به کلیه‌ها آسیب می‌زند.",
+    body: "در افراد سالم، شواهدی از آسیب کلیوی ناشی از مصرف معمول کراتین وجود ندارد. کراتین ممکن است سطح کراتین خون را کمی افزایش دهد. این افزایش می‌تواند نتیجه ذخیره بیشتر کراتین در عضلات باشد و لزوماً نشانه آسیب کلیه نیست.",
+  },
+  {
+    title: "کراتین باعث چاقی و پف‌کردگی می‌شود.",
+    body: "ساشه ما فقط ۱۲ کالری دارد و هیچ شکر افزوده‌ای ندارد. بنابراین باعث افزایش چربی نمی‌شود. هر تغییر اولیه در وزن معمولاً مربوط به آب داخل سلول‌های عضلانی است؛ آبی که برای حمایت از عملکرد در تمرینات پرفشار مستقیماً وارد سلول‌های عضله می‌شود.",
+  },
+];
 
 export default function CreatineMyths() {
-  const mythLoop = [...MYTHS, ...MYTHS];
-  const arMythLoop = [...arMyths, ...arMyths];
-
   const { language } = useLanguage();
-  const isRtl = language === "ar";
 
-  const [expandedCards, setExpandedCards] = useState([]);
+  const isRtl = language === "ar" || language === "fa";
+
+  const myths =
+    language === "ar"
+      ? arMyths
+      : language === "fa"
+      ? faMyths
+      : MYTHS;
+
+  const mythLoop = [...myths, ...myths];
+
+  const [expandedCards, setExpandedCards] = useState<number[]>([]);
   const [isHovered, setIsHovered] = useState(false);
 
-  const toggleReadMore = (index) => {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+
+  const [loopWidth, setLoopWidth] = useState(0);
+
+  const speed = 25;
+
+  useEffect(() => {
+    const calculateLoopWidth = () => {
+      if (!trackRef.current) return;
+
+      const totalWidth = trackRef.current.scrollWidth;
+      const singleLoopWidth = totalWidth / 2;
+
+      setLoopWidth(singleLoopWidth);
+      x.set(0);
+    };
+
+    calculateLoopWidth();
+
+    const resizeObserver = new ResizeObserver(() => {
+      calculateLoopWidth();
+    });
+
+    if (trackRef.current) {
+      resizeObserver.observe(trackRef.current);
+    }
+
+    window.addEventListener("resize", calculateLoopWidth);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", calculateLoopWidth);
+    };
+  }, [isRtl, x]);
+
+  useAnimationFrame((_, delta) => {
+    if (isHovered || loopWidth <= 0) return;
+
+    const movement = speed * (delta / 1000);
+
+    let currentX = x.get();
+
+    if (isRtl) {
+      currentX += movement;
+
+      if (currentX >= loopWidth) {
+        currentX = 0;
+      }
+    } else {
+      currentX -= movement;
+
+      if (currentX <= -loopWidth) {
+        currentX = 0;
+      }
+    }
+
+    x.set(currentX);
+  });
+
+  const toggleReadMore = (index: number) => {
     setExpandedCards((prev) =>
       prev.includes(index)
         ? prev.filter((item) => item !== index)
@@ -72,208 +151,81 @@ export default function CreatineMyths() {
     );
   };
 
-  // Continuous auto-scroll, independent of page scroll position
-  const baseX = useMotionValue(0);
-  const speed = 25; // px per second — tweak to taste
-
-  useAnimationFrame((_, delta) => {
-    if (isHovered) return; // pause on hover
-
-    const direction = isRtl ? 1 : -1;
-    const moveBy = direction * speed * (delta / 1000);
-
-    // baseX is expressed as a % of the track width; convert px-per-sec
-    // roughly using a fixed divisor tuned to card width. Simpler: just
-    // track raw px and let x transform handle %, see below.
-    baseX.set(baseX.get() + moveBy);
-  });
-
-  // Since the track is duplicated 2x (mythLoop / arMythLoop each render
-  // the full list twice), wrapping between 0% and -50% (or 0%/50% for
-  // rtl) makes the loop seamless.
-  const x = useTransform(baseX, (v) => {
-    // baseX accumulates in px; convert to a % wrap by treating 1px
-    // of accumulated motion as a proportional shift. Easiest robust
-    // approach: drive x directly in px against container ref width.
-    return `${v}px`;
-  });
-
   return (
     <section
-      className="overflow-hidden bg-[#fdf1da] px-5 py-10 sm:px-10 sm:py-14"
       dir={isRtl ? "rtl" : "ltr"}
+      className="overflow-hidden bg-[#fdf1da] px-5 py-10 sm:px-10 sm:py-14"
     >
-      <div
-        className="
-          mx-auto
-          grid
-          w-full
-          max-w-[1500px]
-          items-center
-          gap-8
-
-          md:grid-cols-[0.38fr_0.62fr]
-          md:gap-6
-        "
-      >
-        <div
-          className="
-            relative
-            z-20
-            min-w-0
-            shrink-0
-            pl-2
-
-            sm:pl-4
-
-            lg:pl-12
-          "
-        >
+      <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 md:grid-cols-[0.38fr_0.62fr] md:gap-6">
+        <div className="relative z-20 min-w-0 shrink-0 pl-2 sm:pl-4 lg:pl-12">
           <span
-            className={`
-              ${anton.className}
-              block
-              text-[clamp(2rem,3vw,3.5rem)]
-              uppercase
-              leading-none
-            `}
+            className={`${anton.className} block text-[clamp(2rem,3vw,3.5rem)] uppercase leading-none ${language !== "en"?"pb-2":"pb-0"}`}
           >
-            {!isRtl ? "MYTHS" : "الأساطير"}
+            {language === "en"
+              ? "MYTHS"
+              : language === "ar"
+              ? "الأساطير"
+              : "افسانه‌ها"}
           </span>
 
           <span
-            className={`
-              ${anton.className}
-              mt-[-4px]
-              inline-block
-              bg-[#a87847]
-              px-3
-              py-1
-              text-[clamp(2rem,3.5vw,4rem)]
-              uppercase
-              leading-none
-              text-white
-              rotate-[-2deg]
-
-              sm:px-5
-              sm:py-2
-            `}
+            className={`${anton.className} mt-[-4px] inline-block bg-[#a87847] px-3 py-1 text-[clamp(2rem,3.5vw,4rem)] uppercase leading-none text-white rotate-[-2deg] sm:px-5 sm:py-2`}
           >
-            {!isRtl
+            {language === "en"
               ? "CREATINE IS ONLY FOR BODYBUILDERS."
-              : "الكرياتين مخصص فقط لبناة الأجسام."}
+              : language === "ar"
+              ? "الكرياتين مخصص فقط لبناة الأجسام."
+              : "کراتین فقط برای بدنسازان است."}
           </span>
         </div>
 
         <div className="relative min-w-0 overflow-hidden py-1">
-          <div
-            className="
-              pointer-events-none
-              absolute
-              inset-y-0
-              left-0
-              z-10
-              w-10
-              bg-gradient-to-r
-              from-[#fdf1da]
-              via-[#fdf1da]/80
-              to-transparent
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[#fdf1da] via-[#fdf1da]/80 to-transparent sm:w-16" />
 
-              sm:w-16
-            "
-          />
-
-          <div
-            className="
-              pointer-events-none
-              absolute
-              inset-y-0
-              right-0
-              z-10
-              w-10
-              bg-gradient-to-l
-              from-[#fdf1da]
-              via-[#fdf1da]/80
-              to-transparent
-
-              sm:w-16
-            "
-          />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[#fdf1da] via-[#fdf1da]/80 to-transparent sm:w-16" />
 
           <motion.div
-            style={{ x }}
+            ref={trackRef}
+            style={{
+              x,
+              direction: "ltr",
+            }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="
-              flex
-              w-max
-              gap-4
-              will-change-transform
-            "
+            className={`flex w-max gap-4 will-change-transform ${
+              isRtl ? "flex-row-reverse" : "flex-row"
+            }`}
           >
-            {(!isRtl ? mythLoop : arMythLoop).map((myth, index) => {
+            {mythLoop.map((myth, index) => {
               const isExpanded = expandedCards.includes(index);
 
               return (
                 <motion.article
                   key={`${myth.title}-${index}`}
                   layout
-                  className={`
-                    relative
-                    box-border
-                    w-[250px]
-                    shrink-0
-                    rounded-[3px]
-                    bg-[#a87847]
-                    p-5
-                    text-[#fdf1da]
-
-                    sm:w-[300px]
-                    sm:min-h-[390px]
-                    sm:p-6
-
-                    lg:w-[270px]
-                    lg:min-h-[380px]
-
-                    ${
-                      isExpanded
-                        ? "z-30 min-h-[430px] shadow-xl"
-                        : "z-0 min-h-[360px]"
-                    }
-                  `}
+                  dir={isRtl ? "rtl" : "ltr"}
+                  className={`relative box-border w-[250px] shrink-0 rounded-[3px] bg-[#a87847] p-5 text-[#fdf1da] sm:w-[300px] sm:min-h-[390px] sm:p-6 lg:w-[270px] lg:min-h-[380px] ${
+                    isExpanded
+                      ? "z-30 min-h-[430px] shadow-xl"
+                      : "z-0 min-h-[360px]"
+                  }`}
                 >
-                  <div className="text-[1.875rem] leading-none">&ldquo;</div>
+                  <div className="text-[1.875rem] leading-none">
+                    &ldquo;
+                  </div>
 
                   <h3
-                    className={`
-                      ${anton.className}
-                      mt-1
-                      mb-0
-                      text-[1.5rem]
-                      uppercase
-                      leading-[0.92]
-
-                      sm:text-[1.875rem]
-                    `}
+                    className={`${anton.className} mt-1 mb-0 text-[1.5rem] uppercase leading-[0.92] sm:text-[1.875rem]`}
                   >
                     {myth.title}
                   </h3>
 
                   <p
-                    className={`
-                      ${mono.className}
-                      mt-6
-                      mb-0
-                      pb-10
-                      text-[19px]
-                      leading-[1.2]
-
-                      ${
-                        isExpanded
-                          ? "block overflow-visible"
-                          : "line-clamp-6 overflow-hidden"
-                      }
-                    `}
+                    className={`${mono.className} mt-6 mb-0 pb-10 text-[19px] leading-[1.2] ${
+                      isExpanded
+                        ? "block overflow-visible"
+                        : "line-clamp-6 overflow-hidden"
+                    }`}
                   >
                     {myth.body}
                   </p>
@@ -282,42 +234,32 @@ export default function CreatineMyths() {
                     type="button"
                     onClick={() => toggleReadMore(index)}
                     aria-expanded={isExpanded}
-                    whileHover={{ x: 3, opacity: 0.7 }}
+                    whileHover={{
+                      x: isRtl ? -3 : 3,
+                      opacity: 0.7,
+                    }}
                     whileTap={{ scale: 0.96 }}
-                    className={`
-                      ${anton.className}
-                      absolute
-                      bottom-5
-                      right-5
-                      z-40
-                      flex
-                      items-center
-                      gap-1.5
-                      border-0
-                      bg-transparent
-                      p-0
-                      text-[1.4rem]
-                      uppercase
-                      leading-none
-                      text-[#fdf1da]
-                      focus:outline-none
-                      focus-visible:ring-2
-                      focus-visible:ring-[#fdf1da]
-
-                      sm:bottom-6
-                      sm:right-6
-                      cursor-pointer
-                    `}
+                    className={`${anton.className} absolute bottom-5 right-5 z-40 flex cursor-pointer items-center gap-1.5 border-0 bg-transparent p-0 text-[1.4rem] uppercase leading-none text-[#fdf1da] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fdf1da] sm:bottom-6 sm:right-6`}
                   >
-                    {!isRtl
+                    {isRtl
                       ? isExpanded
-                        ? "READ LESS"
-                        : "READ MORE"
+                        ? language === "fa"
+                          ? "کمتر بخوانید"
+                          : "اقرأ أقل"
+                        : language === "fa"
+                        ? "بیشتر بخوانید"
+                        : "اعرف أكثر"
                       : isExpanded
-                      ? "اقرأ أقل"
-                      : "اعرف أكثر"}
+                      ? "READ LESS"
+                      : "READ MORE"}
 
-                    <span className="text-[1.1rem] leading-none">&rarr;</span>
+                    <span
+                      className={`text-[1.1rem] leading-none ${
+                        isRtl ? "rotate-180" : ""
+                      }`}
+                    >
+                      →
+                    </span>
                   </motion.button>
                 </motion.article>
               );

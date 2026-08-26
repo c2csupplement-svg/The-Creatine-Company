@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 
 import { anton } from "./fonts";
 import {
@@ -8,16 +7,57 @@ import {
   IconX,
   IconYoutube,
 } from "../app/about/_components/icons";
-
 import { useLanguage } from "@/app/context/languageUseContent";
 
-export default function Footer() {
+const CONTENT = {
+  en: {
+    flavour: "CREATINE FLAVOUR",
+    about: "ABOUT",
+    contact: "CONTACT",
+    blogs: "BLOGS",
+    newsletter:
+      "Get Exclusive Early Access and Stay Informed About Product Updates, Events, and More!",
+    email: "ENTER YOUR EMAIL",
+    subscribe: "Subscribe",
+    copyright: "All Rights Reserved",
+    privacy: "Privacy Policy",
+  },
 
-  const {language} = useLanguage();
+  ar: {
+    flavour: "نكهة الكرياتين",
+    about: "من نحن",
+    contact: "اتصل بنا",
+    blogs: "المدونة",
+    newsletter:
+      "احصل على وصول مبكر حصري وابقَ على اطلاع حول تحديثات المنتجات والفعاليات والمزيد!",
+    email: "أدخل بريدك الإلكتروني",
+    subscribe: "اشتراك",
+    copyright: "جميع الحقوق محفوظة",
+    privacy: "سياسة الخصوصية",
+  },
+
+  fa: {
+    flavour: "طعم کراتین",
+    about: "درباره ما",
+    contact: "تماس با ما",
+    blogs: "وبلاگ",
+    newsletter:
+      "دسترسی زودهنگام اختصاصی داشته باشید و از آخرین به‌روزرسانی محصولات، رویدادها و موارد دیگر باخبر بمانید!",
+    email: "ایمیل خود را وارد کنید",
+    subscribe: "عضویت",
+    copyright: "تمامی حقوق محفوظ است",
+    privacy: "حریم خصوصی",
+  },
+};
+
+export default function Footer() {
+  const { language, isRTL } = useLanguage();
+
+  const content = CONTENT[language];
 
   return (
     <footer
-    dir={language === "ar"?"rtl" : "ltr"}
+      dir={isRTL ? "rtl" : "ltr"}
       className="
         relative
         box-border
@@ -62,21 +102,13 @@ export default function Footer() {
           w-full
 
           max-[374px]:h-12
-
           min-[375px]:h-14
-
           min-[480px]:h-16
-
           sm:h-20
-
           md:h-24
-
           lg:h-24
-
           xl:h-[6.5rem]
-
           min-[1440px]:h-28
-
           min-[1920px]:h-32
         "
         aria-hidden="true"
@@ -97,19 +129,12 @@ export default function Footer() {
           pt-10
 
           max-[374px]:pt-10
-
           min-[375px]:pt-12
-
           min-[480px]:pt-14
-
           sm:pt-16
-
           md:pt-20
-
           lg:pt-20
-
           xl:pt-[5.5rem]
-
           min-[1440px]:pt-24
 
           min-[1920px]:max-w-[1800px]
@@ -126,19 +151,12 @@ export default function Footer() {
             tracking-[0.025em]
 
             min-[375px]:text-[clamp(1.8rem,8vw,2.5rem)]
-
             min-[480px]:text-[clamp(2.25rem,7vw,3rem)]
-
             sm:text-[clamp(2.75rem,6vw,3.5rem)]
-
             md:text-[clamp(3rem,6vw,4rem)]
-
             lg:text-[4rem]
-
             xl:text-[4.5rem]
-
             min-[1440px]:text-[5rem]
-
             min-[1920px]:text-[6rem]
           `}
         >
@@ -155,24 +173,18 @@ export default function Footer() {
 
             min-[375px]:mt-6
             min-[375px]:gap-9
-
             min-[480px]:gap-12
-
             sm:gap-14
-
             md:gap-16
-
             xl:gap-16
-
             min-[1440px]:gap-[4.5rem]
-
             min-[1920px]:mt-8
             min-[1920px]:gap-20
           "
         >
           <a
             href="https://www.pinterest.com/thecreatinecompany/"
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="Pinterest"
             className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
@@ -185,13 +197,10 @@ export default function Footer() {
 
                 min-[375px]:h-7
                 min-[375px]:w-7
-
                 sm:h-8
                 sm:w-8
-
                 min-[1440px]:h-9
                 min-[1440px]:w-9
-
                 min-[1920px]:h-10
                 min-[1920px]:w-10
               "
@@ -200,7 +209,7 @@ export default function Footer() {
 
           <a
             href="https://www.instagram.com/the.creatine.company/"
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
             className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
@@ -213,13 +222,10 @@ export default function Footer() {
 
                 min-[375px]:h-7
                 min-[375px]:w-7
-
                 sm:h-8
                 sm:w-8
-
                 min-[1440px]:h-9
                 min-[1440px]:w-9
-
                 min-[1920px]:h-10
                 min-[1920px]:w-10
               "
@@ -228,7 +234,7 @@ export default function Footer() {
 
           <a
             href="https://x.com/CreatineCompany"
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="X"
             className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
@@ -241,13 +247,10 @@ export default function Footer() {
 
                 min-[375px]:h-7
                 min-[375px]:w-7
-
                 sm:h-8
                 sm:w-8
-
                 min-[1440px]:h-9
                 min-[1440px]:w-9
-
                 min-[1920px]:h-10
                 min-[1920px]:w-10
               "
@@ -256,7 +259,7 @@ export default function Footer() {
 
           <a
             href="https://www.youtube.com/@TheCreatineCompany"
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
             aria-label="YouTube"
             className="flex items-center justify-center text-white transition-opacity duration-200 hover:opacity-70"
@@ -269,13 +272,10 @@ export default function Footer() {
 
                 min-[375px]:h-13
                 min-[375px]:w-13
-
                 sm:h-[3.75rem]
                 sm:w-[3.75rem]
-
                 min-[1440px]:h-16
                 min-[1440px]:w-16
-
                 min-[1920px]:h-[4.5rem]
                 min-[1920px]:w-[4.5rem]
               "
@@ -295,9 +295,7 @@ export default function Footer() {
 
             min-[375px]:mt-12
             min-[375px]:gap-8
-
             min-[480px]:mt-14
-
             sm:mt-14
             sm:gap-9
 
@@ -326,13 +324,9 @@ export default function Footer() {
               [overflow-wrap:anywhere]
 
               min-[375px]:text-base
-
               min-[480px]:text-[1.05rem]
-
               min-[640px]:text-lg
-
               min-[1440px]:text-xl
-
               min-[1920px]:text-[1.4rem]
             `}
           >
@@ -340,7 +334,7 @@ export default function Footer() {
               href="#"
               className="transition-opacity duration-200 hover:opacity-70"
             >
-              {language !== "ar"?"CREATINE FLAVOUR":"نكهة الكرياتين"}
+              {content.flavour}
             </a>
           </div>
 
@@ -353,26 +347,31 @@ export default function Footer() {
               text-[0.95rem]
 
               min-[375px]:text-base
-
               min-[480px]:text-[1.05rem]
-
               min-[640px]:text-lg
-
               min-[1440px]:text-xl
-
               min-[1920px]:text-[1.4rem]
             `}
           >
-            <a href="/about" className="transition-opacity hover:opacity-70">
-              {language !== "ar"?"ABOUT":"حو"}
+            <a
+              href="/about"
+              className="transition-opacity hover:opacity-70"
+            >
+              {content.about}
             </a>
 
-            <a href="/contactUs" className="transition-opacity hover:opacity-70">
-              {language !== "ar"?"CONTACT":"اتصل"}
+            <a
+              href="/contactUs"
+              className="transition-opacity hover:opacity-70"
+            >
+              {content.contact}
             </a>
 
-            <a href="/blogs" className="transition-opacity hover:opacity-70">
-              {language !== "ar"?"BLOGS":"مدونات"}
+            <a
+              href="/blogs"
+              className="transition-opacity hover:opacity-70"
+            >
+              {content.blogs}
             </a>
           </nav>
 
@@ -385,14 +384,11 @@ export default function Footer() {
                 text-white/80
 
                 sm:text-xs
-
                 min-[1440px]:text-[0.85rem]
-
                 min-[1920px]:text-base
               "
             >
-              {language !== "ar"?<span>Get Exclusive Early Access and Stay Informed About Product
-              Updates, Events, and More!</span>:<span>احصل على وصول مبكر حصري وابقَ على اطلاع حول تحديثات المنتجات والفعاليات والمزيد!</span>}
+              {content.newsletter}
             </p>
 
             <form
@@ -410,7 +406,9 @@ export default function Footer() {
               <input
                 type="email"
                 required
-                placeholder={language !== "ar"?"ENTER YOUR EMAIL":"أدخل بريدك الإلكتروني"}
+                placeholder={content.email}
+                dir="ltr"
+                aria-label={content.email}
                 className={`
                   ${anton.className}
                   min-w-0
@@ -429,7 +427,7 @@ export default function Footer() {
 
               <button
                 type="submit"
-                aria-label="Subscribe"
+                aria-label={content.subscribe}
                 className="
                   flex-none
                   border-0
@@ -466,7 +464,6 @@ export default function Footer() {
             text-white/70
 
             min-[375px]:mt-8
-
             sm:text-xs
 
             md:flex-row
@@ -474,7 +471,6 @@ export default function Footer() {
             md:items-center
 
             lg:max-w-[900px]
-
             xl:max-w-[1100px]
 
             min-[1440px]:max-w-[1300px]
@@ -494,15 +490,15 @@ export default function Footer() {
               md:text-left
             "
           >
-            {language !== "ar"?<span>Copyright © {new Date().getFullYear()} the creatine company -
-            All Rights Reserved</span>:<span>حقوق النشر © {new Date().getFullYear()} شركة الكرياتين - جميع الحقوق محفوظة</span>}
+            Copyright © {new Date().getFullYear()} The Creatine Company -{" "}
+            {content.copyright}
           </p>
 
           <a
             href="/privacy-policy"
             className="text-center transition-opacity duration-200 hover:opacity-70"
           >
-            {language !== "ar"?"Privacy Policy":"سياسة الخصوصية"}
+            {content.privacy}
           </a>
         </div>
       </div>

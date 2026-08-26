@@ -12,7 +12,7 @@ import Navbar from "@/commonComponents/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import "@/app/styles/strawberry.css";
+import "@/app/styles/greenapple.css";
 import { useLanguage } from "@/app/context/languageUseContent";
 
 const ratings = [
@@ -309,14 +309,14 @@ export default function Page() {
       lang={isFarsi ? "fa" : isArabic ? "ar" : "en"}
       className={isRTL ? "rtl" : "ltr"}
     >
-      <div className="strawberry-page">
+      <div className="greenapple-page">
         <div
-          className="strawberry-bg"
+          className="greenapple-bg"
           dir="ltr"
           aria-hidden="true"
         >
           <Image
-            src="/images/image 405.jpg"
+            src="/images/image 403.jpg"
             alt=""
             fill
             priority
@@ -344,7 +344,7 @@ export default function Page() {
                 </>
               ) : (
                 <>
-                  STRAWBERRY
+                  GREEN APPLE
                   <br />
                   CREATINE
                 </>
@@ -358,7 +358,7 @@ export default function Page() {
                 ? "استمتع بطعم الفراولة المنعش في كل حصة. تركيبة لذيذة وسهلة الشرب مصممة لدعم القوة والأداء والطاقة والتعافي مع كل تمرين."
                 : isFarsi
                   ? "از طعم تازه و شیرین توت‌فرنگی در هر وعده لذت ببرید. فرمولی خوش‌طعم و آسان برای نوشیدن که برای پشتیبانی از قدرت، عملکرد، انرژی و ریکاوری شما طراحی شده است."
-                  : "Experience the refreshing burst of Strawberry in every serving. A smooth and delicious formula designed to support your strength, performance, energy and recovery with every workout."}
+                  : "Experience the refreshing burst of Green Apple in every serving. A smooth and delicious formula designed to support your strength, performance, energy and recovery with every workout."}
             </p>
           </div>
 
@@ -721,7 +721,7 @@ export default function Page() {
                   ? "كرياتين الفراولة"
                   : isFarsi
                     ? "کراتین توت‌فرنگی"
-                    : "Strawberry Creatine"
+                    : "Green Apple Creatine"
               }
               width={200}
               height={550}
@@ -871,8 +871,8 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="strawberry-product">
-        <div className="strawberry-product-h2">
+      <section className="greenapple-product">
+        <div className="greenapple-product-h2">
           <h2>
             {isArabic
               ? "قد يعجبك"

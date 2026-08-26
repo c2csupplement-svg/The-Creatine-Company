@@ -5,138 +5,88 @@ import Link from "next/link";
 import { anton, mono } from "@/commonComponents/fonts";
 import NavigationMenu from "@/commonComponents/NavigationMenu";
 import { useLanguage } from "@/app/context/languageUseContent";
+import { useState } from "react";
+import Navbar from "@/commonComponents/Navbar";
+
+const LANGUAGE_NAMES = {
+  en: "English",
+  ar: "العربية",
+  fa: "فارسی",
+};
+
+const HERO_CONTENT = {
+  en: {
+    title: "BLOGS",
+    subtitle: "AND ARTICLES",
+    description:
+      "Explore practical guides, science-based articles, dosage tips, common myths, and the latest research to help you understand creatine and make smarter choices for your fitness journey.",
+  },
+  ar: {
+    title: "المدونات",
+    subtitle: "والمقالات",
+    description:
+      "استكشف الأدلة العملية، والمقالات العلمية، ونصائح الجرعات، والأساطير الشائعة، وأحدث الأبحاث لمساعدتك على فهم الكرياتين واتخاذ قرارات أذكى في رحلتك اللياقية.",
+  },
+  fa: {
+    title: "وبلاگ‌ها",
+    subtitle: "و مقالات",
+    description:
+      "راهنماهای کاربردی، مقالات علمی، نکات مربوط به دوز مصرف، باورهای رایج و جدیدترین تحقیقات را بررسی کنید تا کراتین را بهتر بشناسید و برای مسیر تناسب اندام خود انتخاب‌های هوشمندانه‌تری داشته باشید.",
+  },
+};
 
 function HeroCopy() {
+  const { language, isRTL } = useLanguage();
 
-  const { language } = useLanguage();
+  const content = HERO_CONTENT[language];
 
   return (
-    <>
+    <div
+      dir={isRTL ? "rtl" : "ltr"}
+      className={isRTL ? "text-right" : "text-left"}
+    >
       <h1
-        className={`${anton.className} m-0 text-[3.75rem] leading-[0.9] tracking-wide sm:text-[4.5rem] lg:text-[6rem]`}
+        className={`${anton.className} m-0 text-[3.75rem] leading-[0.9] tracking-wide sm:text-[4.5rem] lg:text-[6rem] ${
+          language === "en" ? "uppercase" : ""
+        }`}
       >
-        {language !== "ar" ? "BLOGS" : "مدونات"}
+        {content.title}
       </h1>
 
-      <div className="mt-3 inline-block rotate-[-2deg] bg-[#a87847] px-4 py-1 sm:px-6 sm:py-2">
+      <div
+        className={`mt-3 inline-block bg-[#a87847] px-4 py-1 sm:px-6 sm:py-2 ${
+          isRTL ? "rotate-[2deg]" : "rotate-[-2deg]"
+        }`}
+      >
         <span
-          className={`${anton.className} block text-[2.25rem] leading-none text-[#fdf1da] sm:text-[3rem] lg:text-[3.75rem]`}
+          className={`${anton.className} block text-[2.25rem] leading-none text-[#fdf1da] sm:text-[3rem] lg:text-[3.75rem] ${
+            language === "en" ? "uppercase" : ""
+          }`}
         >
-          {language !== "ar" ? "AND ARTICLES" : "والمقالات"}
+          {content.subtitle}
         </span>
       </div>
 
-      <p className="mt-6 max-w-[28rem] text-sm leading-relaxed text-white/85 lg:text-base">
-        {language !== "ar" ? <span>Explore practical guides, science-based articles, dosage tips, common
-          myths, and the latest research to help you understand creatine and make
-          smarter choices for your fitness journey.</span> : <span>استكشف الأدلة العملية، والمقالات العلمية، ونصائح الجرعات، والأساطير الشائعة، وأحدث الأبحاث لمساعدتك على فهم الكرياتين واتخاذ قرارات أذكى في رحلتك اللياقية.</span>}
+      <p
+        className={`${mono.className} mt-6 max-w-[28rem] text-sm leading-relaxed text-white/85 lg:text-base`}
+      >
+        {content.description}
       </p>
-    </>
+    </div>
   );
 }
 
 export default function HeroSection() {
+  const [languageStatus, setLanguageStatus] = useState(false);
 
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, isRTL } = useLanguage();
 
   return (
     <section
-    
-     className="relative overflow-hidden bg-black px-6 pt-6 text-white sm:px-10 sm:pt-8">
-      <div className="absolute left-4 top-4 z-50 sm:left-6 sm:top-6 lg:left-10 lg:top-8 w-full">
-        <Link href="/" aria-label="The Creatine Company home">
-          <Image
-            src="/images/real-logo.png"
-            alt="The Creatine Company"
-            width={125}
-            height={99}
-            priority
-            className="h-auto w-[75px] sm:w-[100px] md:w-[110px] lg:w-[125px]"
-          />
-        </Link>
-
-        <fieldset
-          className={`
-                    ${mono.className}
-                    absolute
-                    top-0
-                    right-10
-                    lg:right-15
-                    flex
-                    items-center
-                    gap-1
-                    rounded-full
-                    border
-                    border-white/30
-                    bg-black/20
-                    px-1.5
-                    py-1
-                    text-[0.65rem]
-                    backdrop-blur-sm
-        
-                    min-[480px]:gap-1.5
-                    min-[480px]:px-2
-                    min-[480px]:text-[0.7rem]
-        
-                    sm:text-xs
-                    lg:text-sm
-                  `}
-        >
-          <legend className="sr-only">Choose language</legend>
-
-          <label
-            className={`
-                      flex
-                      cursor-pointer
-                      items-center
-                      gap-1
-                      rounded-full
-                      px-2
-                      py-0.5
-                      transition-colors
-                      duration-150
-                      ${language === "en" ? "bg-[#fdf1da] text-[#502300]" : "text-white/80"}
-                    `}
-          >
-            <input
-              type="radio"
-              name="language"
-              value="en"
-              checked={language === "en"}
-              onChange={() => setLanguage("en")}
-              className="sr-only"
-            />
-            EN
-          </label>
-
-          <label
-            className={`
-                      flex
-                      cursor-pointer
-                      items-center
-                      gap-1
-                      rounded-full
-                      px-2
-                      py-0.5
-                      transition-colors
-                      duration-150
-                      ${language === "ar" ? "bg-[#fdf1da] text-[#502300]" : "text-white/80"}
-                    `}
-          >
-            <input
-              type="radio"
-              name="language"
-              value="ar"
-              checked={language === "ar"}
-              onChange={() => setLanguage("ar")}
-              className="sr-only"
-            />
-            AR
-          </label>
-        </fieldset>
-      </div>
-
-      <NavigationMenu backgroundImage="/images/hero-bg-blogs.png" />
+      dir={isRTL ? "rtl" : "ltr"}
+      className="relative overflow-hidden bg-black px-6 pt-6 text-white sm:px-10 sm:pt-8"
+    >
+      <Navbar/>
 
       <div className="relative z-10 block pb-14 pt-8 sm:hidden">
         <div className="relative mx-auto aspect-[3/4] w-full max-w-[20rem]">
@@ -156,19 +106,29 @@ export default function HeroSection() {
       </div>
 
       <div className="relative hidden sm:block">
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-[58%]">
+        <div
+          className={`pointer-events-none absolute inset-y-0 w-[58%] ${
+            isRTL ? "right-0" : "left-0"
+          }`}
+        >
           <Image
             src="/images/hero-bg-blogs.png"
             alt="The Creatine Company — Creatine + Taurine tube"
             fill
             priority
             sizes="58vw"
-            className="object-contain object-left"
+            className={`object-contain ${
+              isRTL ? "object-right" : "object-left"
+            }`}
           />
         </div>
 
-        <div className="relative z-10 flex min-h-[620px] items-center justify-end py-16 lg:min-h-[760px]">
-          <div className="mr-[5%] w-1/2 max-w-[36rem]">
+        <div className="relative z-10 flex min-h-[620px] items-center py-16 lg:min-h-[760px]">
+          <div
+            className={`w-1/2 max-w-[36rem] ${
+              isRTL ? "ml-[5%] mr-auto" : "ml-auto mr-[5%]"
+            }`}
+          >
             <HeroCopy />
           </div>
         </div>
