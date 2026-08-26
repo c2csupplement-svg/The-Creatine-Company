@@ -5,12 +5,11 @@ import Pagination from "./Pagination";
 import { useLanguage } from "@/app/context/languageUseContent";
 
 export default function BlogGrid({ posts }: { posts: BlogPost[] }) {
-
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
 
   return (
     <section
-    dir={language === "ar"?"rtl" : "ltr"}
+      dir={isRTL ? "rtl" : "ltr"}
       className="
         w-full
         overflow-hidden
@@ -45,59 +44,66 @@ export default function BlogGrid({ posts }: { posts: BlogPost[] }) {
         min-[1920px]:pb-24
       "
     >
-
-<div className="flex flex-col items-center justify-center gap-3 py-16 px-6 text-center">
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#502300]/10">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-7 w-7 text-[#502300]/60"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
-              />
-            </svg>
-          </div>
-
-          <p
-            className={`
-      ${mono.className}
-      m-0
-      text-[0.85rem]
-      leading-[1.5]
-      font-medium
-      text-[#502300]
-
-      min-[376px]:text-[0.9rem]
-
-      sm:text-[0.95rem]
-
-      md:text-[1rem]
-    `}
+      <div className="flex flex-col items-center justify-center gap-3 px-6 py-16 text-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#502300]/10">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-7 w-7 text-[#502300]/60"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.5}
           >
-            No articles match your search
-          </p>
-
-          <p
-            className={`
-      ${mono.className}
-      m-0
-      max-w-[280px]
-      text-[0.72rem]
-      leading-[1.5]
-      text-[#502300]/60
-
-      sm:text-[0.78rem]
-    `}
-          >
-            Try different keywords or check your spelling
-          </p>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
+            />
+          </svg>
         </div>
+
+        <p
+          className={`
+            ${mono.className}
+            m-0
+            text-[0.85rem]
+            leading-[1.5]
+            font-medium
+            text-[#502300]
+
+            min-[376px]:text-[0.9rem]
+
+            sm:text-[0.95rem]
+
+            md:text-[1rem]
+          `}
+        >
+          {language === "en"
+            ? "No articles match your search"
+            : language === "ar"
+              ? "لا توجد مقالات تطابق بحثك"
+              : "هیچ مقاله‌ای با جستجوی شما مطابقت ندارد"}
+        </p>
+
+        <p
+          className={`
+            ${mono.className}
+            m-0
+            max-w-[280px]
+            text-[0.72rem]
+            leading-[1.5]
+            text-[#502300]/60
+
+            sm:text-[0.78rem]
+          `}
+        >
+          {language === "en"
+            ? "Try different keywords or check your spelling"
+            : language === "ar"
+              ? "جرّب كلمات مفتاحية مختلفة أو تحقق من الإملاء"
+              : "کلمات کلیدی دیگری را امتحان کنید یا املای خود را بررسی کنید"}
+        </p>
+      </div>
 
       {/* {posts.length === 0 ? (
         <div className="flex flex-col items-center justify-center gap-3 py-16 px-6 text-center">
@@ -120,34 +126,34 @@ export default function BlogGrid({ posts }: { posts: BlogPost[] }) {
 
           <p
             className={`
-      ${mono.className}
-      m-0
-      text-[0.85rem]
-      leading-[1.5]
-      font-medium
-      text-[#502300]
+              ${mono.className}
+              m-0
+              text-[0.85rem]
+              leading-[1.5]
+              font-medium
+              text-[#502300]
 
-      min-[376px]:text-[0.9rem]
+              min-[376px]:text-[0.9rem]
 
-      sm:text-[0.95rem]
+              sm:text-[0.95rem]
 
-      md:text-[1rem]
-    `}
+              md:text-[1rem]
+            `}
           >
             No articles match your search
           </p>
 
           <p
             className={`
-      ${mono.className}
-      m-0
-      max-w-[280px]
-      text-[0.72rem]
-      leading-[1.5]
-      text-[#502300]/60
+              ${mono.className}
+              m-0
+              max-w-[280px]
+              text-[0.72rem]
+              leading-[1.5]
+              text-[#502300]/60
 
-      sm:text-[0.78rem]
-    `}
+              sm:text-[0.78rem]
+            `}
           >
             Try different keywords or check your spelling
           </p>

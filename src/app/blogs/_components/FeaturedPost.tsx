@@ -1,17 +1,47 @@
+"use client";
+
 import Image from "next/image";
 import { anton } from "@/commonComponents/fonts";
 import { useLanguage } from "@/app/context/languageUseContent";
 
-export default function FeaturedPost() {
+const CONTENT = {
+  en: {
+    titleOne: "POWER YOUR TRAINING, BUILD",
+    titleTwo: "YOUR STRENGTH",
+    description:
+      "Creatine is one of the most researched and effective supplements for improving strength, power, and high-intensity training performance. By supporting your muscles' ability to produce quick energy, creatine can help you train harder, recover better, and make consistent progress over time.",
+    readMore: "READ MORE",
+  },
 
-  const {language} = useLanguage();
+  ar: {
+    titleOne: "عَزِّز تَمرينك، ابنِ",
+    titleTwo: "قوتك",
+    description:
+      "الكرياتين هو واحد من المكملات الغذائية الأكثر دراسة وفعالية لتحسين القوة والطاقة وأداء التدريبات عالية الشدة. من خلال دعم قدرة عضلاتك على إنتاج الطاقة بسرعة، يمكن للكرياتين أن يساعدك على التدريب بشكل أقوى، والتعافي بشكل أفضل، وإحراز تقدم مستمر مع مرور الوقت.",
+    readMore: "اقرأ المزيد",
+  },
+
+  fa: {
+    titleOne: "تمرینت را قدرتمند کن، بساز",
+    titleTwo: "قدرتت را",
+    description:
+      "کراتین یکی از مکمل‌هایی است که بیشترین تحقیقات علمی درباره آن انجام شده و می‌تواند برای افزایش قدرت، توان و عملکرد تمرینات پرفشار مؤثر باشد. کراتین با حمایت از توانایی عضلات برای تولید سریع انرژی، می‌تواند به شما کمک کند سخت‌تر تمرین کنید، بهتر ریکاوری کنید و در طول زمان پیشرفت مداومی داشته باشید.",
+    readMore: "بیشتر بخوانید",
+  },
+};
+
+export default function FeaturedPost() {
+  const { language, isRTL } = useLanguage();
+
+  const content = CONTENT[language];
 
   return (
     <section
-    dir={language === "ar"?"rtl" : "ltr"}
-    className="w-full overflow-hidden box-border px-4 pb-12 sm:px-5 sm:pb-14 md:px-7 md:pb-16 lg:px-8 lg:pb-16 xl:px-10 2xl:px-20 2xl:pb-24">
+      dir={isRTL ? "rtl" : "ltr"}
+      className="w-full overflow-hidden box-border px-4 pb-12 sm:px-5 sm:pb-14 md:px-7 md:pb-16 lg:px-8 lg:pb-16 xl:px-10 2xl:px-20 2xl:pb-24"
+    >
       <div
-        className="
+        className={`
           mx-auto grid w-full max-w-[1440px]
           grid-cols-1 items-center gap-7
           sm:gap-8
@@ -19,17 +49,16 @@ export default function FeaturedPost() {
           lg:gap-8
           xl:gap-10
           2xl:max-w-[1440px] 2xl:gap-16
-        "
+        `}
       >
-        {/* Image */}
         <div
-          className="
+          className={`
             relative aspect-[4/3] w-full overflow-hidden rounded-2xl
             sm:rounded-2xl
             md:rounded-[1.25rem]
             lg:rounded-[1.35rem]
             2xl:rounded-3xl
-          "
+          `}
         >
           <Image
             src="/images/man-bottle.png"
@@ -44,38 +73,45 @@ export default function FeaturedPost() {
           />
         </div>
 
-        {/* Content */}
-        <div className="min-w-0">
+        <div
+          className={`
+            min-w-0
+            ${isRTL ? "text-right" : "text-left"}
+          `}
+        >
           <h2
             className={`
               ${anton.className}
               m-0
               max-w-full
               text-[#82572b]
-              uppercase
+              ${language === "en" ? "uppercase" : ""}
               leading-[0.9]
               tracking-[clamp(0.5px,0.12vw,1.8px)]
               text-[clamp(3rem,14vw,4rem)]
-              
+
               sm:text-[4rem]
-              
+
               md:text-[3.8rem]
-              
+
               lg:text-[4.6rem]
-              
+
               xl:text-[5.5rem]
-              
+
               2xl:text-[8rem]
             `}
           >
-            {language !== "ar"?"POWER YOUR TRAINING, BUILD":"عَزِّز تَمرينك، ابنِ"}
+            {content.titleOne}
             <br />
-            {language !== "ar"?"YOUR STRENGTH":"قوتك"}
+            {content.titleTwo}
           </h2>
 
           <p
             className="
-              mt-3.5 mb-0 w-full max-w-full
+              mt-3.5
+              mb-0
+              w-full
+              max-w-full
               text-[0.85rem]
               leading-[1.5]
               text-[#502300]/90
@@ -97,13 +133,7 @@ export default function FeaturedPost() {
               2xl:text-base
             "
           >
-            {language !== "ar"
-            ?<span>Creatine is one of the most researched and effective supplements
-            for improving strength, power, and high-intensity training
-            performance. By supporting your muscles&apos; ability to produce
-            quick energy, creatine can help you train harder, recover better,
-            and make consistent progress over time.</span>
-            :<span>الكرياتين هو واحد من المكملات الغذائية الأكثر دراسة وفعالية لتحسين القوة والطاقة وأداء التدريبات عالية الشدة. من خلال دعم قدرة عضلاتك على إنتاج الطاقة بسرعة، يمكن للكرياتين أن يساعدك على التدريب بشكل أقوى، والتعافي بشكل أفضل، وإحراز تقدم مستمر مع مرور الوقت.</span>}
+            {content.description}
           </p>
 
           <button
@@ -117,7 +147,8 @@ export default function FeaturedPost() {
               rounded-md
               border-0
               bg-[#a87847]
-              px-5 py-2.5
+              px-5
+              py-2.5
               text-[0.8rem]
               leading-tight
               tracking-[0.025em]
@@ -132,10 +163,12 @@ export default function FeaturedPost() {
               focus-visible:ring-offset-2
 
               sm:mt-5
-              sm:px-5 sm:py-3
+              sm:px-5
+              sm:py-3
 
               md:mt-4
-              md:px-5 md:py-2.5
+              md:px-5
+              md:py-2.5
 
               lg:px-5.5
 
@@ -147,8 +180,14 @@ export default function FeaturedPost() {
               2xl:text-sm
             `}
           >
-            {language !== "ar"?"READ MORE":"اقرأ المزيد"}
-            <span aria-hidden>→</span>
+            {content.readMore}
+
+            <span
+              aria-hidden
+              className={isRTL ? "rotate-180" : ""}
+            >
+              →
+            </span>
           </button>
         </div>
       </div>
