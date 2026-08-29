@@ -1,29 +1,9 @@
 @import "tailwindcss";
 
-/* =========================================
-   ROOT
-========================================= */
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
-
-/* =========================================
-   TAILWIND THEME
-========================================= */
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-/* =========================================
-   victory
-========================================= */
 
 @font-face {
   font-family: "Victory Striker Sans";
@@ -33,48 +13,50 @@
   font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-/* ================================
-   SF PRO DISPLAY
-================================ */
-
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/fonts/SFPRODISPLAYTHINITALIC.OTF") format("opentype");
+  src: url("/fonts/SFProDisplayRegular.otf") format("opentype");
   font-weight: 100;
-  font-style: italic;
-  font-display: swap;
-}
-/* ====================
-Tungsten Condensed Light 
-=======================*/
-@font-face {
-  font-family: "Tungsten Condensed";
-  src: url("/fonts/TungstenCondensed-Light.otf") format("opentype");
-  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
-/*====================
- Tungsten Compressed Black
-========================= */
+@font-face {
+  font-family: "Tungsten Condensed";
+  src: url("/fonts/TungstenCondensed-Light.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "Tungsten Compressed";
   src: url("/fonts/TungstenCompressed-Black.otf") format("opentype");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
+
 }
-/* =========================================
-   BODY
-========================================= */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: monospace;
+
+  --font-victory: "Victory Striker Sans", sans-serif;
+  --font-sf: "SF Pro Display", sans-serif;
+  --font-tungsten: "Tungsten Condensed", sans-serif;
+  --font-tungsten-compressed: "Tungsten Compressed", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
 
 html,
 body {
@@ -87,10 +69,6 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-/* =========================================
-   HERO TEXT ANIMATION
-========================================= */
 
 .hero-copy-animation {
   animation: heroTextReveal 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -119,10 +97,6 @@ body {
     opacity: 1;
   }
 }
-
-/* =========================================
-   REDUCED MOTION
-========================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .hero-copy-animation {

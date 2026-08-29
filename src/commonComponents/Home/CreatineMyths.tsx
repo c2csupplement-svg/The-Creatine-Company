@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { anton, mono } from "../fonts";
+import { anton } from "../fonts";
 import {
   motion,
   useAnimationFrame,
   useMotionValue,
+  animate,
 } from "framer-motion";
 import { useLanguage } from "@/app/context/languageUseContent";
 
@@ -75,52 +76,66 @@ export default function CreatineMyths() {
     language === "ar"
       ? arMyths
       : language === "fa"
-      ? faMyths
-      : MYTHS;
+        ? faMyths
+        : MYTHS;
 
   const mythLoop = [...myths, ...myths];
 
-  const [expandedCards, setExpandedCards] = useState<number[]>([]);
-  const [isHovered, setIsHovered] = useState(false);
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   const trackRef = useRef<HTMLDivElement>(null);
+
   const x = useMotionValue(0);
 
   const [loopWidth, setLoopWidth] = useState(0);
+  const [cardWidth, setCardWidth] = useState(0);
 
   const speed = 25;
 
   useEffect(() => {
-    const calculateLoopWidth = () => {
+    const calculateDimensions = () => {
       if (!trackRef.current) return;
 
       const totalWidth = trackRef.current.scrollWidth;
       const singleLoopWidth = totalWidth / 2;
 
       setLoopWidth(singleLoopWidth);
+
+      const firstCard = trackRef.current.querySelector(
+        "article"
+      ) as HTMLElement | null;
+
+      if (firstCard) {
+        const styles = window.getComputedStyle(trackRef.current);
+        const gap = parseFloat(styles.columnGap || styles.gap || "0");
+
+        setCardWidth(firstCard.offsetWidth + gap);
+      }
+
       x.set(0);
     };
 
-    calculateLoopWidth();
+    calculateDimensions();
 
     const resizeObserver = new ResizeObserver(() => {
-      calculateLoopWidth();
+      calculateDimensions();
     });
 
     if (trackRef.current) {
       resizeObserver.observe(trackRef.current);
     }
 
-    window.addEventListener("resize", calculateLoopWidth);
+    window.addEventListener("resize", calculateDimensions);
 
     return () => {
       resizeObserver.disconnect();
-      window.removeEventListener("resize", calculateLoopWidth);
+      window.removeEventListener("resize", calculateDimensions);
     };
   }, [isRtl, x]);
 
   useAnimationFrame((_, delta) => {
-    if (isHovered || loopWidth <= 0) return;
+    if (isPaused || loopWidth <= 0) return;
 
     const movement = speed * (delta / 1000);
 
@@ -129,8 +144,8 @@ export default function CreatineMyths() {
     if (isRtl) {
       currentX += movement;
 
-      if (currentX >= loopWidth) {
-        currentX = 0;
+      if (currentX >= 0) {
+        currentX = -loopWidth;
       }
     } else {
       currentX -= movement;
@@ -143,12 +158,51 @@ export default function CreatineMyths() {
     x.set(currentX);
   });
 
+  const moveCarousel = (direction: "left" | "right") => {
+    if (!cardWidth || !loopWidth) return;
+
+    setIsPaused(true);
+
+    const currentX = x.get();
+
+    let movement: number;
+
+    if (isRtl) {
+      movement = direction === "left" ? cardWidth : -cardWidth;
+    } else {
+      movement = direction === "left" ? -cardWidth : cardWidth;
+    }
+
+    let targetX = currentX + movement;
+
+    if (!isRtl && targetX <= -loopWidth) {
+      targetX = 0;
+    }
+
+    if (!isRtl && targetX > 0) {
+      targetX = -loopWidth + cardWidth;
+    }
+
+    if (isRtl && targetX >= 0) {
+      targetX = -loopWidth + cardWidth;
+    }
+
+    if (isRtl && targetX < -loopWidth) {
+      targetX = 0;
+    }
+
+    animate(x, targetX, {
+      duration: 0.45,
+      ease: "easeInOut",
+    });
+
+    window.setTimeout(() => {
+      setIsPaused(false);
+    }, 500);
+  };
+
   const toggleReadMore = (index: number) => {
-    setExpandedCards((prev) =>
-      prev.includes(index)
-        ? prev.filter((item) => item !== index)
-        : [...prev, index]
-    );
+    setExpandedCard((current) => (current === index ? null : index));
   };
 
   return (
@@ -159,27 +213,29 @@ export default function CreatineMyths() {
       <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 md:grid-cols-[0.38fr_0.62fr] md:gap-6">
         <div className="relative z-20 min-w-0 shrink-0 pl-2 sm:pl-4 lg:pl-12">
           <span
-            className={`${anton.className} block text-[clamp(2rem,3vw,3.5rem)] uppercase leading-none ${language !== "en"?"pb-2":"pb-0"}`}
+            className={`${anton.className} block text-[clamp(2rem,3vw,3.5rem)] uppercase leading-none ${
+              language !== "en" ? "pb-2" : "pb-0"
+            }`}
           >
             {language === "en"
               ? "MYTHS"
               : language === "ar"
-              ? "الأساطير"
-              : "افسانه‌ها"}
+                ? "الأساطير"
+                : "افسانه‌ها"}
           </span>
 
           <span
-            className={`${anton.className} mt-[-4px] inline-block bg-[#a87847] px-3 py-1 text-[clamp(2rem,3.5vw,4rem)] uppercase leading-none text-white rotate-[-2deg] sm:px-5 sm:py-2`}
+            className={`${anton.className} mt-[-4px] inline-block max-w-full rotate-[-2deg] bg-[#a87847] px-3 py-2 text-[clamp(1.8rem,3.2vw,4rem)] uppercase leading-[0.9] text-white sm:px-5 sm:py-3`}
           >
             {language === "en"
               ? "CREATINE IS ONLY FOR BODYBUILDERS."
               : language === "ar"
-              ? "الكرياتين مخصص فقط لبناة الأجسام."
-              : "کراتین فقط برای بدنسازان است."}
+                ? "الكرياتين مخصص فقط لبناة الأجسام."
+                : "کراتین فقط برای بدنسازان است."}
           </span>
         </div>
 
-        <div className="relative min-w-0 overflow-hidden py-1">
+        <div className="relative min-w-0 overflow-hidden pb-16 pt-2">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[#fdf1da] via-[#fdf1da]/80 to-transparent sm:w-16" />
 
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[#fdf1da] via-[#fdf1da]/80 to-transparent sm:w-16" />
@@ -190,41 +246,59 @@ export default function CreatineMyths() {
               x,
               direction: "ltr",
             }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className={`flex w-max gap-4 will-change-transform ${
+            drag="x"
+            dragConstraints={{
+              left: -loopWidth,
+              right: 0,
+            }}
+            dragElastic={0.08}
+            onDragStart={() => setIsPaused(true)}
+            onDragEnd={() => {
+              setTimeout(() => {
+                setIsPaused(false);
+              }, 300);
+            }}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            className={`flex w-max cursor-grab gap-5 will-change-transform active:cursor-grabbing ${
               isRtl ? "flex-row-reverse" : "flex-row"
             }`}
           >
             {mythLoop.map((myth, index) => {
-              const isExpanded = expandedCards.includes(index);
+              const isExpanded = expandedCard === index;
 
               return (
                 <motion.article
                   key={`${myth.title}-${index}`}
                   layout
                   dir={isRtl ? "rtl" : "ltr"}
-                  className={`relative box-border w-[250px] shrink-0 rounded-[3px] bg-[#a87847] p-5 text-[#fdf1da] sm:w-[300px] sm:min-h-[390px] sm:p-6 lg:w-[270px] lg:min-h-[380px] ${
+                  transition={{
+                    layout: {
+                      duration: 0.35,
+                      ease: "easeInOut",
+                    },
+                  }}
+                  className={`relative box-border flex w-[300px] shrink-0 flex-col rounded-[20px] border-[3px] bg-gradient-to-br from-[#d99a55] via-[#a8703c] to-[#7a4d28] p-6 text-[#fdf1da] shadow-lg sm:w-[340px] sm:p-7 lg:w-[400px] lg:p-8 ${
                     isExpanded
-                      ? "z-30 min-h-[430px] shadow-xl"
-                      : "z-0 min-h-[360px]"
+                      ? "z-30 min-h-[520px] shadow-2xl"
+                      : "z-0 min-h-[390px]"
                   }`}
                 >
-                  <div className="text-[1.875rem] leading-none">
+
+                  <div className="mb-0 text-[3rem] leading-none text-[#fdf1da] sm:text-[10rem]">
                     &ldquo;
                   </div>
 
                   <h3
-                    className={`${anton.className} mt-1 mb-0 text-[1.5rem] uppercase leading-[0.92] sm:text-[1.875rem]`}
+                    className={`${anton.className} mb-0 text-[1.8rem] uppercase leading-[1.05] sm:mt-3 sm:text-[2rem] lg:-mt-10 lg:text-[2.2rem]`}
                   >
                     {myth.title}
                   </h3>
-
                   <p
-                    className={`${mono.className} mt-6 mb-0 pb-10 text-[19px] leading-[1.2] ${
+                    className={`mt-3 mb-0 flex-1 font-sf text-[21px] font-semibold leading-[1.3] sm:text-[22px] lg:text-[23px] ${
                       isExpanded
                         ? "block overflow-visible"
-                        : "line-clamp-6 overflow-hidden"
+                        : "line-clamp-3 overflow-hidden"
                     }`}
                   >
                     {myth.body}
@@ -234,12 +308,8 @@ export default function CreatineMyths() {
                     type="button"
                     onClick={() => toggleReadMore(index)}
                     aria-expanded={isExpanded}
-                    whileHover={{
-                      x: isRtl ? -3 : 3,
-                      opacity: 0.7,
-                    }}
                     whileTap={{ scale: 0.96 }}
-                    className={`${anton.className} absolute bottom-5 right-5 z-40 flex cursor-pointer items-center gap-1.5 border-0 bg-transparent p-0 text-[1.4rem] uppercase leading-none text-[#fdf1da] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fdf1da] sm:bottom-6 sm:right-6`}
+                    className={`${anton.className} z-40 mt-6 flex cursor-pointer items-center gap-2 self-end border-0 bg-transparent p-0 text-[1.5rem] uppercase leading-none text-[#fdf1da] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fdf1da] sm:text-[1.6rem] lg:text-[1.7rem]`}
                   >
                     {isRtl
                       ? isExpanded
@@ -247,14 +317,14 @@ export default function CreatineMyths() {
                           ? "کمتر بخوانید"
                           : "اقرأ أقل"
                         : language === "fa"
-                        ? "بیشتر بخوانید"
-                        : "اعرف أكثر"
+                          ? "بیشتر بخوانید"
+                          : "اعرف أكثر"
                       : isExpanded
-                      ? "READ LESS"
-                      : "READ MORE"}
+                        ? "READ LESS"
+                        : "READ MORE"}
 
                     <span
-                      className={`text-[1.1rem] leading-none ${
+                      className={`text-[1.3rem] leading-none sm:text-[1.4rem] ${
                         isRtl ? "rotate-180" : ""
                       }`}
                     >
@@ -265,6 +335,27 @@ export default function CreatineMyths() {
               );
             })}
           </motion.div>
+
+
+          <div className="absolute bottom-1 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3">
+            <button
+              type="button"
+              aria-label="Previous card"
+              onClick={() => moveCarousel("left")}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#502300] text-2xl leading-none text-[#fdf1da] shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95 sm:h-12 sm:w-12"
+            >
+              {isRtl ? "→" : "←"}
+            </button>
+
+            <button
+              type="button"
+              aria-label="Next card"
+              onClick={() => moveCarousel("right")}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#502300] text-2xl leading-none text-[#fdf1da] shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95 sm:h-12 sm:w-12"
+            >
+              {isRtl ? "←" : "→"}
+            </button>
+          </div>
         </div>
       </div>
     </section>

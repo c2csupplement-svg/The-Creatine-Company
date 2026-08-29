@@ -81,16 +81,16 @@
 }
 
 
-.blueberry-page {
+.strawberry-page {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: #4355b8;
+  background: #d91e4d;
   height: 100vh;
   min-height: 700px;
 }
 
-.blueberry-bg {
+.strawberry-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -109,7 +109,10 @@
   transform: scale(1.28);
 
   animation:
-    backgroundIntro 2.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    backgroundIntro
+    2.8s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
 }
 
 .creatine-logo {
@@ -186,7 +189,7 @@
   justify-content: center;
 
   border: 0;
-  background: #4458b8;
+  background: #c91845;
 
   color: #ffffff;
   font-size: 22px;
@@ -210,7 +213,11 @@
   opacity: 0;
 
   animation:
-    titleEnter 2.8s cubic-bezier(0.22, 1, 0.36, 1) 2.55s forwards;
+    titleEnter
+    2.8s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    2.55s
+    forwards;
 }
 
 .flavour-title h1 {
@@ -274,7 +281,11 @@
   opacity: 0;
 
   animation:
-    descriptionEnter 2.5s cubic-bezier(0.22, 1, 0.36, 1) 2.7s forwards;
+    descriptionEnter
+    2.5s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    2.7s
+    forwards;
 }
 
 .product-description p {
@@ -317,57 +328,52 @@
 
   text-align: center;
 
-  color: #4355b8;
+  color: #d91e4d;
 
   visibility: hidden;
 
   transform: translateY(150%);
 
   animation:
-    cardEnter 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    cardEnter
+    0.85s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
 }
 
 .creatine-feature-card strong {
-  display: flex;
-  min-height: 66px;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
+  display: block;
 
   padding:
-    10px 5px 7px;
+    10px
+    5px
+    7px;
 
   font-family:
     "Victory Striker Sans",
     Impact,
     sans-serif;
 
-  font-size: clamp(30px, 2.1vw, 40px);
+  font-size: 40px;
   font-weight: 300;
-  line-height: 0.9;
   letter-spacing: 2px;
-  white-space: nowrap;
 }
 
 .creatine-feature-card span {
-  display: flex;
-  min-height: 82px;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
+  display: block;
 
   padding:
-    18px 5px;
+    40px
+    5px;
 
-  background: #4355b8;
+  background: #d91e4d;
 
   font-family:
     "Victory Striker Sans",
     Impact,
     sans-serif;
 
-  font-size: clamp(18px, 1.35vw, 25px);
-  line-height: 0.9;
+  font-size: 25px;
   text-transform: uppercase;
 
   color: #ffffff;
@@ -400,9 +406,10 @@
   overflow: hidden;
 
   padding:
-    70px 4%;
+    70px
+    4%;
 
-  background: #e3e7ff;
+  background: #ffe5ec;
 }
 
 .nutrition-wrapper {
@@ -417,7 +424,9 @@
   align-items: center;
 
   grid-template-columns:
-    1.1fr 0.62fr 0.52fr;
+    1.1fr
+    0.62fr
+    0.52fr;
 }
 
 .nutrition-left {
@@ -429,7 +438,10 @@
   justify-content: center;
 
   padding:
-    55px 40px 40px 0;
+    55px
+    40px
+    40px
+    0;
 }
 
 .nutrition-heading {
@@ -454,7 +466,7 @@
   line-height: 0.82;
   letter-spacing: 2px;
 
-  color: #1b2252;
+  color: #5a1025;
 }
 
 /* .nutrition-heading h2::after {
@@ -468,7 +480,7 @@
   top: 32%;
   left: 47%;
 
-  background: #1b2252;
+  background: #5a1025;
 
   transform: rotate(-5deg);
 } */
@@ -480,9 +492,11 @@
   margin-left: -10px;
 
   padding:
-    29px 22px 12px;
+    29px
+    22px
+    12px;
 
-  background: #5368d4;
+  background: #b7093b;
 
   font-family:
     "Victory Striker Sans",
@@ -510,7 +524,7 @@
   line-height: 1.6;
   letter-spacing: 0.4px;
 
-  color: #1b2252;
+  color: #5a1025;
 }
 
 .nutrition-features {
@@ -528,14 +542,16 @@
 
   text-align: center;
 
-  color: #5368d4;
+  color: #e64b70;
 }
 
 .nutrition-feature svg {
   display: block;
 
   margin:
-    0 auto 30px;
+    0
+    auto
+    30px;
 
   font-size: 38px;
 }
@@ -553,7 +569,7 @@
   font-size: 30px;
   font-weight: 400;
 
-  color: #1b2252;
+  color: #5a1025;
 }
 
 .nutrition-table {
@@ -566,7 +582,7 @@
   margin: 5px;
   padding: 4px;
 
-  background: #4458b8;
+  background: #c91845;
 }
 
 .nutrition-row {
@@ -583,7 +599,8 @@
   padding: 0 12px;
 
   border-bottom:
-    1px dotted rgba(255, 255, 255, 0.85);
+    1px dotted
+    rgba(255, 255, 255, 0.85);
 
   white-space: nowrap;
 
@@ -655,7 +672,10 @@
   transform: translate(-122px, -20px);
 
   filter:
-    drop-shadow(8px 12px 8px rgba(27, 34, 82, 0.18));
+    drop-shadow(
+      8px 12px 8px
+      rgba(27, 34, 82, 0.18)
+    );
 }
 
 .nutrition-product-image {
@@ -668,11 +688,14 @@
   transform: translateX(-120px);
 
   filter:
-    drop-shadow(8px 12px 8px rgba(27, 34, 82, 0.18));
+    drop-shadow(
+      8px 12px 8px
+      rgba(27, 34, 82, 0.18)
+    );
 }
 
 
-.blueberry-product {
+.strawberry-product {
   display: grid;
 
   box-sizing: border-box;
@@ -682,19 +705,22 @@
   overflow: hidden;
 
   padding:
-    70px 40px 90px;
+    70px
+    40px
+    90px;
 
   gap: 45px;
 
-  background: #e9ecff;
+  background: #fff0f4;
 
   align-items: center;
 
   grid-template-columns:
-    0.8fr 1.2fr;
+    0.8fr
+    1.2fr;
 }
 
-.blueberry-product-h2 {
+.strawberry-product-h2 {
   position: relative;
   z-index: 5;
 
@@ -706,7 +732,7 @@
   justify-content: center;
 }
 
-.blueberry-product-h2 h2 {
+.strawberry-product-h2 h2 {
   margin: 0;
 
   font-family:
@@ -720,7 +746,7 @@
   letter-spacing: 1px;
   text-transform: uppercase;
 
-  color: #171b46;
+  color: #4d0d20;
 }
 
 .level-up {
@@ -730,32 +756,31 @@
 
   width: 100%;
 
-  min-height: 220px;
+  min-height: 55vh;
+  height: 60%;
 
   overflow: hidden;
 
   align-items: center;
 
-  background: #f1f3ff;
+  background: #fff3f6;
 }
-
-/* .level-image {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-
-  width: 100%;
-  height: 100%;
-
-  overflow: hidden;
-} */
 
 .level-background {
   position: absolute;
-  background-color: #2b539e;
+
+  background-color: #d91e4d;
+
   width: 100%;
-  height: 100%;
-  clip-path: polygon(0% 0%, 50% 8%, 100% 0%, 100% 100%, 0% 100%);
+  height: 350px;
+
+  clip-path: polygon(
+    0% 0%,
+    50% 8%,
+    100% 0%,
+    100% 100%,
+    0% 100%
+  );
 }
 
 .level-marquee {
@@ -764,12 +789,13 @@
 
   width: 100%;
 
-  top: 0;
+  top: 35px;
 
   overflow: hidden;
 
   padding:
-    35px 0;
+    35px
+    0;
 
   white-space: nowrap;
 }
@@ -782,18 +808,21 @@
   flex-shrink: 0;
 
   animation:
-    levelMarquee 6s linear infinite;
+    levelMarquee
+    6s
+    linear
+    infinite;
 }
 
 .level-marquee-track h1 {
-  margin-top: 25px;
+  margin: 0;
 
   font-family:
     "Victory Striker Sans",
     Impact,
     sans-serif;
 
-  font-size: clamp(3rem, 16vw, 16rem);
+  font-size: 16rem;
   font-weight: 400;
   line-height: 1.09;
   letter-spacing: 1px;
@@ -803,9 +832,9 @@
   color: #ffffff;
 }
 
-.level-marquee-track h1 span {
-  color: #4355b8;
-}
+/* .level-marquee-track h1 span {
+  color: #d91e4d;
+} */
 
 .suggest-page {
   display: flex;
@@ -816,7 +845,7 @@
 
   padding: 80px;
 
-  background: #f1f3ff;
+  background: #fff3f6;
 }
 
 .suggest-h2 {
@@ -829,7 +858,10 @@
   flex-direction: column;
 
   padding:
-    120px 50px 120px 80px;
+    120px
+    50px
+    120px
+    80px;
 
   font-family:
     "Victory Striker Sans",
@@ -853,7 +885,7 @@
   letter-spacing: 2px;
   text-transform: uppercase;
 
-  color: #11163a;
+  color: #4a0b1d;
 }
 
 .suggest-box {
@@ -867,9 +899,10 @@
   margin-top: 10px;
 
   padding:
-    20px 25px;
+    20px
+    25px;
 
-  background: #5368d4;
+  background: #e64b70;
 
   font-family:
     "Victory Striker Sans",
@@ -888,7 +921,9 @@
   max-width: 500px;
 
   margin:
-    35px 0 0;
+    35px
+    0
+    0;
 
   font-family:
     "DM Mono",
@@ -899,7 +934,7 @@
   line-height: 1.2;
   letter-spacing: 0.4px;
 
-  color: #1b2252;
+  color: #5a1025;
 }
 
 .sort-button {
@@ -914,12 +949,15 @@
   justify-content: space-between;
 
   padding:
-    0 15px;
+    0
+    15px;
 
   border:
-    1px solid #5368d4;
+    1px
+    solid
+    #e64b70;
 
-  background: #5368d4;
+  background: #e64b70;
 
   font-family:
     "Victory Striker Sans",
@@ -929,18 +967,19 @@
   font-size: 20px;
 
   transition:
-    all 0.2s;
+    all
+    0.2s;
 }
 
 .sort-button:hover {
-  border-color: #5368d4;
+  border-color: #e64b70;
   background: #ffffff;
-  color: #5368d4;
+  color: #e64b70;
 }
 
 .sort-button.active {
-  border-color: #5368d4;
-  background: #5368d4;
+  border-color: #e64b70;
+  background: #e64b70;
   color: #ffffff;
 }
 
@@ -988,11 +1027,12 @@
   max-width: 420px;
 
   padding:
-    12px 18px;
+    12px
+    18px;
 
   border-radius: 8px;
 
-  background: #4458b8;
+  background: #c91845;
 
   font-family:
     "DM Mono",
@@ -1023,20 +1063,32 @@
 
 .suggest-visible .suggest-step-1 {
   animation:
-    suggestStepShow 0.7s ease 0.3s forwards;
+    suggestStepShow
+    0.7s
+    ease
+    0.3s
+    forwards;
 }
 
 .suggest-visible .suggest-step-2 {
   animation:
-    suggestStepShow 0.7s ease 1.5s forwards;
+    suggestStepShow
+    0.7s
+    ease
+    1.5s
+    forwards;
 }
 
 .suggest-visible .suggest-step-3 {
   animation:
-    suggestStepShow 0.7s ease 2.7s forwards;
+    suggestStepShow
+    0.7s
+    ease
+    2.7s
+    forwards;
 }
 
-.blueberry {
+.strawberry {
   display: grid;
 
   box-sizing: border-box;
@@ -1046,19 +1098,22 @@
   overflow: hidden;
 
   padding:
-    70px 40px 90px;
+    70px
+    40px
+    90px;
 
   gap: 45px;
 
-  background: #f1f3ff;
+  background: #fff3f6;
 
   align-items: center;
 
   grid-template-columns:
-    0.8fr 1.2fr;
+    0.8fr
+    1.2fr;
 }
 
-.blueberry-h2 {
+.strawberry-h2 {
   position: relative;
   z-index: 5;
 
@@ -1070,7 +1125,7 @@
   justify-content: center;
 }
 
-.blueberry-h2 h2 {
+.strawberry-h2 h2 {
   margin: 0;
 
   font-family:
@@ -1084,33 +1139,31 @@
   letter-spacing: 1px;
   text-transform: uppercase;
 
-  color: #11163a;
+  color: #4a0b1d;
 }
 
 .like-span {
   display: block;
 
   width: fit-content;
-  max-width: 100%;
-  box-sizing: border-box;
 
   margin-top: 10px;
 
-  padding-top: clamp(8px, 1vw, 24px);
-  padding-right: clamp(12px, 1.4vw, 22px);
-  padding-bottom: clamp(6px, 0.8vw, 12px);
-  padding-left: clamp(12px, 1.4vw, 22px);
+  padding:
+    24px
+    22px
+    12px;
 
   white-space: nowrap;
 
-  background: #5368d4;
+  background: #e64b70;
 
   font-family:
     "Victory Striker Sans",
     Impact,
     sans-serif;
 
-  font-size: clamp(40px, 5.1vw, 82px);
+  font-size: clamp(55px, 5.1vw, 82px);
   font-weight: 400;
   line-height: 0.85;
 
@@ -1119,7 +1172,7 @@
   transform: rotate(-2deg);
 }
 
-.blueberry-right {
+.strawberry-right {
   position: relative;
 
   width: 100%;
@@ -1128,7 +1181,7 @@
   overflow: hidden;
 }
 
-.blueberry-scroll {
+.strawberry-scroll {
   display: flex;
 
   box-sizing: border-box;
@@ -1141,7 +1194,9 @@
   gap: 25px;
 
   padding:
-    20px 15px 30px;
+    20px
+    15px
+    30px;
 
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -1152,11 +1207,11 @@
   touch-action: pan-x;
 }
 
-.blueberry-scroll::-webkit-scrollbar {
+.strawberry-scroll::-webkit-scrollbar {
   display: none;
 }
 
-.blueberry-slide {
+.strawberry-slide {
   position: relative;
 
   display: flex;
@@ -1177,7 +1232,7 @@
   transform: rotate(-3deg);
 }
 
-.blueberry-card-link {
+.strawberry-card-link {
   display: block;
 
   width: 100%;
@@ -1186,7 +1241,7 @@
   text-decoration: none;
 }
 
-.blueberry-card {
+.strawberry-card {
   position: relative;
 
   width: 70%;
@@ -1197,7 +1252,7 @@
   border-radius: 30px;
 }
 
-.blueberry-card-image {
+.strawberry-card-image {
   width: 100%;
   height: 100%;
 
@@ -1206,14 +1261,15 @@
   border-radius: 30px;
 
   transition:
-    transform 0.3s;
+    transform
+    0.3s;
 }
 
-.blueberry-card:hover .blueberry-card-image {
+.strawberry-card:hover .strawberry-card-image {
   transform: scale(1.04);
 }
 
-.blueberry-slider-arrows {
+.strawberry-slider-arrows {
   display: flex;
 
   width: 100%;
@@ -1226,7 +1282,7 @@
   padding: 0;
 }
 
-.blueberry-slider-arrow {
+.strawberry-slider-arrow {
   display: flex;
 
   width: 50px;
@@ -1244,39 +1300,40 @@
 
   border: 0;
 
-  background: #1b2252;
+  background: #5a1025;
 
   font-size: 28px;
   line-height: 1;
 
-  color: #f1f3ff;
+  color: #fff3f6;
 
   transition:
-    all 0.2s;
+    all
+    0.2s;
 }
 
-.blueberry-slider-arrow:hover:not(:disabled) {
-  background: #5368d4;
+.strawberry-slider-arrow:hover:not(:disabled) {
+  background: #e64b70;
 
-  color: #f1f3ff;
+  color: #fff3f6;
 
   transform: translateY(-2px);
 }
 
-.blueberry-slider-arrow:active:not(:disabled) {
-  background: #1b2252;
+.strawberry-slider-arrow:active:not(:disabled) {
+  background: #5a1025;
 
-  color: #f1f3ff;
+  color: #fff3f6;
 
   transform: scale(0.95);
 }
 
-.blueberry-slider-arrow:disabled {
+.strawberry-slider-arrow:disabled {
   cursor: not-allowed;
 
-  background: #1b2252;
+  background: #5a1025;
 
-  color: #f1f3ff;
+  color: #fff3f6;
 
   opacity: 0.35;
 }
@@ -1289,9 +1346,10 @@
   overflow: hidden;
 
   padding:
-    65px 7%;
+    65px
+    7%;
 
-  background-color: #f1f3ff;
+  background-color: #fff3f6;
   background-image: url("/images/Rectangle.png");
   background-position: center;
   background-size: cover;
@@ -1313,7 +1371,8 @@
   column-gap: 40px;
 
   grid-template-columns:
-    45% 55%;
+    45%
+    55%;
 }
 
 .rating-left {
@@ -1326,7 +1385,9 @@
 
 .rating-title {
   margin:
-    60px 0 38px;
+    60px
+    0
+    38px;
 
   font-family:
     "Victory Striker Sans",
@@ -1338,7 +1399,7 @@
   line-height: 0.9;
   letter-spacing: -1px;
 
-  color: #f1f3ff;
+  color: #fff3f6;
 }
 
 .rating-score {
@@ -1365,7 +1426,7 @@
 .score-star {
   font-size: 42px;
 
-  color: #b9c4ff;
+  color: #ff9ab2;
 }
 
 .rating-info,
@@ -1379,7 +1440,7 @@
 
   font-weight: 400;
 
-  color: #e3e7ff;
+  color: #ffe5ec;
 }
 
 .rating-info {
@@ -1391,7 +1452,9 @@
 
 .rating-date {
   margin:
-    7px 0 32px;
+    7px
+    0
+    32px;
 
   font-size: 20px;
   line-height: 1;
@@ -1414,12 +1477,14 @@
 .review-stars svg {
   font-size: 25px;
 
-  color: #b9c4ff;
+  color: #ff9ab2;
 }
 
 .add-review-title {
   margin:
-    0 0 7px;
+    0
+    0
+    7px;
 
   font-family:
     "Victory Striker Sans",
@@ -1442,7 +1507,10 @@
 
 .rating-right {
   padding:
-    155px 10px 0 0;
+    155px
+    10px
+    0
+    0;
 }
 
 .rating-row {
@@ -1457,7 +1525,9 @@
   gap: 14px;
 
   grid-template-columns:
-    90px 1fr 35px;
+    90px
+    1fr
+    35px;
 }
 
 .rating-label {
@@ -1491,14 +1561,14 @@
 
   overflow: hidden;
 
-  background: #e3e7ff;
+  background: #ffe5ec;
 }
 
 .rating-fill {
   width: 100%;
   height: 100%;
 
-  background: #4355b8;
+  background: #d91e4d;
 }
 
 .review-form {
@@ -1518,13 +1588,14 @@
   resize: vertical;
 
   padding:
-    18px 22px;
+    18px
+    22px;
 
   border: 0;
 
   outline: none;
 
-  background: #e3e7ff;
+  background: #ffe5ec;
 
   font-family:
     "Victory Striker Sans",
@@ -1533,13 +1604,13 @@
 
   font-size: 17px;
 
-  color: #1b2252;
+  color: #5a1025;
 }
 
 .review-input::placeholder {
   opacity: 1;
 
-  color: #5368d4;
+  color: #e64b70;
 }
 
 .review-upload {
@@ -1563,7 +1634,7 @@
 
   font-size: 12px;
 
-  color: #e3e7ff;
+  color: #ffe5ec;
 }
 
 .upload-icon {
@@ -1578,9 +1649,9 @@
 
   overflow: visible;
 
-  background: #f1f3ff;
+  background: #fff3f6;
 
-  color: #11163a;
+  color: #4a0b1d;
 }
 
 .reviews-info-bar {
@@ -1596,11 +1667,14 @@
   align-items: center;
 
   padding:
-    10px 0 0 10px;
+    10px
+    0
+    0
+    10px;
 
   border-radius: 12px;
 
-  background: #5368d4;
+  background: #e64b70;
 
   font-family:
     "Victory Striker Sans",
@@ -1621,19 +1695,22 @@
 
 .reviews-submit-wrapper {
   padding:
-    30px 6% 65px;
+    30px
+    6%
+    65px;
 }
 
 .reviews-submit {
   cursor: pointer;
 
   padding:
-    10px 14px;
+    10px
+    14px;
 
   border: 0;
   border-radius: 8px;
 
-  background: #1b2252;
+  background: #5a1025;
 
   font-family:
     "Victory Striker Sans",
@@ -1646,11 +1723,12 @@
   color: #ffffff;
 
   transition:
-    background 0.2s;
+    background
+    0.2s;
 }
 
 .reviews-submit:hover {
-  background: #4458b8;
+  background: #c91845;
 }
 
 .reviews-header {
@@ -1665,10 +1743,13 @@
   justify-content: space-between;
 
   padding:
-    0 4%;
+    0
+    4%;
 
   border-bottom:
-    1px solid #aab6e8;
+    1px
+    solid
+    #e7a7b7;
 }
 
 .reviews-count {
@@ -1681,7 +1762,7 @@
 
   font-size: 28px;
 
-  color: #5368d4;
+  color: #e64b70;
 }
 
 .sort-wrapper {
@@ -1702,10 +1783,13 @@
   justify-content: space-between;
 
   padding:
-    0 15px;
+    0
+    15px;
 
   border:
-    1px solid #aab6e8;
+    1px
+    solid
+    #e7a7b7;
 
   background: #f8f9ff;
 
@@ -1716,22 +1800,24 @@
 
   font-size: 20px;
 
-  color: #5368d4;
+  color: #e64b70;
 
   transition:
-    all 0.2s;
+    all
+    0.2s;
 }
 
 .sort-button:hover,
 .sort-button.active {
-  border-color: #5368d4;
+  border-color: #e64b70;
 }
 
 .sort-arrow {
   font-size: 12px;
 
   transition:
-    transform 0.3s;
+    transform
+    0.3s;
 }
 
 .sort-arrow.arrow-up {
@@ -1748,12 +1834,17 @@
   width: 100%;
 
   border:
-    1px solid #aab6e8;
+    1px
+    solid
+    #e7a7b7;
 
   background: #ffffff;
 
   box-shadow:
-    0 5px 15px rgba(27, 34, 82, 0.12);
+    0
+    5px
+    15px
+    rgba(27, 34, 82, 0.12);
 }
 
 .sort-menu button {
@@ -1762,12 +1853,15 @@
   cursor: pointer;
 
   padding:
-    14px 15px;
+    14px
+    15px;
 
   border: 0;
 
   border-bottom:
-    1px solid #e3e7ff;
+    1px
+    solid
+    #ffe5ec;
 
   background: #ffffff;
 
@@ -1780,10 +1874,11 @@
 
   text-align: left;
 
-  color: #5368d4;
+  color: #e64b70;
 
   transition:
-    all 0.2s;
+    all
+    0.2s;
 }
 
 .sort-menu button:last-child {
@@ -1791,7 +1886,7 @@
 }
 
 .sort-menu button:hover {
-  background: #4355b8;
+  background: #d91e4d;
 
   color: #ffffff;
 }
@@ -1811,10 +1906,13 @@
   align-items: center;
 
   padding:
-    20px 4%;
+    20px
+    4%;
 
   border-bottom:
-    1px solid #aab6e8;
+    1px
+    solid
+    #e7a7b7;
 }
 
 .review-details {
@@ -1837,7 +1935,9 @@
 
 .review-date {
   margin:
-    6px 0 7px;
+    6px
+    0
+    7px;
 
   font-family:
     "Victory Striker Sans",
@@ -1861,11 +1961,11 @@
 }
 
 .star-filled {
-  color: #4355b8;
+  color: #d91e4d;
 }
 
 .star-empty {
-  color: #aab6e8;
+  color: #e7a7b7;
 }
 
 .review-text {
@@ -1877,1070 +1977,6 @@
   line-height: 1.4;
 }
 
-@media (max-width: 1200px) {
-  .nutrition-wrapper {
-    grid-template-columns:
-      1fr 0.7fr 0.45fr;
-
-    column-gap: 20px;
-  }
-
-  .nutrition-left {
-    padding:
-      40px 25px 40px 0;
-  }
-
-  .nutrition-heading h2 {
-    font-size: clamp(55px, 6vw, 85px);
-  }
-
-  .nutrition-features {
-    flex-wrap: wrap;
-
-    gap: 25px;
-  }
-
-  .nutrition-feature h3 {
-    font-size: 20px;
-  }
-
-  .nutrition-pack {
-    max-width: 270px;
-
-    transform: translateX(-50px);
-  }
-
-  .nutrition-product-image {
-    transform: translateX(-50px);
-  }
-
-  .blueberry {
-    padding:
-      60px 30px 80px;
-
-    gap: 30px;
-
-    grid-template-columns:
-      0.75fr 1.25fr;
-  }
-
-  .blueberry-h2 h2 {
-    font-size: clamp(48px, 5.8vw, 75px);
-  }
-
-  .like-span {
-    font-size: clamp(48px, 5.2vw, 72px);
-  }
-
-  .blueberry-card {
-    height: 420px;
-  }
-}
-
-@media (max-width: 1100px) {
-  .suggest-page {
-    align-items: center;
-
-    gap: 30px;
-
-    padding:
-      60px 40px;
-  }
-
-  .suggest-h2 {
-    width: 50%;
-
-    padding:
-      60px 30px 60px 0;
-  }
-
-  .suggest-h2 h2 {
-    font-size: clamp(3.2rem, 5vw, 4.5rem);
-  }
-
-  .suggest-box {
-    padding:
-      15px 20px;
-
-    font-size: clamp(3.2rem, 5vw, 4.5rem);
-  }
-
-  .suggest-h2 p {
-    max-width: 100%;
-
-    font-size: 16px;
-    line-height: 1.4;
-  }
-
-  .suggest-image {
-    width: 50%;
-    height: 520px;
-  }
-
-  .suggest-steps {
-    left: -5%;
-
-    width: 105%;
-
-    top: 42%;
-
-    gap: 30px;
-  }
-
-  .suggest-step {
-    max-width: 90%;
-
-    padding:
-      12px 16px;
-
-    font-size: 13px;
-  }
-
-  .suggest-step-2 {
-    margin-left: 30px;
-  }
-}
-
-@media (max-width: 900px) {
-  .menu-button {
-    right: 100px;
-  }
-
-  .flavour-title {
-    left: 4%;
-  }
-
-  .product-description {
-    right: 4%;
-
-    width: 220px;
-  }
-
-  .creatine-features {
-    width: calc(100% - 50px);
-
-    gap: 10px;
-  }
-
-  .creatine-feature-card {
-    width: auto;
-    min-width: 0;
-    min-height: 110px;
-    flex: 1 1 0;
-  }
-
-  .creatine-feature-card strong {
-    font-size: 28px;
-  }
-
-  .creatine-feature-card span {
-    font-size: 15px;
-  }
-
-  .nutrition-section {
-    min-height: 0;
-
-    padding:
-      60px 5%;
-  }
-
-  .nutrition-wrapper {
-    min-height: 0;
-
-    gap:
-      45px 30px;
-
-    grid-template-columns:
-      1fr 1fr;
-  }
-
-  .nutrition-left {
-    height: auto;
-
-    padding: 0;
-
-    grid-column: 1 / -1;
-  }
-
-  .nutrition-heading h2 {
-    font-size: clamp(60px, 9vw, 90px);
-  }
-
-  .nutrition-description {
-    max-width: 700px;
-  }
-
-  .nutrition-features {
-    margin-top: 50px;
-
-    justify-content: flex-start;
-
-    gap: 35px;
-  }
-
-  .nutrition-feature h3 {
-    font-size: 18px;
-  }
-
-  .nutrition-product {
-    height: auto;
-
-    padding: 0;
-
-    justify-content: center;
-  }
-
-  .nutrition-pack {
-    width: 100%;
-    max-width: 280px;
-
-    transform: none;
-  }
-
-  .nutrition-product-image {
-    max-width: 280px;
-
-    transform: none;
-  }
-
-  .level-marquee-track h1 {
-    font-size: clamp(3rem, 14vw, 10rem);
-  }
-
-  .blueberry {
-    padding:
-      55px 25px 70px;
-
-    gap: 25px;
-
-    grid-template-columns:
-      0.8fr 1.2fr;
-  }
-
-  .blueberry-h2 {
-    justify-content: flex-start;
-  }
-
-  .blueberry-h2 h2 {
-    font-size: clamp(42px, 6.5vw, 65px);
-  }
-
-  .like-span {
-    font-size: clamp(42px, 6vw, 62px);
-  }
-
-  .blueberry-scroll {
-    gap: 18px;
-
-    padding:
-      15px 10px 25px;
-  }
-
-  .blueberry-card {
-    height: 360px;
-  }
-
-  .order-rating-section {
-    padding:
-      50px 6%;
-  }
-
-  .order-rating-container {
-    grid-template-columns: 1fr;
-
-    row-gap: 40px;
-  }
-
-  .rating-right {
-    padding-top: 10px;
-  }
-
-  .review-form {
-    margin-top: 0;
-  }
-}
-
-@media (max-width: 800px) {
-  .suggest-page {
-    display: flex;
-
-    width: 100%;
-    min-height: 0;
-
-    flex-direction: column;
-
-    gap: 40px;
-
-    padding:
-      60px 30px;
-  }
-
-  .suggest-h2 {
-    width: 100%;
-
-    align-items: center;
-
-    padding: 0;
-
-    text-align: center;
-  }
-
-  .suggest-h2 h2 {
-    width: 100%;
-
-    margin: 0;
-
-    font-size: clamp(3rem, 9vw, 5rem);
-    line-height: 0.95;
-  }
-
-  .suggest-box {
-    margin-top: 12px;
-
-    padding:
-      12px 20px;
-
-    font-size: clamp(3rem, 9vw, 5rem);
-  }
-
-  .suggest-h2 p {
-    max-width: 650px;
-
-    margin:
-      25px auto 0;
-
-    font-size: 15px;
-    line-height: 1.5;
-  }
-
-  .suggest-image {
-    width: 100%;
-    height: 500px;
-  }
-
-  .suggest-steps {
-    left: 0;
-    top: 40%;
-
-    width: 100%;
-
-    gap: 25px;
-
-    padding:
-      0 20px;
-  }
-
-  .suggest-step {
-    max-width: 80%;
-
-    padding:
-      12px 16px;
-
-    font-size: 13px;
-  }
-
-  .suggest-step-2 {
-    margin-left: 30px;
-  }
-}
-
-
-
-
-@media (max-width: 768px) {
-  .reviews-info-bar {
-    padding:
-      10px 20px 0;
-
-    font-size: 12px;
-  }
-
-  .reviews-submit-wrapper {
-    padding:
-      12px 20px 45px;
-  }
-
-  .reviews-header {
-    min-height: 0;
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 20px;
-
-    padding: 20px;
-  }
-
-  .sort-wrapper {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .single-review {
-    min-height: 115px;
-
-    padding: 20px;
-  }
-}
-
-@media (max-width: 767px) {
-  .blueberry {
-    display: flex;
-
-    width: 100%;
-
-    flex-direction: column;
-
-    gap: 25px;
-
-    padding:
-      45px 18px 65px;
-  }
-
-  .blueberry-h2 {
-    width: 100%;
-
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-
-  .blueberry-h2 h2 {
-    font-size: clamp(42px, 12vw, 65px);
-
-    line-height: 0.85;
-    letter-spacing: normal;
-  }
-
-  .like-span {
-    width: fit-content;
-    margin-top: 10px;
-
-    padding:
-      9px 14px 8px;
-
-    font-size: clamp(38px, 11.5vw, 62px);
-    line-height: 0.85;
-  }
-
-  .blueberry-right {
-    width: 100%;
-
-    overflow: hidden;
-  }
-
-  .blueberry-scroll {
-    width: 100%;
-
-    gap: 18px;
-
-    padding:
-      12px 8px 25px;
-  }
-
-  .blueberry-slide {
-    width: 100%;
-    min-width: 100%;
-
-    flex: 0 0 100%;
-  }
-
-  .blueberry-card {
-    width: 100%;
-    height: 340px;
-  }
-
-  .blueberry-card-image {
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 600px) {
-  .blueberry-page {
-    min-height: 650px;
-  }
-
-  .top-navigation {
-    height: 80px;
-  }
-
-  .top-logo {
-    left: 18px;
-    top: 18px;
-
-    width: 60px;
-    height: 60px;
-  }
-
-  .menu-button {
-    right: 75px;
-    top: 23px;
-  }
-
-  .back-button {
-    right: 18px;
-    top: 20px;
-  }
-
-  .flavour-title {
-    left: 6%;
-    top: 42%;
-  }
-
-  .flavour-title h1 {
-    font-size: clamp(42px, 14vw, 70px);
-
-    letter-spacing: -2px;
-  }
-
-  .product-description {
-    left: 6%;
-    right: auto;
-    top: 64%;
-
-    width: 42%;
-    max-width: 190px;
-  }
-
-  .product-description p {
-    font-size: 9px;
-  }
-
-  .creatine-features {
-    bottom: 18px;
-
-    width: calc(100% - 24px);
-
-    gap: 5px;
-  }
-
-  .creatine-feature-card {
-    width: auto;
-    min-width: 0;
-    min-height: 85px;
-    flex: 1 1 0;
-
-    border-width: 1px;
-  }
-
-  .creatine-feature-card strong {
-    min-height: 38px;
-
-    padding:
-      7px 2px 5px;
-
-    font-size: clamp(15px, 5vw, 20px);
-  }
-
-  .creatine-feature-card span {
-    min-height: 35px;
-
-    padding:
-      6px 2px;
-
-    font-size: clamp(7px, 2.5vw, 9px);
-  }
-
-  .nutrition-section {
-    box-sizing: border-box;
-
-    width: 100%;
-    min-height: 0;
-
-    padding:
-      50px 16px;
-
-    overflow: hidden;
-  }
-
-  .nutrition-wrapper {
-    display: flex;
-
-    width: 100%;
-    min-height: 0;
-
-    flex-direction: column;
-
-    gap: 40px;
-  }
-
-  .nutrition-left {
-    width: 100%;
-    height: auto;
-
-    align-items: center;
-
-    padding: 0;
-
-    text-align: center;
-  }
-
-  .nutrition-heading {
-    width: 100%;
-  }
-
-  .nutrition-heading h2 {
-    width: 100%;
-
-    align-items: center;
-
-    font-size: clamp(52px, 15vw, 75px);
-    line-height: 0.85;
-    letter-spacing: -1px;
-
-    text-align: center;
-  }
-
-  .nutrition-heading h2::after {
-    display: none;
-  }
-
-  .nutrition-heading h2 span {
-    margin-top: 12px;
-    margin-left: 0;
-
-    padding:
-      7px 18px 10px;
-  }
-
-  .nutrition-description {
-    width: 100%;
-
-    margin-top: 22px;
-  }
-
-  .nutrition-description p {
-    font-size: 11px;
-    line-height: 1.55;
-    letter-spacing: 0.2px;
-  }
-
-  .nutrition-features {
-    display: grid;
-
-    width: 100%;
-
-    margin-top: 40px;
-
-    align-items: start;
-
-    gap: 12px;
-
-    grid-template-columns:
-      repeat(3,
-        1fr);
-  }
-
-  .nutrition-feature {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .nutrition-feature svg {
-    margin-bottom: 12px;
-
-    font-size: 28px;
-  }
-
-  .nutrition-feature h3 {
-    white-space: normal;
-
-    font-size: 12px;
-    line-height: 1;
-  }
-
-  .nutrition-table {
-    box-sizing: border-box;
-
-    width: 100%;
-    min-width: 0;
-
-    margin: 0;
-
-    padding: 0;
-  }
-
-  .nutrition-row {
-    box-sizing: border-box;
-
-    width: 100%;
-    min-height: 42px;
-    height: 42px;
-
-    padding:
-      0 10px;
-  }
-
-  .nutrition-row span {
-    font-size: 12px;
-  }
-
-  .nutrition-row strong {
-    font-size: 14px;
-  }
-
-  .nutrition-product {
-    width: 100%;
-    height: auto;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 0;
-  }
-
-  .nutrition-pack {
-    width: 75%;
-    max-width: 240px;
-    height: auto;
-
-    transform: none;
-  }
-
-  .nutrition-product-image {
-    width: 75%;
-    max-width: 240px;
-    height: auto;
-
-    transform: none;
-  }
-
-  .level-up {
-    min-height: 140px;
-  }
-
-  .level-marquee {
-    padding: 20px 0;
-  }
-
-  .level-marquee-track h1 {
-    margin: 0;
-    font-size: clamp(2rem, 9vw, 3.5rem);
-    letter-spacing: 0;
-  }
-
-  .suggest-page {
-    box-sizing: border-box;
-
-    width: 100%;
-    min-height: 0;
-
-    gap: 35px;
-
-    overflow: hidden;
-
-    padding:
-      45px 16px;
-  }
-
-  .suggest-h2 {
-    width: 100%;
-
-    padding: 0;
-  }
-
-  .suggest-h2 h2 {
-    width: 100%;
-
-    font-size: clamp(2.7rem, 13vw, 4.5rem);
-    line-height: 0.9;
-  }
-
-  .suggest-box {
-    max-width: 90%;
-
-    margin:
-      10px auto 0;
-
-    padding:
-      9px 15px 8px;
-
-    font-size: clamp(2.7rem, 13vw, 4.5rem);
-    line-height: 0.95;
-  }
-
-  .suggest-h2 p {
-    width: 100%;
-    max-width: 100%;
-
-    margin:
-      22px auto 0;
-
-    font-size: 11px;
-    line-height: 1.55;
-    letter-spacing: 0.2px;
-  }
-
-  .suggest-image {
-    width: 100%;
-    height: 430px;
-
-    overflow: hidden;
-  }
-
-  .suggest-img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-  }
-
-  .suggest-steps {
-    left: 25%;
-    top: 38%;
-
-    width: 100%;
-
-    gap: 22px;
-
-    padding:
-      0 12px;
-  }
-
-  .suggest-step {
-    width: auto;
-    max-width: 82%;
-
-    padding:
-      10px 13px;
-
-    border-radius: 6px;
-
-    font-size: 10px;
-    line-height: 1.4;
-  }
-
-  .suggest-step-1,
-  .suggest-step-3 {
-    margin-left: 0;
-  }
-
-  .suggest-step-2 {
-    margin-left: 20px;
-  }
-
-  .order-rating-section {
-    padding:
-      40px 20px;
-  }
-
-  .rating-title {
-    font-size: 52px;
-  }
-
-  .rating-score .score {
-    font-size: 75px;
-  }
-
-  .rating-info {
-    font-size: 20px;
-  }
-
-  .rating-date {
-    font-size: 17px;
-  }
-
-  .rating-row {
-    margin-bottom: 17px;
-
-    gap: 8px;
-
-    grid-template-columns:
-      75px 1fr 25px;
-  }
-
-  .rating-label {
-    font-size: 15px;
-  }
-
-  .rating-count {
-    font-size: 15px;
-  }
-
-  .rating-bar {
-    height: 14px;
-  }
-
-  .add-review-title {
-    font-size: 45px;
-  }
-
-  .review-note {
-    font-size: 14px;
-  }
-
-  .reviews-info-bar {
-    height: 40px;
-
-    font-size: 10px;
-  }
-
-  .reviews-count {
-    font-size: 16px;
-  }
-
-  .sort-button {
-    font-size: 14px;
-  }
-
-  .review-name {
-    font-size: 16px;
-  }
-
-  .review-date {
-    font-size: 14px;
-  }
-
-  .review-text {
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 400px) {
-  .nutrition-section {
-    padding:
-      45px 12px;
-  }
-
-  .nutrition-heading h2 {
-    font-size: 52px;
-  }
-
-  .nutrition-description p {
-    font-size: 10px;
-  }
-
-  .nutrition-features {
-    gap: 6px;
-  }
-
-  .nutrition-feature svg {
-    font-size: 25px;
-  }
-
-  .nutrition-feature h3 {
-    font-size: 10px;
-  }
-
-  .nutrition-row {
-    padding:
-      0 8px;
-  }
-
-  .nutrition-row span {
-    font-size: 11px;
-  }
-
-  .nutrition-row strong {
-    font-size: 13px;
-  }
-
-  .nutrition-pack,
-  .nutrition-product-image {
-    max-width: 210px;
-  }
-
-  .level-marquee-track h1 {
-    font-size: clamp(1.75rem, 9vw, 3rem);
-  }
-
-  .suggest-page {
-    gap: 30px;
-
-    padding:
-      40px 12px;
-  }
-
-  .suggest-h2 h2 {
-    font-size: 2.7rem;
-  }
-
-  .suggest-box {
-    padding:
-      8px 13px 7px;
-
-    font-size: 2.7rem;
-  }
-
-  .suggest-h2 p {
-    font-size: 10px;
-  }
-
-  .suggest-image {
-    height: 380px;
-  }
-
-  .suggest-steps {
-    top: 36%;
-
-    gap: 18px;
-
-    padding:
-      0 8px;
-  }
-
-  .suggest-step {
-    max-width: 85%;
-
-    padding:
-      9px 11px;
-
-    font-size: 9px;
-  }
-
-  .suggest-step-2 {
-    margin-left: 15px;
-  }
-
-  .blueberry {
-    gap: 20px;
-
-    padding:
-      40px 12px 55px;
-  }
-
-  .blueberry-h2 h2 {
-    font-size: 40px;
-  }
-
-  .like-span {
-    padding:
-      7px 10px;
-
-    font-size: clamp(34px, 11.5vw, 48px);
-  }
-
-  .blueberry-scroll {
-    gap: 15px;
-
-    padding:
-      10px 5px 20px;
-  }
-
-  .blueberry-card {
-    height: 300px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  .background-image,
-  .flavour-title,
-  .product-description,
-  .creatine-feature-card {
-    animation: none !important;
-
-    transform: none !important;
-
-    opacity: 1 !important;
-
-    visibility: visible !important;
-  }
-
-  .level-marquee-track {
-    animation: none !important;
-  }
-}
 
 .reviews-carousel {
   position: relative;
@@ -3050,10 +2086,874 @@
   }
 }
 
-.chevron-shape {
-  background-color: #2b539e;
-  /* match your blue */
-  width: 100%;
-  height: 300px;
-  clip-path: polygon(0% 0%, 50% 8%, 100% 0%, 100% 100%, 0% 100%);
+
+
+/* =========================
+   RESPONSIVE STYLES
+========================= */
+
+@media (max-width: 1200px) {
+  .top-logo {
+    left: 20px;
+  }
+
+  .menu-button {
+    right: 150px;
+  }
+
+  .creatine-features {
+    width: calc(100% - 60px);
+    gap: 12px;
+  }
+
+  .creatine-feature-card {
+    width: 15%;
+  }
+
+  .nutrition-wrapper {
+    grid-template-columns: 1fr 0.7fr 0.45fr;
+    column-gap: 20px;
+  }
+
+  .nutrition-left {
+    padding: 40px 25px 40px 0;
+  }
+
+  .nutrition-heading h2 {
+    font-size: clamp(55px, 6vw, 85px);
+  }
+
+  .nutrition-features {
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+
+  .nutrition-feature h3 {
+    font-size: 20px;
+  }
+
+  .nutrition-pack {
+    max-width: 270px;
+    transform: translateX(-50px);
+  }
+
+  .nutrition-product-image {
+    transform: translateX(-50px);
+  }
+
+  .strawberry,
+  .strawberry-product {
+    padding: 60px 30px 80px;
+    gap: 30px;
+    grid-template-columns: 0.75fr 1.25fr;
+  }
+
+  .strawberry-h2 h2,
+  .strawberry-product-h2 h2 {
+    font-size: clamp(48px, 5.8vw, 75px);
+  }
+
+  .like-span {
+    padding: 15px 18px 10px;
+    font-size: clamp(48px, 5.2vw, 72px);
+  }
+
+  .strawberry-card {
+    height: 420px;
+  }
+
+  .level-background {
+    height: 250px;
+  }
+
+  .level-marquee-track h1 {
+    margin: 35px;
+    font-size: 11rem;
+  }
+
+  .suggest-page {
+    padding: 60px 40px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .product-description {
+    right: 5%;
+    width: 240px;
+  }
+
+  .product-description p {
+    font-size: 21px;
+  }
+
+  .creatine-feature-card strong {
+    font-size: 32px;
+  }
+
+  .creatine-feature-card span {
+    font-size: 21px;
+    padding: 32px 5px;
+  }
+
+  .suggest-page {
+    align-items: center;
+    gap: 30px;
+    padding: 60px 40px;
+  }
+
+  .suggest-h2 {
+    width: 50%;
+    padding: 60px 30px 60px 0;
+  }
+
+  .suggest-h2 h2,
+  .suggest-box {
+    font-size: clamp(3.2rem, 5vw, 4.5rem);
+  }
+
+  .suggest-box {
+    padding: 15px 20px;
+  }
+
+  .suggest-h2 p {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .suggest-image {
+    width: 50%;
+    height: 500px;
+  }
+
+  .rating-title {
+    font-size: clamp(45px, 5vw, 70px);
+  }
+
+  .rating-right {
+    padding-top: 120px;
+  }
+}
+
+@media (max-width: 900px) {
+  .top-logo {
+    width: 65px;
+    height: 65px;
+    top: 22px;
+  }
+
+  .menu-button {
+    right: 110px;
+  }
+
+  .back-button {
+    right: 20px;
+  }
+
+  .flavour-title {
+    left: 5%;
+  }
+
+  .product-description {
+    right: 5%;
+    width: 210px;
+  }
+
+  .product-description p {
+    font-size: 19px;
+  }
+
+  .creatine-features {
+    bottom: 25px;
+    width: calc(100% - 40px);
+    gap: 8px;
+  }
+
+  .creatine-feature-card {
+    width: 18%;
+    min-height: 115px;
+  }
+
+  .creatine-feature-card strong {
+    font-size: 28px;
+  }
+
+  .creatine-feature-card span {
+    padding: 28px 4px;
+    font-size: 18px;
+  }
+
+  .nutrition-wrapper {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .nutrition-left {
+    padding: 20px 0;
+  }
+
+  .nutrition-product {
+    justify-content: center;
+    padding-left: 0;
+  }
+
+  .nutrition-pack,
+  .nutrition-product-image {
+    transform: none;
+  }
+
+  .nutrition-table {
+    margin: 0;
+  }
+
+  .strawberry,
+  .strawberry-product {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 60px 30px 70px;
+  }
+
+  .strawberry-h2,
+  .strawberry-product-h2 {
+    justify-content: flex-start;
+  }
+
+  .strawberry-right {
+    width: 100%;
+  }
+
+  .strawberry-slide {
+    min-width: 100%;
+  }
+
+  .strawberry-card {
+    width: 75%;
+  }
+
+  .suggest-page {
+    flex-direction: column;
+  }
+
+  .suggest-h2,
+  .suggest-image {
+    width: 100%;
+  }
+
+  .suggest-h2 {
+    padding: 30px 0;
+  }
+
+  .suggest-image {
+    height: 520px;
+  }
+
+  .order-rating-container {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
+
+  .rating-right {
+    padding: 20px 0 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .strawberry-page {
+    min-height: 650px;
+  }
+
+  .product-hero {
+    min-height: 650px;
+  }
+
+  .creatine-logo {
+    top: 15px;
+  }
+
+  .top-logo {
+    left: 15px;
+    width: 58px;
+    height: 58px;
+  }
+
+  .menu-button {
+    right: 85px;
+    top: 25px;
+  }
+
+  .back-button {
+    right: 15px;
+    top: 23px;
+  }
+
+  .flavour-title {
+    left: 50%;
+    top: 42%;
+    transform: translateX(-50%);
+  }
+
+  .flavour-title h1 {
+    font-size: clamp(42px, 12vw, 75px);
+    letter-spacing: -2px;
+  }
+
+  .product-description {
+    left: 50%;
+    right: auto;
+    top: 56%;
+    width: min(80%, 360px);
+    text-align: center;
+    transform: translateX(-50%);
+  }
+
+  .product-description p {
+    font-size: 18px;
+  }
+
+  .creatine-features {
+    bottom: 15px;
+    width: calc(100% - 24px);
+    gap: 5px;
+  }
+
+  .creatine-feature-card {
+    width: 20%;
+    min-height: 100px;
+  }
+
+  .creatine-feature-card strong {
+    padding: 8px 2px 5px;
+    font-size: 23px;
+  }
+
+  .creatine-feature-card span {
+    padding: 24px 2px;
+    font-size: 14px;
+  }
+
+  .nutrition-section {
+    min-height: auto;
+    padding: 50px 20px;
+  }
+
+  .nutrition-heading h2 {
+    font-size: clamp(48px, 13vw, 75px);
+  }
+
+  .nutrition-heading h2::after {
+    display: none;
+  }
+
+  .nutrition-features {
+    margin-top: 40px;
+    gap: 20px;
+  }
+
+  .nutrition-feature {
+    min-width: 80px;
+    padding-left: 0;
+  }
+
+  .nutrition-feature h3 {
+    font-size: 18px;
+  }
+
+  .nutrition-feature svg {
+    margin-bottom: 18px;
+    font-size: 30px;
+  }
+
+  .nutrition-product {
+    height: auto;
+  }
+
+  .nutrition-pack,
+  .nutrition-product-image {
+    max-width: 280px;
+  }
+
+  .strawberry,
+  .strawberry-product {
+    padding: 50px 20px 60px;
+  }
+
+  .strawberry-h2,
+  .strawberry-product-h2 {
+    justify-content: flex-start;
+  }
+
+  .strawberry-h2 h2,
+  .strawberry-product-h2 h2 {
+    font-size: clamp(44px, 12vw, 70px);
+  }
+
+  .like-span {
+    margin-top: 10px;
+    padding: 15px 16px 10px;
+    font-size: clamp(42px, 11vw, 65px);
+  }
+
+  .strawberry-scroll {
+    gap: 15px;
+    padding: 15px 10px 25px;
+  }
+
+  .strawberry-card {
+    width: 82%;
+    height: 380px;
+    border-radius: 24px;
+  }
+
+  .strawberry-card-image {
+    border-radius: 24px;
+  }
+
+  .level-up {
+    min-height: 380px;
+    height: auto;
+  }
+
+  .level-background {
+    height: 230px;
+  }
+
+  .level-marquee {
+    top: 20px;
+    padding: 25px 0;
+  }
+
+  .level-marquee-track h1 {
+    margin: 25px;
+    font-size: 9rem;
+  }
+
+  .suggest-page {
+    padding: 50px 20px;
+  }
+
+  .suggest-h2 h2,
+  .suggest-box {
+    font-size: clamp(2.8rem, 11vw, 4.5rem);
+  }
+
+  .suggest-h2 p {
+    font-size: 15px;
+  }
+
+  .suggest-image {
+    height: 450px;
+  }
+
+  .suggest-steps {
+    transform: none;
+  }
+
+  .suggest-step {
+    width: 75%;
+  }
+
+  .order-rating-section {
+    padding: 50px 20px;
+  }
+
+  .rating-title {
+    margin-top: 20px;
+    font-size: clamp(42px, 11vw, 70px);
+  }
+
+  .rating-score {
+    gap: 12px;
+  }
+
+  .score {
+    font-size: clamp(58px, 14vw, 90px);
+  }
+
+  .rating-info {
+    font-size: 21px;
+  }
+
+  .rating-date {
+    font-size: 18px;
+  }
+
+  .rating-row {
+    grid-template-columns: 75px 1fr 30px;
+    gap: 8px;
+  }
+
+  .rating-label {
+    font-size: 16px;
+  }
+
+  .rating-count {
+    font-size: 16px;
+  }
+
+  .reviews-header {
+    min-height: 100px;
+    padding: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .sort-wrapper {
+    width: 220px;
+  }
+
+  .reviews-info-bar {
+    width: calc(100% - 30px);
+    margin-left: 15px;
+  }
+
+  .single-review {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-button {
+    right: 75px;
+  }
+
+  .creatine-features {
+    position: absolute;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .creatine-feature-card {
+    width: calc(20% - 5px);
+  }
+
+  .creatine-feature-card strong {
+    font-size: 19px;
+  }
+
+  .creatine-feature-card span {
+    padding: 20px 2px;
+    font-size: 11px;
+  }
+
+  .nutrition-table {
+    overflow-x: auto;
+  }
+
+  .nutrition-row {
+    min-width: 320px;
+  }
+
+  .strawberry-card {
+    width: 90%;
+    height: 340px;
+  }
+
+  .level-up {
+    min-height: 320px;
+  }
+
+  .level-background {
+    height: 200px;
+  }
+
+  .level-marquee-track h1 {
+    margin: 20px;
+    font-size: 7rem;
+  }
+
+  .like-span {
+    padding: 12px 14px 9px;
+    font-size: clamp(40px, 11vw, 58px);
+  }
+
+  .suggest-page {
+    padding: 40px 15px;
+  }
+
+  .suggest-image {
+    height: 380px;
+  }
+
+  .suggest-steps {
+    gap: 20px;
+  }
+
+  .suggest-step {
+    width: 85%;
+    font-size: 11px;
+  }
+
+  .rating-right {
+    padding-top: 10px;
+  }
+
+  .rating-row {
+    grid-template-columns: 65px 1fr 28px;
+  }
+
+  .review-input {
+    height: 100px;
+  }
+
+  .reviews-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sort-wrapper {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-logo {
+    width: 50px;
+    height: 50px;
+    top: 18px;
+    left: 10px;
+  }
+
+  .menu-button {
+    right: 65px;
+    top: 22px;
+  }
+
+  .back-button {
+    right: 10px;
+    top: 20px;
+    width: 34px;
+    height: 30px;
+  }
+
+  .flavour-title {
+    top: 40%;
+  }
+
+  .product-description {
+    top: 55%;
+    width: 85%;
+  }
+
+  .product-description p {
+    font-size: 16px;
+  }
+
+  .creatine-features {
+    bottom: 10px;
+    width: calc(100% - 14px);
+  }
+
+  .creatine-feature-card {
+    min-height: 85px;
+  }
+
+  .creatine-feature-card strong {
+    font-size: 16px;
+  }
+
+  .creatine-feature-card span {
+    padding: 16px 1px;
+    font-size: 9px;
+  }
+
+  .nutrition-section {
+    padding: 40px 15px;
+  }
+
+  .nutrition-heading h2 {
+    font-size: clamp(42px, 14vw, 62px);
+  }
+
+  .nutrition-description p {
+    font-size: 15px;
+  }
+
+  .nutrition-features {
+    margin-top: 30px;
+    justify-content: center;
+  }
+
+  .nutrition-feature {
+    min-width: 70px;
+  }
+
+  .nutrition-feature h3 {
+    font-size: 15px;
+  }
+
+  .nutrition-pack,
+  .nutrition-product-image {
+    max-width: 240px;
+  }
+
+  .strawberry,
+  .strawberry-product {
+    padding: 40px 15px 50px;
+  }
+
+  .strawberry-h2 h2,
+  .strawberry-product-h2 h2 {
+    font-size: clamp(40px, 13vw, 60px);
+  }
+
+  .like-span {
+    padding: 10px 12px 8px;
+    font-size: clamp(36px, 12vw, 52px);
+  }
+
+  .strawberry-card {
+    width: 95%;
+    height: 300px;
+    border-radius: 20px;
+  }
+
+  .strawberry-card-image {
+    border-radius: 20px;
+  }
+
+  .level-up {
+    min-height: 280px;
+  }
+
+  .level-background {
+    height: 175px;
+  }
+
+  .level-marquee {
+    top: 10px;
+    padding: 20px 0;
+  }
+
+  .level-marquee-track h1 {
+    margin: 15px;
+    font-size: 5.5rem;
+  }
+
+  .suggest-h2 h2,
+  .suggest-box {
+    font-size: clamp(2.4rem, 12vw, 3.5rem);
+  }
+
+  .suggest-box {
+    padding: 10px 15px;
+  }
+
+  .suggest-h2 p {
+    margin-top: 25px;
+    font-size: 14px;
+  }
+
+  .suggest-image {
+    height: 320px;
+  }
+
+  .rating-title {
+    font-size: clamp(38px, 12vw, 55px);
+  }
+
+  .rating-score {
+    gap: 8px;
+  }
+
+  .score {
+    font-size: 60px;
+  }
+
+  .score-star {
+    font-size: 32px;
+  }
+
+  .rating-info {
+    font-size: 18px;
+  }
+
+  .rating-date {
+    font-size: 16px;
+  }
+
+  .review-product {
+    font-size: 17px;
+  }
+
+  .review-stars {
+    margin-bottom: 25px;
+  }
+
+  .add-review-title {
+    font-size: clamp(34px, 10vw, 48px);
+  }
+
+  .review-note {
+    font-size: 14px;
+  }
+
+  .reviews-count {
+    font-size: 23px;
+  }
+
+  .reviews-submit-wrapper {
+    padding: 25px 15px 45px;
+  }
+}
+
+@media (max-width: 400px) {
+  .creatine-feature-card strong {
+    font-size: 14px;
+  }
+
+  .creatine-feature-card span {
+    font-size: 8px;
+    padding: 14px 1px;
+  }
+
+  .nutrition-feature {
+    min-width: 60px;
+  }
+
+  .nutrition-feature h3 {
+    font-size: 13px;
+  }
+
+  .level-background {
+    height: 150px;
+  }
+
+  .level-marquee-track h1 {
+    margin: 12px;
+    font-size: 4.5rem;
+  }
+
+  .like-span {
+    padding: 8px 10px 7px;
+    font-size: 40px;
+  }
+
+  .strawberry-card {
+    height: 270px;
+  }
+
+  .suggest-image {
+    height: 280px;
+  }
+
+  .rating-row {
+    grid-template-columns: 58px 1fr 24px;
+    gap: 5px;
+  }
+
+  .rating-label,
+  .rating-count {
+    font-size: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .background-image,
+  .level-marquee-track,
+  .flavour-title,
+  .product-description,
+  .creatine-feature-card,
+  .suggest-step {
+    animation: none !important;
+  }
 }
