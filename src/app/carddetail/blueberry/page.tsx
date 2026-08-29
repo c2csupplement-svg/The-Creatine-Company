@@ -1,10 +1,6 @@
 "use client";
 
 import {
-  FaBan,
-  FaCanadianMapleLeaf,
-  FaFlask,
-  FaChevronDown,
   FaStar,
 } from "react-icons/fa";
 import Footer from "@/commonComponents/Footer";
@@ -14,14 +10,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/app/context/languageUseContent";
 import { motion, useAnimation } from "framer-motion";
-
-const ratings = [
-  { stars: 5, count: 42, percentage: 88 },
-  { stars: 4, count: 32, percentage: 67 },
-  { stars: 3, count: 17, percentage: 35 },
-  { stars: 2, count: 4, percentage: 8 },
-  { stars: 1, count: 2, percentage: 4 },
-];
+import { Ban, Leaf, FlaskConical } from "lucide-react";
 
 const products = [
   {
@@ -149,6 +138,7 @@ export default function Page() {
 
   const suggestRef = useRef<HTMLElement>(null);
   const mangoSliderRef = useRef<HTMLDivElement>(null);
+  const sortRef = useRef<HTMLDivElement>(null);
 
   const sortedReviews = [...reviews].sort((a, b) => {
     if (sortBy === "highest") return b.rating - a.rating;
@@ -156,23 +146,32 @@ export default function Page() {
     return b.id - a.id;
   });
 
-  const getSortLabel = () => {
-    if (sortBy === "highest") {
-      if (isArabic) return "الأعلى تقييمًا";
-      if (isFarsi) return "بالاترین امتیاز";
-      return "HIGHEST RATING";
-    }
+  const sortOptions = [
+    {
+      value: "most-recent",
+      label: isArabic ? "الأحدث" : isFarsi ? "جدیدترین" : "MOST RECENT",
+    },
+    {
+      value: "highest",
+      label: isArabic
+        ? "الأعلى تقييمًا"
+        : isFarsi
+          ? "بالاترین امتیاز"
+          : "HIGHEST RATING",
+    },
+    {
+      value: "lowest",
+      label: isArabic
+        ? "الأقل تقييمًا"
+        : isFarsi
+          ? "کمترین امتیاز"
+          : "LOWEST RATING",
+    },
+  ];
 
-    if (sortBy === "lowest") {
-      if (isArabic) return "الأقل تقييمًا";
-      if (isFarsi) return "کمترین امتیاز";
-      return "LOWEST RATING";
-    }
-
-    if (isArabic) return "الأحدث";
-    if (isFarsi) return "جدیدترین";
-    return "MOST RECENT";
-  };
+  const getSortLabel = () =>
+    sortOptions.find((option) => option.value === sortBy)?.label ??
+    sortOptions[0].label;
 
   const handleSort = (value: string) => {
     setSortBy(value);
@@ -212,6 +211,23 @@ export default function Page() {
 
     return () => observer.disconnect();
   }, []);
+
+  // Close the sort dropdown when clicking outside of it
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        sortRef.current &&
+        !sortRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
 
   useEffect(() => {
     const slider = mangoSliderRef.current;
@@ -295,7 +311,6 @@ export default function Page() {
       dir={isRTL ? "rtl" : "ltr"}
       lang={isFarsi ? "fa" : isArabic ? "ar" : "en"}
     >
-      {/* HERO */}
       <div className="relative h-screen min-h-[650px] w-full overflow-hidden bg-[#3155d9] sm:min-h-[700px]">
         <div
           className="absolute inset-0 z-0 h-full w-full overflow-hidden"
@@ -324,7 +339,7 @@ export default function Page() {
 
         <Navbar />
 
-        <section className="relative z-[5] min-h-[650px] h-screen w-full overflow-hidden md:min-h-[700px]">
+        <section className="relative z-[5] h-screen min-h-[650px] w-full overflow-hidden md:min-h-[700px]">
           <motion.div
             initial={{
               opacity: 0,
@@ -334,7 +349,6 @@ export default function Page() {
             animate={{
               opacity: [0, 1, 1, 1],
               x: ["-150%", "0%", "0%", "0%"],
-              // y: ["-50%", "-50%", "-50%", "0%"],
             }}
             transition={{
               duration: 2.8,
@@ -344,7 +358,7 @@ export default function Page() {
             }}
             className="absolute left-[4%] top-1/2 z-[12] -translate-y-1/2"
           >
-            <h1 className="hidden m-0 whitespace-nowrap font-[Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif] font-normal leading-[0.82] tracking-[-2px] text-white sm:block text-[clamp(42px,12vw,72px)] md:text-[clamp(55px,7vw,95px)] lg:text-[clamp(65px,6vw,110px)] xl:text-[clamp(75px,5.7vw,120px)]">
+            <h1 className="m-0 hidden whitespace-nowrap font-[Impact,Haettenschweiler,'Arial_Narrow_Bold',sans-serif] font-normal leading-[0.82] tracking-[-2px] text-white sm:block text-[clamp(42px,12vw,72px)] md:text-[clamp(55px,7vw,95px)] lg:text-[clamp(65px,6vw,110px)] xl:text-[clamp(75px,5.7vw,120px)]">
               {isArabic ? (
                 <>
                   توت أزرق
@@ -376,7 +390,6 @@ export default function Page() {
             animate={{
               opacity: [0, 1, 1, 1],
               x: ["150%", "0%", "0%", "0%"],
-              // y: ["-50%", "-50%"],
             }}
             transition={{
               duration: 2.5,
@@ -384,9 +397,9 @@ export default function Page() {
               times: [0, 0.55, 0.8, 1],
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="absolute right-[5%] top-1/2 z-[12] w-[30%] max-w-[430px] -translate-y-1/2 sm:w-[35%] md:right-[5%] md:w-[34%] lg:right-[7%] lg:w-[30%] xl:right-[8%] xl:w-[28%]"
+            className="absolute right-[5%] top-1/2 z-[12] hidden w-[30%] max-w-[430px] -translate-y-1/2 sm:block md:right-[5%] md:w-[34%] lg:right-[7%] lg:w-[30%] xl:right-[8%] xl:w-[28%]"
           >
-            <p className="hidden sm:block mt-10 w-full font-sans font-normal leading-[1.2] tracking-[0.1px] text-white text-[10px] sm:text-[12px] md:text-[15px] lg:text-[20px] xl:text-[24px]">
+            <p className="mt-10 w-full font-sans text-[10px] font-normal leading-[1.2] tracking-[0.1px] text-white sm:text-[12px] md:text-[15px] lg:text-[20px] xl:text-[24px]">
               {isArabic
                 ? "استمتع بالطعم الغني والمنعش للتوت الأزرق في كل حصة. تركيبة لذيذة وسهلة الشرب مصممة لدعم القوة والأداء والطاقة والتعافي مع كل تمرين."
                 : isFarsi
@@ -429,11 +442,11 @@ export default function Page() {
                 }}
                 className="min-w-0 flex-1 overflow-hidden border border-white bg-white text-center text-[#3155d9] sm:min-h-[90px] md:min-h-[110px] md:border-2 lg:min-h-[130px] lg:w-[12%] lg:flex-none"
               >
-                <strong className="flex min-h-[42px] box-border items-center justify-center px-0.5 py-1 font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(14px,5vw,20px)] font-light leading-[0.9] tracking-[0.5px] whitespace-nowrap sm:text-[22px] md:min-h-[55px] md:text-[28px] lg:min-h-[66px] lg:px-1.5 lg:py-2 lg:text-[clamp(30px,2.1vw,40px)] lg:tracking-[2px]">
+                <strong className="box-border flex min-h-[42px] items-center justify-center whitespace-nowrap px-0.5 py-1 font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(14px,5vw,20px)] font-light leading-[0.9] tracking-[0.5px] sm:text-[22px] md:min-h-[55px] md:text-[28px] lg:min-h-[66px] lg:px-1.5 lg:py-2 lg:text-[clamp(30px,2.1vw,40px)] lg:tracking-[2px]">
                   {item.value}
                 </strong>
 
-                <span className="flex min-h-[38px] box-border items-center justify-center bg-[#3155d9] px-0.5 py-1 font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(7px,2.6vw,10px)] uppercase leading-[0.9] text-white sm:min-h-[42px] md:min-h-[50px] md:text-[15px] lg:min-h-[82px] lg:py-[18px] lg:text-[clamp(18px,1.35vw,25px)]">
+                <span className="box-border flex min-h-[38px] items-center justify-center bg-[#3155d9] px-0.5 py-1 font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(7px,2.6vw,10px)] uppercase leading-[0.9] text-white sm:min-h-[42px] md:min-h-[50px] md:text-[15px] lg:min-h-[82px] lg:py-[18px] lg:text-[clamp(18px,1.35vw,25px)]">
                   {item.label}
                 </span>
               </motion.div>
@@ -442,213 +455,224 @@ export default function Page() {
         </section>
       </div>
 
-      {/* NUTRITION */}
-      ```tsx
-<section className="box-border min-h-0 w-full overflow-hidden bg-[#e5ecff] px-4 py-[45px] sm:px-5 sm:py-[50px] md:px-[5%] md:py-[60px] lg:min-h-[760px] lg:px-[4%] lg:py-[70px]">
-  <div className="mx-auto flex w-full max-w-[1750px] flex-col items-center gap-10 sm:gap-12 md:grid md:grid-cols-2 md:gap-[30px] lg:min-h-[620px] lg:grid-cols-[1.1fr_.62fr_.52fr] lg:gap-0">
+      <section className="box-border min-h-0 w-full overflow-hidden bg-[#f7ecd7] px-4 py-[45px] sm:px-5 sm:py-[50px] md:px-[5%] md:py-[60px] lg:min-h-[760px] lg:px-[4%] lg:py-[70px]">
+        <div className="mx-auto flex w-full max-w-[1750px] flex-col items-center gap-10 sm:gap-12 md:grid md:grid-cols-2 md:gap-[30px] lg:min-h-[620px] lg:grid-cols-[1.1fr_.62fr_.52fr] lg:gap-0">
 
-    {/* CONTENT */}
-    <div className="flex h-auto w-full min-w-0 flex-col items-center justify-center p-0 text-center md:col-span-2 md:items-start md:text-left lg:col-span-1 lg:h-full lg:items-start lg:pr-10 lg:pt-[55px]">
+          <div className="flex h-auto w-full min-w-0 flex-col items-center justify-center p-0 text-center md:col-span-2 md:items-start md:text-left lg:col-span-1 lg:h-full lg:items-start lg:pr-10 lg:pt-[55px]">
+            <div className="relative w-full">
+              <h2 className="m-0 flex flex-col items-center font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(48px,13vw,72px)] font-normal leading-[0.82] tracking-[1px] text-[#3d2413] sm:text-[clamp(52px,10vw,82px)] md:items-start md:text-[clamp(60px,7vw,90px)] lg:text-[clamp(52px,5.5vw,105px)] lg:tracking-[2px]">
+                {isArabic
+                  ? "التغذية"
+                  : isFarsi
+                    ? "تغذیه"
+                    : "NUTRITION &"}
 
-      <div className="relative w-full">
-        <h2 className="m-0 flex flex-col items-center font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(48px,13vw,72px)] font-normal leading-[0.82] tracking-[1px] text-[#172d68] sm:text-[clamp(52px,10vw,82px)] md:items-start md:text-[clamp(60px,7vw,90px)] lg:text-[clamp(52px,5.5vw,105px)] lg:tracking-[2px]">
-          {isArabic
-            ? "التغذية"
-            : isFarsi
-              ? "تغذیه"
-              : "NUTRITION &"}
+                <span className="ml-0 mt-3 inline-block bg-[#2448c8] px-[14px] pb-2 pt-2 font-[Victory_Striker_Sans,Impact,sans-serif] text-[0.82em] text-white -rotate-2 sm:px-[18px] md:ml-[-10px] md:mt-4 md:px-[22px] md:pt-7">
+                  {isArabic
+                    ? "والمكونات"
+                    : isFarsi
+                      ? "و مواد تشکیل‌دهنده"
+                      : "INGREDIENTS"}
+                </span>
+              </h2>
+            </div>
 
-          <span className="ml-0 mt-3 inline-block bg-[#2448c8] px-[14px] pb-2 pt-2 font-[Victory_Striker_Sans,Impact,sans-serif] text-[0.82em] text-white -rotate-2 sm:px-[18px] md:ml-[-10px] md:mt-4 md:px-[22px] md:pt-7">
-            {isArabic
-              ? "والمكونات"
-              : isFarsi
-                ? "و مواد تشکیل‌دهنده"
-                : "INGREDIENTS"}
-          </span>
-        </h2>
-      </div>
+            <div className="mt-6 w-full sm:mt-7 md:mt-[25px]">
+              <p className="m-0 font-mono text-[clamp(10px,2.8vw,14px)] font-normal leading-[1.55] tracking-[0.2px] text-[#3d2413]/80 sm:text-[clamp(11px,2vw,15px)] md:text-[15px] lg:text-[18px]">
+                {isArabic ? (
+                  <>
+                    كل حصة مصممة بعناية لتمنحك
+                    <br />
+                    مكونات عالية الجودة لدعم أدائك.
+                  </>
+                ) : isFarsi ? (
+                  <>
+                    هر وعده با دقت فرموله شده تا
+                    <br />
+                    مواد اولیه باکیفیت برای عملکرد شما فراهم کند.
+                  </>
+                ) : (
+                  <>
+                    Every serving is precisely formulated to deliver
+                    <br className="hidden sm:block" />
+                    high-quality performance ingredients.
+                  </>
+                )}
+              </p>
+            </div>
 
-      {/* DESCRIPTION */}
-      <div className="mt-6 w-full sm:mt-7 md:mt-[25px]">
-        <p className="m-0 font-mono text-[clamp(10px,2.8vw,14px)] font-normal leading-[1.55] tracking-[0.2px] text-[#172d68] sm:text-[clamp(11px,2vw,15px)] md:text-[15px] lg:text-[18px]">
-          {isArabic ? (
-            <>
-              كل حصة مصممة بعناية لتمنحك
-              <br />
-              مكونات عالية الجودة لدعم أدائك.
-            </>
-          ) : isFarsi ? (
-            <>
-              هر وعده با دقت فرموله شده تا
-              <br />
-              مواد اولیه باکیفیت برای عملکرد شما فراهم کند.
-            </>
-          ) : (
-            <>
-              Every serving is precisely formulated to deliver
-              <br className="hidden sm:block" />
-              high-quality performance ingredients.
-            </>
-          )}
-        </p>
-      </div>
+            <div className="mt-10 flex w-full items-start justify-center gap-2 sm:mt-12 sm:gap-4 md:mt-[70px] md:justify-start lg:gap-3">
+              <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#3d2413] sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
+                <Ban
+                  strokeWidth={1.5}
+                  className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-12 lg:w-12"
+                />
+                <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.5vw,14px)] font-normal leading-[0.95] sm:text-[16px] md:text-[18px] lg:text-[26px]">
+                  {isArabic ? "بدون سكر" : isFarsi ? "بدون شکر" : "NO SUGAR"}
+                </h3>
+              </div>
 
-      {/* BENEFITS */}
-      <div className="mt-10 flex w-full items-start justify-center gap-2 sm:mt-12 sm:gap-4 md:mt-[70px] md:justify-start lg:gap-3">
-
-        <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#2448c8] sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
-          <FaBan className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl" />
-
-          <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.5vw,14px)] font-normal leading-[0.95] text-[#172d68] sm:text-[16px] md:text-[18px] lg:text-[30px]">
-            {isArabic
-              ? "بدون سكر"
-              : isFarsi
-                ? "بدون شکر"
-                : "NO SUGAR"}
-          </h3>
-        </div>
-
-        <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#2448c8] sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
-          <FaCanadianMapleLeaf className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl" />
-
-          <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.2vw,14px)] font-normal leading-[0.95] text-[#172d68] sm:text-[15px] md:text-[18px] lg:text-[30px]">
-            {isArabic ? (
-              <>
-                خالٍ من
-                <br />
-                المواد المحظورة
-              </>
-            ) : isFarsi ? (
-              <>
-                بدون مواد
-                <br />
-                ممنوعه
-              </>
-            ) : (
-               <>
+              <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#3d2413] sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
+                <Leaf
+                  strokeWidth={1.5}
+                  className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-12 lg:w-12"
+                />
+                <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.2vw,14px)] font-normal leading-[0.95] sm:text-[15px] md:text-[18px] lg:text-[26px]">
+                  {isArabic ? (
+                    <>
+                      خالٍ من
+                      <br />
+                      المواد المحظورة
+                    </>
+                  ) : isFarsi ? (
+                    <>
+                      بدون مواد
+                      <br />
+                      ممنوعه
+                    </>
+                  ) : (
+                     <>
                       <p className="mb-2">BANNED</p>
                       <p>SUBSTANCE FREE</p>
                     </>
-            )}
-          </h3>
+                  )}
+                </h3>
+              </div>
+
+              <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#3d2413] sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
+                <FlaskConical
+                  strokeWidth={1.5}
+                  className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-12 lg:w-12"
+                />
+                <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.5vw,14px)] font-normal leading-[0.95] sm:text-[16px] md:text-[18px] lg:text-[26px]">
+                  {isArabic
+                    ? "بدون مواد مالئة"
+                    : isFarsi
+                      ? "بدون پرکننده"
+                      : "NO FILLERS"}
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative flex h-auto w-full min-w-0 flex-col md:col-span-1 lg:col-span-1 lg:h-full">
+            <div
+              className="flex w-full max-w-[700px] flex-col gap-4 font-victory"
+              dir="ltr"
+            >
+              <div className="box-border w-full bg-[#4a7cc9] p-1">
+                {[
+                  [
+                    isArabic
+                      ? "كرياتين مونوهيدرات"
+                      : isFarsi
+                        ? "کراتین مونوهیدرات"
+                        : "CREATINE MONOHYDRATE",
+                    isArabic ? "5 غ" : isFarsi ? "۵ گرم" : "5G",
+                  ],
+                  [
+                    isArabic ? "تورين" : isFarsi ? "تائورین" : "TAURINE",
+                    isArabic ? "250 ملغ" : isFarsi ? "۲۵۰ میلی‌گرم" : "250 MG",
+                  ],
+                ].map(([label, value], index) => (
+                  <div
+                    key={`top-${index}`}
+                    className="box-border flex h-[46px] w-full items-center justify-between border-b border-dotted border-white/85 px-2 text-white last:border-b-0 sm:h-[50px] sm:px-2.5 md:h-[54px] md:px-3"
+                  >
+                    <span
+                      className="min-w-0 truncate text-[25px]"
+                      dir={isRTL ? "rtl" : "ltr"}
+                    >
+                      {label}
+                    </span>
+
+                    <strong
+                      className="ml-2 shrink-0 text-[25px]"
+                      dir={isRTL ? "rtl" : "ltr"}
+                    >
+                      {value}
+                    </strong>
+                  </div>
+                ))}
+              </div>
+
+              <div className="box-border w-full bg-[#4a7cc9] p-1">
+                {[
+                  [
+                    isArabic ? "الطاقة" : isFarsi ? "انرژی" : "ENERGY",
+                    isArabic ? "12 سعرة حرارية" : isFarsi ? "۱۲ کیلوکالری" : "12 KCAL",
+                  ],
+                  [
+                    isArabic ? "البروتين" : isFarsi ? "پروتئین" : "PROTEIN",
+                    isArabic ? "3.0 غ" : isFarsi ? "۳.۰ گرم" : "3.0 G",
+                  ],
+                  [
+                    isArabic ? "الكربوهيدرات" : isFarsi ? "کربوهیدرات" : "CARBOHYDRATE",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "إجمالي السكر" : isFarsi ? "قند کل" : "TOTAL SUGAR",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "السكر المضاف" : isFarsi ? "شکر افزوده" : "ADDED SUGAR",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "إجمالي الدهون" : isFarsi ? "چربی کل" : "TOTAL FAT",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "الدهون المشبعة" : isFarsi ? "چربی اشباع" : "SATURATED FAT",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "الدهون المتحولة" : isFarsi ? "چربی ترانس" : "TRANS FAT",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "الكوليسترول" : isFarsi ? "کلسترول" : "CHOLESTEROL",
+                    isArabic ? "0 ملغ" : isFarsi ? "۰ میلی‌گرم" : "0 MG",
+                  ],
+                  [
+                    isArabic ? "الصوديوم" : isFarsi ? "سدیم" : "SODIUM",
+                    isArabic ? "0 ملغ" : isFarsi ? "۰ میلی‌گرم" : "0 MG",
+                  ],
+                ].map(([label, value], index) => (
+                  <div
+                    key={`bottom-${index}`}
+                    className="box-border flex h-[38px] w-full items-center justify-between border-b border-dotted border-white/85 px-2 text-white last:border-b-0 sm:h-[42px] sm:px-2.5 md:h-[46px] md:px-3"
+                  >
+                    <span
+                      className="min-w-0 truncate text-[25px]"
+                      dir={isRTL ? "rtl" : "ltr"}
+                    >
+                      {label}
+                    </span>
+
+                    <strong
+                      className="ml-2 shrink-0 text-[25px]"
+                      dir={isRTL ? "rtl" : "ltr"}
+                    >
+                      {value}
+                    </strong>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative mt-6 flex w-full items-center justify-center md:absolute md:left-[92%] md:top-1/2 md:mt-0 md:w-[220px] md:-translate-y-1/2 md:translate-x-0 md:justify-start lg:left-[90%] lg:w-[260px]">
+              <Image
+                src="/images/tt.png"
+                alt="Creatine Sachet"
+                width={260}
+                height={620}
+                className="h-auto w-[45%] max-w-[210px] object-contain sm:w-[38%] sm:max-w-[250px] md:w-full md:max-w-[220px] lg:max-w-[260px]"
+              />
+            </div>
+          </div>
         </div>
-
-        <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#2448c8] sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
-          <FaFlask className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl" />
-
-          <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.5vw,14px)] font-normal leading-[0.95] text-[#172d68] sm:text-[16px] md:text-[18px] lg:text-[30px]">
-            {isArabic
-              ? "بدون مواد مالئة"
-              : isFarsi
-                ? "بدون پرکننده"
-                : "NO FILLERS"}
-          </h3>
-        </div>
-      </div>
-    </div>
-
-    {/* TABLE */}
-    <div
-      className="relative z-[5] box-border h-fit w-full max-w-[700px] bg-[#3f63d9] p-1 md:col-span-1 lg:col-span-1 font-victory"
-      dir="ltr"
-    >
-      {[
-        [
-          isArabic
-            ? "كرياتين مونوهيدرات"
-            : isFarsi
-              ? "کراتین مونوهیدرات"
-              : "CREATINE MONOHYDRATE",
-          isArabic ? "5 غ" : isFarsi ? "۵ گرم" : "5G",
-        ],
-        [
-          isArabic ? "تورين" : isFarsi ? "تائورین" : "TAURINE",
-          isArabic ? "250 ملغ" : isFarsi ? "۲۵۰ میلی‌گرم" : "250 MG",
-        ],
-        [
-          isArabic ? "الطاقة" : isFarsi ? "انرژی" : "ENERGY",
-          isArabic ? "12 سعرة حرارية" : isFarsi ? "۱۲ کیلوکالری" : "12 KCAL",
-        ],
-        [
-          isArabic ? "البروتين" : isFarsi ? "پروتئین" : "PROTEIN",
-          isArabic ? "3.0 غ" : isFarsi ? "۳.۰ گرم" : "3.0 G",
-        ],
-        [
-          isArabic ? "الكربوهيدرات" : isFarsi ? "کربوهیدرات" : "CARBOHYDRATE",
-          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-        ],
-        [
-          isArabic ? "إجمالي السكر" : isFarsi ? "قند کل" : "TOTAL SUGAR",
-          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-        ],
-        [
-          isArabic ? "السكر المضاف" : isFarsi ? "شکر افزوده" : "ADDED SUGAR",
-          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-        ],
-        [
-          isArabic ? "إجمالي الدهون" : isFarsi ? "چربی کل" : "TOTAL FAT",
-          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-        ],
-        [
-          isArabic ? "الدهون المشبعة" : isFarsi ? "چربی اشباع" : "SATURATED FAT",
-          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-        ],
-        [
-          isArabic ? "الدهون المتحولة" : isFarsi ? "چربی ترانس" : "TRANS FAT",
-          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-        ],
-        [
-          isArabic ? "الكوليسترول" : isFarsi ? "کلسترول" : "CHOLESTEROL",
-          isArabic ? "0 ملغ" : isFarsi ? "۰ میلی‌گرم" : "0 MG",
-        ],
-        [
-          isArabic ? "الصوديوم" : isFarsi ? "سدیم" : "SODIUM",
-          isArabic ? "0 ملغ" : isFarsi ? "۰ میلی‌گرم" : "0 MG",
-        ],
-      ].map(([label, value], index) => (
-        <div
-          key={`${label}-${index}`}
-          className={`box-border flex h-[38px] w-full items-center justify-between border-b border-dotted border-white/85 px-2 text-[10px] text-white sm:h-[42px] sm:px-2.5 sm:text-[11px] md:h-[46px] md:px-3 md:text-[13px] lg:h-[50px] lg:text-[15px] ${
-            index === 0 ? "min-h-[48px] sm:min-h-[52px]" : ""
-          }`}
-        >
-          <span
-            className="min-w-0 truncate text-[25px]"
-            dir={isRTL ? "rtl" : "ltr"}
-          >
-            {label}
-          </span>
-
-          <strong
-            className="ml-2 shrink-0 text-[25px]"
-            dir={isRTL ? "rtl" : "ltr"}
-          >
-            {value}
-          </strong>
-        </div>
-      ))}
-    </div>
-
-    {/* PRODUCT */}
-    <div className="relative z-10 flex h-auto w-full items-center justify-center p-0 md:col-span-1 lg:col-span-1 lg:h-[80%] lg:pl-[86px]">
-      <Image
-        src="/images/tt.png"
-        alt={
-          isArabic
-            ? "كرياتين التوت الأزرق"
-            : isFarsi
-              ? "کراتین بلوبری"
-              : "Blueberry Creatine"
-        }
-        width={200}
-        height={550}
-        className="block h-auto w-[58%] max-w-[210px] object-contain sm:w-[60%] sm:max-w-[230px] md:w-[70%] md:max-w-[280px] lg:w-full lg:max-w-[310px]"
-      />
-    </div>
-
-  </div>
-</section>
-
+      </section>
 
       <section className="relative flex min-h-[220px] w-full items-center overflow-hidden bg-[#F4FBEA]">
         <div
@@ -674,24 +698,17 @@ export default function Page() {
               {isArabic ? (
                 <>
                   ارتقِ بمستواك مع{" "}
-                  <span className="text-[#aebfff]">
-                    الكرياتين
-                  </span>
+                  <span className="text-[#aebfff]">الكرياتين</span>
                 </>
               ) : isFarsi ? (
                 <>
                   سطح خود را با{" "}
-                  <span className="text-[#aebfff]">
-                    کراتین
-                  </span>{" "}
-                  ارتقا دهید
+                  <span className="text-[#aebfff]">کراتین</span> ارتقا دهید
                 </>
               ) : (
                 <>
-                  LEVEL UP WITH {" "}
-                  <p className="text-[#aebfff] ml-5">
-                     CREATINE
-                  </p>
+                  LEVEL UP WITH{" "}
+                  <span className="ml-5 text-[#aebfff]">CREATINE</span>
                 </>
               )}
             </h1>
@@ -703,24 +720,17 @@ export default function Page() {
               {isArabic ? (
                 <>
                   ارتقِ بمستواك مع{" "}
-                  <span className="text-[#aebfff]">
-                    الكرياتين
-                  </span>
+                  <span className="text-[#aebfff]">الكرياتين</span>
                 </>
               ) : isFarsi ? (
                 <>
                   سطح خود را با{" "}
-                  <span className="text-[#aebfff]">
-                    کراتین
-                  </span>{" "}
-                  ارتقا دهید
+                  <span className="text-[#aebfff]">کراتین</span> ارتقا دهید
                 </>
               ) : (
                 <>
                   LEVEL UP WITH{" "}
-                  <span className="text-[#aebfff] ml-5">
-                    CREATINE
-                  </span>
+                  <span className="ml-5 text-[#aebfff]">CREATINE</span>
                 </>
               )}
             </h1>
@@ -728,12 +738,11 @@ export default function Page() {
         </div>
       </section>
 
-      {/* SUGGESTED USE */}
       <section
         ref={suggestRef}
         className="box-border flex w-full flex-col gap-8 overflow-hidden bg-[#f0f4ff] px-4 py-10 md:flex-row md:items-center md:gap-5 md:p-6 lg:gap-0 lg:p-20"
       >
-        <div className="flex w-full min-w-0 box-border flex-col justify-center overflow-visible p-0 max-[400px]:px-0 md:w-[52% md:py-[45px] md:pr-[15px] lg:w-1/2 lg:py-[100px] lg:pr-[50px] lg:pl-[60px]">
+        <div className="box-border flex w-full min-w-0 flex-col justify-center overflow-visible p-0 max-[400px]:px-0 md:w-[52%] md:py-[45px] md:pr-[15px] lg:w-1/2 lg:py-[100px] lg:pr-[50px] lg:pl-[60px]">
           <h2 className="m-0 w-full font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(2.35rem,13vw,3.2rem)] font-normal uppercase leading-[0.9] tracking-[1px] text-[#172d68] md:text-[clamp(2.7rem,6vw,3.8rem)] lg:text-[clamp(3rem,5vw,5rem)]">
             <span className="block">
               {isArabic ? "طريقة" : isFarsi ? "روش" : "HOW TO"}
@@ -772,7 +781,7 @@ export default function Page() {
             className="h-full w-full object-cover"
           />
 
-          <div className="absolute left-0 top-[38%] z-20 flex w-full pointer-events-none flex-col items-center gap-[20px] px-2.5 md:top-[40%] md:gap-[22px] lg:top-[43%] lg:gap-[35px]">
+          <div className="pointer-events-none absolute left-0 top-[38%] z-20 flex w-full flex-col items-center gap-[20px] px-2.5 md:top-[40%] md:gap-[22px] lg:top-[43%] lg:gap-[35px]">
             {[
               isArabic
                 ? "اخلط حصة واحدة مع 250–300 مل من الماء البارد أو مشروبك المفضل."
@@ -813,7 +822,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ALSO LIKE */}
       <section className="box-border flex w-full flex-col items-center gap-6 overflow-hidden bg-[#f0f4ff] px-3 pb-[55px] pt-10 md:grid md:grid-cols-[.8fr_1.2fr] md:gap-[25px] md:px-6 md:pb-[70px] md:pt-[55px] lg:grid-cols-[.8fr_1.2fr] lg:gap-[45px] lg:px-10 lg:pb-[90px] lg:pt-[70px]">
         <div className="relative z-[5] flex w-full items-start justify-start md:justify-start lg:items-center lg:justify-center">
           <h2 className="m-0 font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(40px,5.5vw,90px)] font-normal uppercase leading-[0.82] tracking-[1px] text-[#172d68]">
@@ -897,16 +905,54 @@ export default function Page() {
         </div>
       </section>
 
-      {/* REVIEWS */}
       <section className="relative w-full overflow-visible bg-[#f0f4ff] text-[#172d68]">
-        <div className="flex min-h-[90px] w-full box-border items-center justify-between border-b border-[#b8c7f5] px-[4%] sm:min-h-[115px]">
-          <p className="m-0 font-[Victory_Striker_Sans,Impact,sans-serif] text-[28px] text-[#2448c8]">
+        <div className="box-border flex min-h-[90px] w-full flex-col items-start justify-center gap-3 border-b border-[#b8c7f5] px-[4%] py-4 sm:min-h-[115px] sm:flex-row sm:items-center sm:justify-between sm:py-0">
+          <p className="m-0 font-[Victory_Striker_Sans,Impact,sans-serif] text-[20px] text-[#2448c8] sm:text-[24px] md:text-[28px]">
             {isArabic
               ? "1-10 من أصل 98 تقييمًا"
               : isFarsi
                 ? "۱-۱۰ از ۹۸ نظر"
                 : "1-10 OF 98 REVIEWS"}
           </p>
+
+          <div className="relative w-full sm:w-auto" ref={sortRef}>
+            <button
+              type="button"
+              onClick={() => setIsOpen((prev) => !prev)}
+              aria-expanded={isOpen}
+              className="flex w-full items-center justify-between gap-3 rounded-full border border-[#2448c8] bg-white px-4 py-2.5 font-[Victory_Striker_Sans,Impact,sans-serif] text-[13px] tracking-[0.5px] text-[#2448c8] sm:w-auto sm:text-[15px]"
+            >
+              {getSortLabel()}
+              <span
+                className={`inline-block transition-transform duration-200 ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+                aria-hidden="true"
+              >
+                ▾
+              </span>
+            </button>
+
+            {isOpen && (
+              <ul className="absolute z-20 mt-2 w-full min-w-[200px] overflow-hidden rounded-xl border border-[#dbe3ff] bg-white shadow-[0_10px_30px_rgba(36,72,200,.15)] sm:right-0 sm:w-auto">
+                {sortOptions.map((option) => (
+                  <li key={option.value}>
+                    <button
+                      type="button"
+                      onClick={() => handleSort(option.value)}
+                      className={`block w-full px-4 py-3 text-left font-sans text-[13px] sm:text-[14px] ${
+                        sortBy === option.value
+                          ? "bg-[#f0f4ff] font-semibold text-[#2448c8]"
+                          : "text-[#172d68] hover:bg-[#f0f4ff]"
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
 
         <div
@@ -932,7 +978,7 @@ export default function Page() {
                 <article
                   key={`${review.id}-${index}`}
                   dir={isRTL ? "rtl" : "ltr"}
-                  className="box-border w-[380px] max-[768px]:w-[320px] shrink-0 rounded-[18px] border border-[#dbe3ff] bg-white px-6 py-[22px] shadow-[0_8px_24px_rgba(36,72,200,.08)]"
+                  className="box-border w-[380px] shrink-0 rounded-[18px] border border-[#dbe3ff] bg-white px-6 py-[22px] shadow-[0_8px_24px_rgba(36,72,200,.08)] max-[768px]:w-[320px]"
                 >
                   <div className="w-full">
                     <div className="flex w-full items-start justify-between gap-5">
@@ -961,7 +1007,7 @@ export default function Page() {
                     </div>
 
                     <p className="mt-[18px] font-sans text-[15px] leading-[1.7] text-gray-600">
-                      "{getReviewText(review)}"
+                      &quot;{getReviewText(review)}&quot;
                     </p>
                   </div>
                 </article>
@@ -969,9 +1015,9 @@ export default function Page() {
             )}
           </motion.div>
 
-          <div className="absolute bottom-0 top-0 z-10 left-0 w-[70px] pointer-events-none bg-gradient-to-r from-[#f0f4ff] to-transparent" />
+          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-[70px] bg-gradient-to-r from-[#f0f4ff] to-transparent" />
 
-          <div className="absolute bottom-0 top-0 z-10 right-0 w-[70px] pointer-events-none bg-gradient-to-l from-[#f0f4ff] to-transparent" />
+          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-[70px] bg-gradient-to-l from-[#f0f4ff] to-transparent" />
         </div>
       </section>
 
