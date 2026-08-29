@@ -81,7 +81,8 @@ export default function FeaturedPost() {
         >
           <h2
             className={`
-              ${anton.className}
+              font-tungsten
+              font-extrabold
               m-0
               max-w-full
               text-[#82572b]
@@ -92,13 +93,13 @@ export default function FeaturedPost() {
 
               sm:text-[4rem]
 
-              md:text-[3.8rem]
+              md:text-[3rem]
 
-              lg:text-[4.6rem]
+              lg:text-[4rem]
 
-              xl:text-[5.5rem]
+              xl:text-[5rem]
 
-              2xl:text-[8rem]
+              2xl:text-[6rem]
             `}
           >
             {content.titleOne}

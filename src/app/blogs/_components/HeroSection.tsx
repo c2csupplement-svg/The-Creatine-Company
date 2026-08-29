@@ -46,7 +46,7 @@ function HeroCopy() {
       className={isRTL ? "text-right" : "text-left"}
     >
       <h1
-        className={`${anton.className} m-0 text-[3.75rem] leading-[0.9] tracking-wide sm:text-[4.5rem] lg:text-[6rem] ${
+        className={`font-victory m-0 text-[3.75rem] leading-[0.9] tracking-wide sm:text-[4.5rem] lg:text-[6rem] ${
           language === "en" ? "uppercase" : ""
         }`}
       >
@@ -54,12 +54,12 @@ function HeroCopy() {
       </h1>
 
       <div
-        className={`mt-3 inline-block bg-[#a87847] px-4 py-1 sm:px-6 sm:py-2 ${
+        className={`mt-2 inline-block bg-[#a87847] px-4 py-2 sm:px-6 sm:py-3 ${
           isRTL ? "rotate-[2deg]" : "rotate-[-2deg]"
         }`}
       >
         <span
-          className={`${anton.className} block text-[2.25rem] leading-none text-[#fdf1da] sm:text-[3rem] lg:text-[3.75rem] ${
+          className={`font-victory block text-[2.25rem] leading-none text-[#fdf1da] sm:text-[3rem] lg:text-[3.75rem] ${
             language === "en" ? "uppercase" : ""
           }`}
         >
@@ -68,7 +68,7 @@ function HeroCopy() {
       </div>
 
       <p
-        className={`${mono.className} mt-6 max-w-[28rem] text-sm leading-relaxed text-white/85 lg:text-base`}
+        className={`font-sf mt-6 max-w-[28rem] text-sm leading-relaxed text-white/85 lg:text-base`}
       >
         {content.description}
       </p>

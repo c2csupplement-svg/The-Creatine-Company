@@ -140,7 +140,7 @@ export default function NavigationMenu({
           />
         )}
 
-        <div className="absolute inset-0 bg-[#502300]/90" />
+        <div className="absolute inset-0 bg-[#502300]" />
         <div className="absolute inset-0 bg-black/10" />
 
         <div className="relative z-10 flex h-full w-full items-center justify-center px-5">

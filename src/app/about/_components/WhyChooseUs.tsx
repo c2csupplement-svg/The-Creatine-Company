@@ -66,15 +66,15 @@ export default function WhyChooseUs() {
     >
       <div className="mx-auto w-full max-w-5xl text-center min-[1280px]:max-w-[56rem] min-[1440px]:max-w-[60rem] min-[1600px]:max-w-[64rem] min-[1920px]:max-w-6xl">
         <h2
-          className={`${anton.className} m-0 text-[#502300] uppercase leading-[0.95] tracking-[-0.04em] text-[clamp(2.5rem,11vw,3.5rem)] min-[376px]:text-[clamp(2.6rem,10vw,3.7rem)] sm:text-[3.2rem] md:text-[clamp(3rem,7vw,4rem)] lg:text-[clamp(3.5rem,5vw,4.5rem)] 
-          xl:text-[clamp(4rem,5vw,5.5rem)] 2xl:text-[clamp(5rem,5vw,6.5rem)] min-[1600px]:text-[clamp(5.5rem,5vw,7rem)] min-[1920px]:text-[7rem] mb-4`}
+          className={`font-victory text-[#502300] uppercase leading-[0.95] tracking-[-0.04em] text-[clamp(2.5rem,11vw,3.5rem)] min-[376px]:text-[clamp(2.6rem,10vw,3.7rem)] sm:text-[3.2rem] md:text-[clamp(3rem,7vw,4rem)] lg:text-[clamp(3.5rem,5vw,4.5rem)] 
+          xl:text-[clamp(4rem,5vw,5.5rem)] 2xl:text-[clamp(5rem,5vw,6.5rem)] min-[1600px]:text-[clamp(5.5rem,5vw,7rem)] min-[1920px]:text-[7rem] ${language === "fa"?"mb-5":"mb-1"}`}
         >
           {content.why}
         </h2>
 
-        <div className="mx-auto -mt-1 inline-block max-w-full rotate-[-2deg] bg-[#a87847] px-4 py-1 text-white min-[376px]:px-5 sm:px-7 sm:py-1.5 md:px-8 lg:px-10 xl:px-12 2xl:px-14 min-[1600px]:px-16 min-[1920px]:px-18">
+        <div className="mx-auto inline-block max-w-full rotate-[-2deg] bg-[#a87847] px-4 py-2 text-white min-[376px]:px-5 sm:px-7 sm:py-2 md:px-8 lg:px-10 xl:px-12 2xl:px-14 min-[1600px]:px-16 min-[1920px]:px-18">
           <h2
-            className={`${anton.className} m-0 text-[clamp(2.2rem,9vw,3.5rem)] uppercase leading-[0.95] tracking-[-0.02em] text-white min-[376px]:text-[clamp(2.3rem,8.5vw,3.7rem)] sm:text-[3.2rem] md:text-[clamp(3rem,6vw,4rem)] lg:text-[clamp(3.5rem,5vw,4.8rem)] xl:text-[clamp(4rem,4.5vw,5rem)] 2xl:text-[5rem] min-[1600px]:text-[5.2rem] min-[1920px]:text-[5.5rem]`}
+            className={`font-victory mt-3 text-[clamp(2.2rem,9vw,3.5rem)] uppercase leading-[0.95] tracking-[-0.02em] text-white min-[376px]:text-[clamp(2.3rem,8.5vw,3.7rem)] sm:text-[3.2rem] md:text-[clamp(3rem,6vw,4rem)] lg:text-[clamp(3.5rem,5vw,4.8rem)] xl:text-[clamp(4rem,4.5vw,5rem)] 2xl:text-[5rem] min-[1600px]:text-[5.2rem] min-[1920px]:text-[5.5rem]`}
           >
             {content.choose}
           </h2>

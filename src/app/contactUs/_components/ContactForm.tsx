@@ -109,7 +109,7 @@ export default function ContactForm() {
   }
 
   const fieldClassName = `
-    ${mono.className}
+    font-sf
     w-full
     min-w-0
     box-border

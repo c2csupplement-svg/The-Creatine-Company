@@ -1,8 +1,13 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
 import { anton } from "./fonts";
 
 const MARQUEE_ITEMS = new Array(10).fill("THECREATINECO");
 
 export default function Marquee() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div
       className="
@@ -11,19 +16,17 @@ export default function Marquee() {
         py-20
       "
     >
-      <div
-        className="
-          flex
-          w-max
-          animate-[marquee_30s_linear_infinite]
-          motion-reduce:animate-none
-        "
+      <motion.div
+        className="flex w-max"
+        animate={shouldReduceMotion ? undefined : { x: ["0%", "-50%"] }}
+        transition={{
+          duration: 30,
+          ease: "linear",
+          repeat: Infinity,
+        }}
       >
         {[0, 1].map((dupe) => (
-          <div
-            key={dupe}
-            className="flex shrink-0"
-          >
+          <div key={dupe} className="flex shrink-0">
             {MARQUEE_ITEMS.map((label, i) => (
               <span
                 key={`${dupe}-${i}`}
@@ -48,7 +51,7 @@ export default function Marquee() {
             ))}
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -197,7 +197,7 @@ export default function FlavoursSection() {
             href="/carddetail/blueberry"
             className="group mt-10 inline-block"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-amber-500 hover:to-amber-600 hover:shadow-xl active:translate-y-0">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#502300] px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-amber-500 hover:to-amber-600 hover:shadow-xl active:translate-y-0">
               {isRtl && (
                 <span className="transition-transform duration-300 group-hover:-translate-x-1">
                   ←
@@ -214,8 +214,6 @@ export default function FlavoursSection() {
             </span>
           </Link>
         </div>
-
-        {/* SLIDER */}
 
         <div
           className="w-full min-w-0 overflow-hidden"
@@ -259,8 +257,6 @@ export default function FlavoursSection() {
               );
             })}
           </div>
-
-          {/* CONTROLS */}
 
           <div className="flex w-full items-center justify-end gap-1.5 pr-2.5 pt-1 min-[375px]:gap-2 min-[375px]:pr-5 min-[480px]:pr-[30px] sm:gap-2 sm:pt-2 sm:pr-[50px] md:gap-2.5 md:pr-[70px] lg:pr-[100px] xl:pr-[130px] min-[1440px]:pr-[150px] min-[1920px]:pr-[180px]">
             <button

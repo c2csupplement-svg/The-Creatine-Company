@@ -57,17 +57,14 @@ export default function PerformanceSachets() {
             className={`${anton.className} m-0 uppercase leading-[0.83] tracking-[-0.02em] text-[clamp(2.8rem,12vw,4rem)] max-[374px]:text-[clamp(2.6rem,12vw,3.8rem)] 
             min-[375px]:text-[clamp(3rem,12vw,4.4rem)] min-[480px]:text-[clamp(3.2rem,10vw,4.8rem)] 
             sm:text-[clamp(2.8rem,6vw,4.2rem)] md:text-[clamp(3rem,5.5vw,4.8rem)] lg:text-[clamp(3.5rem,5vw,5rem)] xl:text-[clamp(4rem,5vw,5.8rem)] 
-            min-[1440px]:text-[clamp(5rem,5vw,6rem)] min-[1920px]:text-[6.5rem] ${language !== "en"?"pb-2":"pb-0"}`}
+            min-[1440px]:text-[clamp(5rem,5vw,6rem)] min-[1920px]:text-[6.5rem] ${language !== "en" ? "pb-2" : "pb-0"}`}
           >
             {content.title}
           </h2>
 
-          <div className="mt-1 inline-block max-w-full bg-[#a87847] px-2 py-1 rotate-[-1.5deg] max-[374px]:mt-1 max-[374px]:px-2 max-[374px]:py-1 min-[375px]:px-2.5 min-[375px]:py-1 min-[480px]:px-3 min-[480px]:py-1.5 sm:px-4 sm:py-2 md:py-2.5 min-[1440px]:px-4 min-[1440px]:py-2.5 min-[1920px]:px-5 min-[1920px]:py-3">
+          <div className="mt-1 inline-block max-w-full rotate-[-1.5deg] bg-[#a87847] px-2 py-1 max-[374px]:mt-1 max-[374px]:px-2 max-[374px]:py-1 min-[375px]:px-2.5 min-[375px]:py-1 min-[480px]:px-3 min-[480px]:py-1.5 sm:px-4 sm:py-2 md:py-2.5 min-[1440px]:px-4 min-[1440px]:py-2.5 min-[1920px]:px-5 min-[1920px]:py-3">
             <span
-              className={`${anton.className} block break-words uppercase leading-[0.82] text-[clamp(1.7rem,8.5vw,2.7rem)] 
-              max-[374px]:text-[clamp(1.6rem,8vw,2.4rem)] min-[375px]:text-[clamp(1.9rem,8.5vw,3.2rem)] 
-              min-[480px]:text-[clamp(2.4rem,8vw,3.8rem)] sm:text-[clamp(2.2rem,4.8vw,3.6rem)] md:text-[clamp(2.2rem,4.5vw,3.8rem)] 
-              lg:text-[clamp(2.8rem,4vw,4rem)] xl:text-[clamp(3rem,4vw,4.6rem)] min-[1440px]:text-[clamp(3.5rem,4vw,4.8rem)] min-[1920px]:text-[5rem]`}
+              className={`${anton.className} block whitespace-nowrap uppercase leading-[0.82] text-[clamp(1.3rem,6vw,2.7rem)] max-[374px]:text-[clamp(1.2rem,6vw,2.4rem)] min-[375px]:text-[clamp(1.4rem,6vw,3.2rem)] min-[480px]:text-[clamp(1.8rem,6vw,3.8rem)] sm:text-[clamp(2rem,4.8vw,3.6rem)] md:text-[clamp(2.2rem,4.5vw,3.8rem)] lg:text-[clamp(2.8rem,4vw,4rem)] xl:text-[clamp(3rem,4vw,4.6rem)] min-[1440px]:text-[clamp(3.5rem,4vw,4.8rem)] min-[1920px]:text-[5rem]`}
             >
               {content.highlight}
             </span>

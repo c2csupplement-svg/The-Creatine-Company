@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import NavigationMenu from "@/commonComponents/NavigationMenu";
 import { useLanguage } from "@/app/context/languageUseContent";
-import { mono } from "@/commonComponents/fonts";
 import Navbar from "@/commonComponents/Navbar";
 
 const HERO_SLIDES = {
@@ -67,11 +64,7 @@ const TITLE_LINES = {
   fa: ["درباره کراتین", "شرکت"],
 };
 
-function HeroSlides({
-  activeIndex,
-}: {
-  activeIndex: number;
-}) {
+function HeroSlides({ activeIndex }: { activeIndex: number }) {
   const { language, isRTL } = useLanguage();
 
   const slides = HERO_SLIDES[language];
@@ -79,36 +72,123 @@ function HeroSlides({
   return (
     <div
       dir={isRTL ? "rtl" : "ltr"}
-      className="relative mx-auto h-[175px] w-full max-w-full overflow-visible px-3 min-[376px]:h-[190px] min-[481px]:h-[200px] min-[481px]:px-4 sm:px-5 md:h-[220px] md:max-w-[44rem] md:px-4 lg:h-[230px] lg:max-w-[50rem] xl:h-[245px] xl:max-w-[54rem] 2xl:h-[260px] 2xl:max-w-[58rem] min-[1600px]:h-[270px] min-[1600px]:max-w-[60rem] min-[1920px]:h-[280px] min-[1920px]:max-w-[64rem]"
+      className="
+        relative mx-auto
+        h-[190px]
+        w-full
+        max-w-[95%]
+        overflow-hidden
+        sm:h-[200px]
+        md:h-[220px]
+        lg:h-[240px]
+        xl:h-[260px]
+        2xl:h-[280px]
+      "
     >
       {slides.map((slide, index) => {
         const isActive = index === activeIndex;
-        const isPrevious = index < activeIndex;
+
+        const isPrevious =
+          index ===
+          (activeIndex - 1 + slides.length) % slides.length;
 
         return (
           <div
             key={`${language}-${index}`}
-            className={`absolute inset-x-0 bottom-0 flex min-h-full items-center justify-center px-2 text-center transition-[transform,opacity] ease-[cubic-bezier(0.76,0,0.24,1)] ${isActive
-                ? "translate-y-0 opacity-100 duration-700"
+            className={`
+              absolute inset-0
+              flex
+              items-center
+              justify-center
+              px-3
+              text-center
+
+              transition-all
+              duration-700
+              ease-[cubic-bezier(0.22,1,0.36,1)]
+
+              ${isActive
+                ? "z-20 translate-y-0 opacity-100"
                 : isPrevious
-                  ? "-translate-y-full opacity-0 duration-[1200ms]"
-                  : "translate-y-full opacity-0 duration-700"
-              }`}
+                  ? "z-10 -translate-y-full opacity-0"
+                  : "z-0 translate-y-full opacity-0"
+              }
+            `}
           >
             {slide.type === "title" ? (
               <h1
-                className={`m-0 max-w-4xl font-['Victory_Striker_Sans_Demo'] text-[clamp(1.75rem,9vw,2.4rem)] font-normal leading-[0.95] tracking-[-0.015em] text-white underline decoration-2 underline-offset-[5px] min-[376px]:text-[clamp(2rem,9vw,2.8rem)] min-[481px]:text-[clamp(2.2rem,8vw,3.5rem)] min-[481px]:underline-offset-[6px] md:text-[clamp(2.8rem,5.5vw,4rem)] lg:text-[clamp(3rem,4.8vw,4rem)] xl:text-[clamp(3.4rem,4.5vw,4.5rem)] 2xl:text-[clamp(3.8rem,4.5vw,4.8rem)] min-[1600px]:text-[clamp(4rem,4.3vw,5.4rem)] min-[1920px]:text-[clamp(4.5rem,4.2vw,6rem)] ${language === "en" ? "uppercase" : ""
-                  }`}
+                className={`
+                  m-0
+                  max-w-[95%]
+                  font-victory
+                  font-normal
+                  text-[clamp(1.9rem,7vw,6rem)]
+                  leading-[1.15]
+                  sm:leading-[1.1]
+                  md:leading-[1]
+                  lg:leading-[0.92]
+                  tracking-[-0.02em]
+                  text-white
+                  flex
+                  flex-col
+                  gap-2
+
+                  ${language === "en" ? "uppercase" : ""}
+                `}
               >
-                {TITLE_LINES[language][0]}
-                <br />
-                {TITLE_LINES[language][1]}
+                <span
+                  className="
+                    block
+                    underline
+                    decoration-2
+                    underline-offset-[6px]
+                    pb-1
+                    sm:pb-1.5
+                    md:pb-2
+                  "
+                >
+                  {TITLE_LINES[language][0]}
+                </span>
+                <span
+                  className="
+                    block
+                    underline
+                    decoration-2
+                    underline-offset-[6px]
+                    md:mt-5
+                  "
+                >
+                  {TITLE_LINES[language][1]}
+                </span>
               </h1>
             ) : (
               <p
-                className={`${mono.className} m-0 w-full max-w-[30rem] text-[0.72rem] font-normal leading-[1.35] text-white min-[376px]:text-[0.75rem] min-[481px]:max-w-[34rem] min-[481px]:text-[clamp(0.8rem,2.4vw,1rem)] min-[481px]:leading-[1.4] md:max-w-[38rem] md:text-[clamp(0.85rem,1.8vw,1.1rem)] md:leading-[1.45] lg:max-w-[42rem] lg:text-[clamp(0.9rem,1.55vw,1.15rem)] xl:max-w-[44rem] xl:text-[clamp(0.95rem,1.45vw,1.25rem)] 2xl:max-w-[48rem] min-[1600px]:max-w-[50rem] min-[1600px]:text-[clamp(1rem,1.4vw,1.4rem)] min-[1920px]:max-w-[52rem] min-[1920px]:text-[clamp(1.15rem,1.35vw,1.5rem)]`}
+                className="
+    m-0
+    w-full
+    max-w-[95%]
+    sm:max-w-[90%]
+    md:max-w-[42rem]
+    lg:max-w-[50rem]
+    xl:max-w-[58rem]
+
+    font-tungsten
+    font-semibold
+    text-white
+
+    text-[clamp(1.25rem,5vw,6rem)]
+    sm:text-[clamp(1.5rem,4vw,7rem)]
+    md:text-[clamp(1.5rem,1vw,4rem)]
+    lg:text-[clamp(2rem,2vw,6rem)]
+
+    leading-[1.35]
+    sm:leading-[1.4]
+    md:leading-[1.45]
+
+    tracking-[0.01em]
+  "
               >
-                {slide.content}
+                {slide.content.toUpperCase()}
               </p>
             )}
           </div>
@@ -120,35 +200,95 @@ function HeroSlides({
 
 export default function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [languageStatus, setLanguageStatus] = useState(false);
 
-  const { language, setLanguage, isRTL } = useLanguage();
+  const { language, isRTL } = useLanguage();
 
   useEffect(() => {
-    const firstTimer = window.setTimeout(() => {
-      setActiveIndex(1);
-    }, 2000);
+    const handleScroll = () => {
+      const section = document.getElementById("about-hero");
 
-    const secondTimer = window.setTimeout(() => {
-      setActiveIndex(2);
-    }, 4000);
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+
+      const sectionHeight = section.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      const scrollDistance = sectionHeight - viewportHeight;
+
+      if (scrollDistance <= 0) return;
+
+      const scrolled = Math.max(
+        0,
+        Math.min(-rect.top, scrollDistance)
+      );
+
+      const progress = scrolled / scrollDistance;
+
+      const slideCount = HERO_SLIDES[language].length;
+
+      let newIndex = Math.floor(progress * slideCount);
+
+      if (newIndex >= slideCount) {
+        newIndex = slideCount - 1;
+      }
+
+      setActiveIndex(newIndex);
+    };
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    handleScroll();
 
     return () => {
-      window.clearTimeout(firstTimer);
-      window.clearTimeout(secondTimer);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [language]);
+
 
   useEffect(() => {
-    setLanguageStatus(false);
+    setActiveIndex(0);
   }, [language]);
 
   return (
     <section
+      id="about-hero"
       dir={isRTL ? "rtl" : "ltr"}
-      className="relative h-[220vh] w-full max-w-full overflow-clip min-[376px]:h-[220vh] min-[481px]:h-[230vh] md:h-[240vh] lg:h-[250vh] xl:h-[260vh] min-[1200px]:h-[260vh]"
+      className="
+        relative
+        h-[220vh]
+        w-full
+        max-w-full
+        overflow-clip
+
+        min-[376px]:h-[220vh]
+        min-[481px]:h-[230vh]
+
+        md:h-[240vh]
+        lg:h-[250vh]
+        xl:h-[260vh]
+        min-[1200px]:h-[260vh]
+      "
     >
-      <div className="sticky top-0 h-screen min-h-[460px] w-full overflow-hidden bg-[#0b1a2b] min-[376px]:min-h-[480px] min-[481px]:min-h-[500px] md:min-h-[550px] lg:min-h-[600px]">
+      <div
+        className="
+          sticky
+          top-0
+          h-screen
+          min-h-[460px]
+          w-full
+          overflow-hidden
+          bg-[#0b1a2b]
+
+          min-[376px]:min-h-[480px]
+          min-[481px]:min-h-[500px]
+
+          md:min-h-[550px]
+          lg:min-h-[600px]
+        "
+      >
         <Image
           src="/images/hero-bg.jpg"
           alt="Athlete holding a Creatine + Taurine sachet outdoors"
@@ -160,9 +300,25 @@ export default function HeroSection() {
 
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
-        <Navbar/>
+        <Navbar />
 
-        <div className="absolute inset-x-0 bottom-2 z-20 w-full min-[376px]:bottom-2 min-[481px]:bottom-4 sm:bottom-5 md:bottom-6 lg:bottom-7 xl:bottom-8 2xl:bottom-9 min-[1600px]:bottom-9 min-[1920px]:bottom-10">
+        <div
+          className="
+            absolute
+            inset-x-0
+            bottom-2
+            z-20
+            w-full
+
+            min-[376px]:bottom-2
+            min-[481px]:bottom-4
+            sm:bottom-5
+            md:bottom-6
+            lg:bottom-7
+            xl:bottom-8
+            2xl:bottom-9
+          "
+        >
           <HeroSlides activeIndex={activeIndex} />
         </div>
       </div>

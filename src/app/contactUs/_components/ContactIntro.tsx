@@ -52,13 +52,13 @@ export default function ContactIntro() {
       </h1>
 
       <p
-        className={`${mono.className} mt-6 max-w-md text-[clamp(0.8rem,1.2vw,1.2rem)] font-semibold italic leading-[1.5] text-white`}
+        className={`font-sf  mt-6 max-w-md text-[clamp(0.8rem,1.2vw,1.2rem)] leading-[1.5] text-white`}
       >
         {content.description}
       </p>
 
       <p
-        className={`${mono.className} mt-4 max-w-md text-[clamp(0.8rem,1.1vw,1.1rem)] font-semibold italic leading-[1.5] text-white`}
+        className={`font-sf mt-4 max-w-md text-[clamp(0.8rem,1.1vw,1.1rem)] leading-[1.5] text-white`}
       >
         {content.emailText}{" "}
         <br />
