@@ -8,6 +8,9 @@ import {
   IconYoutube,
 } from "../app/about/_components/icons";
 import { useLanguage } from "@/app/context/languageUseContent";
+import { useState } from "react";
+import { welcomeEmail } from "@/apiservice/contactApi";
+import {toast} from "sonner"
 
 const CONTENT = {
   en: {
@@ -52,6 +55,22 @@ const CONTENT = {
 
 export default function Footer() {
   const { language, isRTL } = useLanguage();
+  const [email, setEmail] = useState("");
+
+
+  const handleWelcomeApi = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await welcomeEmail({ email });
+
+      toast.success(response.message)
+      setEmail("");
+    }
+    catch (err: unknown) {
+      toast.error("Failed to send request")
+      console.error(err)
+    }
+  }
 
   const content = CONTENT[language];
 
@@ -392,6 +411,7 @@ export default function Footer() {
             </p>
 
             <form
+              onSubmit={handleWelcomeApi}
               className="
                 mt-4
                 flex
@@ -405,6 +425,8 @@ export default function Footer() {
             >
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder={content.email}
                 dir="ltr"

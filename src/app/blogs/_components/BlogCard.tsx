@@ -27,7 +27,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           className={`${anton.className} mt-4 inline-flex items-center gap-2 rounded-full bg-[#82572b] px-3 py-1.5 text-xs leading-tight tracking-wide text-white`}
         >
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
-          {post.category}
+          {post.categoryName}
         </span>
 
         <h3

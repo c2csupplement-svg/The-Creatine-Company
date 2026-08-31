@@ -212,7 +212,7 @@ export default function Page() {
     return () => observer.disconnect();
   }, []);
 
-  // Close the sort dropdown when clicking outside of it
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -458,7 +458,12 @@ export default function Page() {
       <section className="box-border min-h-0 w-full overflow-hidden bg-[#f7ecd7] px-4 py-[45px] sm:px-5 sm:py-[50px] md:px-[5%] md:py-[60px] lg:min-h-[760px] lg:px-[4%] lg:py-[70px]">
         <div className="mx-auto flex w-full max-w-[1750px] flex-col items-center gap-10 sm:gap-12 md:grid md:grid-cols-2 md:gap-[30px] lg:min-h-[620px] lg:grid-cols-[1.1fr_.62fr_.52fr] lg:gap-0">
 
-          <div className="flex h-auto w-full min-w-0 flex-col items-center justify-center p-0 text-center md:col-span-2 md:items-start md:text-left lg:col-span-1 lg:h-full lg:items-start lg:pr-10 lg:pt-[55px]">
+          <div
+            className={`flex h-auto w-full min-w-0 flex-col items-center justify-center p-0 text-center md:col-span-2 lg:col-span-1 lg:h-full lg:pt-[55px] ${isRTL
+                ? "md:items-end md:text-right lg:items-end lg:pl-10"
+                : "md:items-start md:text-left lg:items-start lg:pr-10"
+              }`}
+          >
             <div className="relative w-full">
               <h2 className="m-0 flex flex-col items-center font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(48px,13vw,72px)] font-normal leading-[0.82] tracking-[1px] text-[#3d2413] sm:text-[clamp(52px,10vw,82px)] md:items-start md:text-[clamp(60px,7vw,90px)] lg:text-[clamp(52px,5.5vw,105px)] lg:tracking-[2px]">
                 {isArabic
@@ -531,7 +536,7 @@ export default function Page() {
                       ممنوعه
                     </>
                   ) : (
-                     <>
+                    <>
                       <p className="mb-2">BANNED</p>
                       <p>SUBSTANCE FREE</p>
                     </>
@@ -661,7 +666,12 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="relative mt-6 flex w-full items-center justify-center md:absolute md:left-[92%] md:top-1/2 md:mt-0 md:w-[220px] md:-translate-y-1/2 md:translate-x-0 md:justify-start lg:left-[90%] lg:w-[260px]">
+            <div
+              className={`relative mt-6 flex w-full items-center justify-center md:absolute md:top-1/2 md:mt-0 md:w-[220px] md:-translate-y-1/2 md:translate-x-0 lg:w-[260px] ${isRTL
+                  ? "md:right-[92%] md:justify-end lg:right-[90%]"
+                  : "md:left-[92%] md:justify-start lg:left-[90%]"
+                }`}
+            >
               <Image
                 src="/images/tt.png"
                 alt="Creatine Sachet"
@@ -674,13 +684,16 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="relative flex min-h-[220px] w-full items-center overflow-hidden bg-[#F4FBEA]">
+      <section className="relative flex w-full items-center overflow-hidden bg-[#F4FBEA] py-8 md:py-12 lg:py-16">
         <div
           className="absolute inset-0 z-[1] h-full w-full bg-[#2448c8] [clip-path:polygon(0%_0%,50%_8%,100%_0%,100%_100%,0%_100%)]"
           dir="ltr"
         />
 
-        <div className="relative z-[2] w-full overflow-hidden whitespace-nowrap py-[35px]">
+        <div
+          className="relative z-[2] w-full overflow-hidden whitespace-nowrap py-[35px]"
+          dir="ltr"
+        >
           <motion.div
             className="flex w-max shrink-0"
             animate={{
@@ -694,28 +707,9 @@ export default function Page() {
               },
             }}
           >
-            <h1 className="m-0 mt-6 flex shrink-0 items-center whitespace-nowrap pr-[60px] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1.09] tracking-[1px] text-white">
-              {isArabic ? (
-                <>
-                  ارتقِ بمستواك مع{" "}
-                  <span className="text-[#aebfff]">الكرياتين</span>
-                </>
-              ) : isFarsi ? (
-                <>
-                  سطح خود را با{" "}
-                  <span className="text-[#aebfff]">کراتین</span> ارتقا دهید
-                </>
-              ) : (
-                <>
-                  LEVEL UP WITH{" "}
-                  <span className="ml-5 text-[#aebfff]">CREATINE</span>
-                </>
-              )}
-            </h1>
-
             <h1
-              aria-hidden="true"
-              className="m-0 mt-6 flex shrink-0 items-center whitespace-nowrap pr-[60px] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1.09] tracking-[1px] text-white"
+              dir={isRTL ? "rtl" : "ltr"}
+              className="m-0 flex shrink-0 items-center whitespace-nowrap pr-[clamp(60px,8vw,160px)] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1] tracking-[1px] text-white"
             >
               {isArabic ? (
                 <>
@@ -724,13 +718,34 @@ export default function Page() {
                 </>
               ) : isFarsi ? (
                 <>
-                  سطح خود را با{" "}
-                  <span className="text-[#aebfff]">کراتین</span> ارتقا دهید
+                  سطح خود را با <span className="text-[#aebfff]">کراتین</span> ارتقا
+                  دهید
                 </>
               ) : (
                 <>
-                  LEVEL UP WITH{" "}
-                  <span className="ml-5 text-[#aebfff]">CREATINE</span>
+                  LEVEL UP WITH <span className="ml-5 text-[#aebfff]">CREATINE</span>
+                </>
+              )}
+            </h1>
+
+            <h1
+              aria-hidden="true"
+              dir={isRTL ? "rtl" : "ltr"}
+              className="m-0 flex shrink-0 items-center whitespace-nowrap pr-[clamp(60px,8vw,160px)] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1] tracking-[1px] text-white"
+            >
+              {isArabic ? (
+                <>
+                  ارتقِ بمستواك مع{" "}
+                  <span className="text-[#aebfff]">الكرياتين</span>
+                </>
+              ) : isFarsi ? (
+                <>
+                  سطح خود را با <span className="text-[#aebfff]">کراتین</span> ارتقا
+                  دهید
+                </>
+              ) : (
+                <>
+                  LEVEL UP WITH <span className="ml-5 text-[#aebfff]">CREATINE</span>
                 </>
               )}
             </h1>
@@ -809,11 +824,10 @@ export default function Page() {
                   duration: 0.7,
                   delay: 0.3 + index * 1.2,
                 }}
-                className={`w-auto max-w-[82%] rounded-lg bg-[#3f63d9] px-3 py-2 font-mono text-[10px] uppercase leading-[1.4] text-white md:w-[72%] md:max-w-[300px] md:text-[10px] lg:w-[65%] lg:max-w-[420px] lg:px-[18px] lg:py-3 lg:text-[13px] ${
-                  index === 1
+                className={`w-auto max-w-[82%] rounded-lg bg-[#3f63d9] px-3 py-2 font-mono text-[10px] uppercase leading-[1.4] text-white md:w-[72%] md:max-w-[300px] md:text-[10px] lg:w-[65%] lg:max-w-[420px] lg:px-[18px] lg:py-3 lg:text-[13px] ${index === 1
                     ? "ml-3 md:ml-5 lg:ml-[42px]"
                     : "ml-0"
-                }`}
+                  }`}
               >
                 <p className="m-0">{text}</p>
               </motion.div>
@@ -924,9 +938,8 @@ export default function Page() {
             >
               {getSortLabel()}
               <span
-                className={`inline-block transition-transform duration-200 ${
-                  isOpen ? "rotate-180" : ""
-                }`}
+                className={`inline-block transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                  }`}
                 aria-hidden="true"
               >
                 ▾
@@ -940,11 +953,10 @@ export default function Page() {
                     <button
                       type="button"
                       onClick={() => handleSort(option.value)}
-                      className={`block w-full px-4 py-3 text-left font-sans text-[13px] sm:text-[14px] ${
-                        sortBy === option.value
+                      className={`block w-full px-4 py-3 text-left font-sans text-[13px] sm:text-[14px] ${sortBy === option.value
                           ? "bg-[#f0f4ff] font-semibold text-[#2448c8]"
                           : "text-[#172d68] hover:bg-[#f0f4ff]"
-                      }`}
+                        }`}
                     >
                       {option.label}
                     </button>
@@ -996,11 +1008,10 @@ export default function Page() {
                         {[1, 2, 3, 4, 5].map((star) => (
                           <FaStar
                             key={star}
-                            className={`text-[15px] ${
-                              star <= review.rating
+                            className={`text-[15px] ${star <= review.rating
                                 ? "text-[#3155d9]"
                                 : "text-[#d1d5db]"
-                            }`}
+                              }`}
                           />
                         ))}
                       </div>

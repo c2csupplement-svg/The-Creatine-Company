@@ -458,7 +458,13 @@ export default function Page() {
       <section className="box-border min-h-0 w-full overflow-hidden bg-[#EAF6D7] px-4 py-[45px] sm:px-5 sm:py-[50px] md:px-[5%] md:py-[60px] lg:min-h-[760px] lg:px-[4%] lg:py-[70px]">
         <div className="mx-auto flex w-full max-w-[1750px] flex-col items-center gap-10 sm:gap-12 md:grid md:grid-cols-2 md:gap-[30px] lg:min-h-[620px] lg:grid-cols-[1.1fr_.62fr_.52fr] lg:gap-0">
 
-          <div className="flex h-auto w-full min-w-0 flex-col items-center justify-center p-0 text-center md:col-span-2 md:items-start md:text-left lg:col-span-1 lg:h-full lg:items-start lg:pr-10 lg:pt-[55px]">
+          <div
+  className={`flex h-auto w-full min-w-0 flex-col items-center justify-center p-0 text-center md:col-span-2 lg:col-span-1 lg:h-full lg:pt-[55px] ${
+    isRTL
+      ? "md:items-end md:text-right lg:items-end lg:pl-10"
+      : "md:items-start md:text-left lg:items-start lg:pr-10"
+  }`}
+>
             <div className="relative w-full">
               <h2 className="m-0 flex flex-col items-center font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(48px,13vw,72px)] font-normal leading-[0.82] tracking-[1px] text-[#29420F] sm:text-[clamp(52px,10vw,82px)] md:items-start md:text-[clamp(60px,7vw,90px)] lg:text-[clamp(52px,5.5vw,105px)] lg:tracking-[2px]">
                 {isArabic
@@ -661,17 +667,13 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Fixed: was mixing `relative`+`absolute` and `flex`+`block` on one
-                element, which meant the effective positioning was undefined.
-                Also fixed a follow-up bug: an `absolute` element never
-                contributes to its parent's height, so on mobile the image was
-                being pushed outside the section's bounds and clipped by that
-                section's `overflow-hidden`. Now it stays in normal document
-                flow (visible, and sized into the layout) on mobile, and only
-                switches to absolute/overlapping positioning at md+, where
-                there's enough side space for it to overlap the nutrition
-                table as intended. */}
-            <div className="relative mt-6 flex w-full items-center justify-center md:absolute md:left-[92%] md:top-1/2 md:mt-0 md:w-[220px] md:-translate-y-1/2 md:translate-x-0 md:justify-start lg:left-[90%] lg:w-[260px]">
+            <div
+              className={`relative mt-6 flex w-full items-center justify-center md:absolute md:top-1/2 md:mt-0 md:w-[220px] md:-translate-y-1/2 md:translate-x-0 lg:w-[260px] ${
+                isRTL
+                  ? "md:right-[92%] md:justify-end lg:right-[90%]"
+                  : "md:left-[92%] md:justify-start lg:left-[90%]"
+              }`}
+            >
               <Image
                 src="/images/tt.png"
                 alt="Creatine Sachet"
@@ -684,69 +686,74 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="relative flex min-h-[220px] w-full items-center overflow-hidden bg-[#F4FBEA]">
-        <div
-          className="absolute inset-0 z-[1] h-full w-full bg-[#5F9F18] [clip-path:polygon(0%_0%,50%_8%,100%_0%,100%_100%,0%_100%)]"
-          dir="ltr"
-        />
-
-        <div className="relative z-[2] w-full overflow-hidden whitespace-nowrap py-[35px]">
-          <motion.div
-            className="flex w-max shrink-0"
-            animate={{
-              x: ["0%", "-50%"],
-            }}
-            transition={{
-              x: {
-                duration: 25,
-                ease: "linear",
-                repeat: Infinity,
-              },
-            }}
-          >
-            <h1 className="m-0 mt-6 flex shrink-0 items-center whitespace-nowrap pr-[60px] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1.09] tracking-[1px] text-white">
-              {isArabic ? (
-                <>
-                  ارتقِ بمستواك مع{" "}
-                  <span className="text-[#B7E36B]">الكرياتين</span>
-                </>
-              ) : isFarsi ? (
-                <>
-                  سطح خود را با{" "}
-                  <span className="text-[#B7E36B]">کراتین</span> ارتقا دهید
-                </>
-              ) : (
-                <>
-                  LEVEL UP WITH{" "}
-                  <span className="ml-5 text-[#B7E36B]">CREATINE</span>
-                </>
-              )}
-            </h1>
-
-            <h1
-              aria-hidden="true"
-              className="m-0 mt-6 flex shrink-0 items-center whitespace-nowrap pr-[60px] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1.09] tracking-[1px] text-white"
-            >
-              {isArabic ? (
-                <>
-                  ارتقِ بمستواك مع{" "}
-                  <span className="text-[#B7E36B]">الكرياتين</span>
-                </>
-              ) : isFarsi ? (
-                <>
-                  سطح خود را با{" "}
-                  <span className="text-[#B7E36B]">کراتین</span> ارتقا دهید
-                </>
-              ) : (
-                <>
-                  LEVEL UP WITH{" "}
-                  <span className="ml-5 text-[#B7E36B]">CREATINE</span>
-                </>
-              )}
-            </h1>
-          </motion.div>
-        </div>
-      </section>
+      <section className="relative flex w-full items-center overflow-hidden bg-[#F4FBEA] py-8 md:py-12 lg:py-16">
+              <div
+                className="absolute inset-0 z-[1] h-full w-full bg-[#5F9F18] [clip-path:polygon(0%_0%,50%_8%,100%_0%,100%_100%,0%_100%)]"
+                dir="ltr"
+              />
+      
+              <div
+                className="relative z-[2] w-full overflow-hidden whitespace-nowrap py-[35px]"
+                dir="ltr"
+              >
+                <motion.div
+                  className="flex w-max shrink-0"
+                  animate={{
+                    x: ["0%", "-50%"],
+                  }}
+                  transition={{
+                    x: {
+                      duration: 25,
+                      ease: "linear",
+                      repeat: Infinity,
+                    },
+                  }}
+                >
+                  <h1
+                    dir={isRTL ? "rtl" : "ltr"}
+                    className="m-0 flex shrink-0 items-center whitespace-nowrap pr-[clamp(60px,8vw,160px)] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1] tracking-[1px] text-white"
+                  >
+                    {isArabic ? (
+                      <>
+                        ارتقِ بمستواك مع{" "}
+                        <span className="text-[#B7E36B]">الكرياتين</span>
+                      </>
+                    ) : isFarsi ? (
+                      <>
+                        سطح خود را با <span className="text-[#B7E36B]">کراتین</span> ارتقا
+                        دهید
+                      </>
+                    ) : (
+                      <>
+                        LEVEL UP WITH <span className="ml-5 text-[#B7E36B]">CREATINE</span>
+                      </>
+                    )}
+                  </h1>
+      
+                  <h1
+                    aria-hidden="true"
+                    dir={isRTL ? "rtl" : "ltr"}
+                    className="m-0 flex shrink-0 items-center whitespace-nowrap pr-[clamp(60px,8vw,160px)] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1] tracking-[1px] text-white"
+                  >
+                    {isArabic ? (
+                      <>
+                        ارتقِ بمستواك مع{" "}
+                        <span className="text-[#B7E36B]">الكرياتين</span>
+                      </>
+                    ) : isFarsi ? (
+                      <>
+                        سطح خود را با <span className="text-[#B7E36B]">کراتین</span> ارتقا
+                        دهید
+                      </>
+                    ) : (
+                      <>
+                        LEVEL UP WITH <span className="ml-5 text-[#B7E36B]">CREATINE</span>
+                      </>
+                    )}
+                  </h1>
+                </motion.div>
+              </div>
+            </section>
 
       <section
         ref={suggestRef}
