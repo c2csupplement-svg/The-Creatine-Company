@@ -24,7 +24,7 @@ export const FA_CATEGORIES = [
 
 export type BlogPost = {
   slug: string;
-  category: string;
+  categoryName: string;
   title: string;
   description: string;
   image: string;
@@ -34,7 +34,7 @@ export type BlogPost = {
 export const POSTS: BlogPost[] = [
   {
     slug: "build-strength-power-every-rep-1",
-    category: "MUSCLE & STRENGTH",
+    categoryName: "MUSCLE & STRENGTH",
     title: "BUILD STRENGTH. POWER EVERY REP.",
     description:
       "Discover smarter fitness insights on creatine, strength, performance, recovery, and muscle growth. Learn how creatine can support your training goals.",
@@ -52,7 +52,7 @@ Whether your goal is strength, muscle growth, or better training performance, cr
 
   {
     slug: "build-strength-power-every-rep-2",
-    category: "MUSCLE & STRENGTH",
+    categoryName: "MUSCLE & STRENGTH",
     title: "BUILD STRENGTH. POWER EVERY REP.",
     description:
       "Discover smarter fitness insights on creatine, strength, performance, recovery, and muscle growth. Learn how creatine can support your training goals.",
@@ -68,7 +68,7 @@ Combined with structured training, adequate nutrition, and recovery, creatine ca
 
   {
     slug: "build-strength-power-every-rep-3",
-    category: "MUSCLE & STRENGTH",
+    categoryName: "MUSCLE & STRENGTH",
     title: "BUILD STRENGTH. POWER EVERY REP.",
     description:
       "Discover smarter fitness insights on creatine, strength, performance, recovery, and muscle growth. Learn how creatine can support your training goals.",
@@ -84,7 +84,7 @@ A consistent approach can help you focus on what matters most: training well and
 
   {
     slug: "build-strength-power-every-rep-4",
-    category: "MUSCLE & STRENGTH",
+    categoryName: "MUSCLE & STRENGTH",
     title: "BUILD STRENGTH. POWER EVERY REP.",
     description:
       "Discover smarter fitness insights on creatine, strength, performance, recovery, and muscle growth. Learn how creatine can support your training goals.",
@@ -98,7 +98,7 @@ Regular daily intake helps maintain creatine availability in your muscles, makin
 
   {
     slug: "build-strength-power-every-rep-5",
-    category: "MUSCLE & STRENGTH",
+    categoryName: "MUSCLE & STRENGTH",
     title: "BUILD STRENGTH. POWER EVERY REP.",
     description:
       "Discover smarter fitness insights on creatine, strength, performance, recovery, and muscle growth. Learn how creatine can support your training goals.",
@@ -114,7 +114,7 @@ Keep your approach simple: train consistently, eat appropriately, recover well, 
 
   {
     slug: "build-strength-power-every-rep-6",
-    category: "MUSCLE & STRENGTH",
+    categoryName: "MUSCLE & STRENGTH",
     title: "BUILD STRENGTH. POWER EVERY REP.",
     description:
       "Discover smarter fitness insights on creatine, strength, performance, recovery, and muscle growth. Learn how creatine can support your training goals.",
@@ -132,7 +132,7 @@ The goal is simple: make your daily routine easier to follow and keep working to
 export const AR_POSTS: BlogPost[] = [
   {
     slug: "build-strength-power-every-rep-1",
-    category: "العضلات والقوة",
+    categoryName: "العضلات والقوة",
     title: "ابنِ قوتك. أطلق العنان لقوة كل تكرار.",
     description:
       "اكتشف معلومات ذكية ومفيدة عن اللياقة البدنية، والكرياتين، والقوة، والأداء، والتعافي، ونمو العضلات. تعرّف على كيفية دعم الكرياتين لأهدافك التدريبية.",
@@ -150,7 +150,7 @@ export const AR_POSTS: BlogPost[] = [
 
   {
     slug: "build-strength-power-every-rep-2",
-    category: "العضلات والقوة",
+    categoryName: "العضلات والقوة",
     title: "ابنِ قوتك. أطلق العنان لقوة كل تكرار.",
     description:
       "اكتشف معلومات ذكية ومفيدة عن اللياقة البدنية، والكرياتين، والقوة، والأداء، والتعافي، ونمو العضلات. تعرّف على كيفية دعم الكرياتين لأهدافك التدريبية.",
@@ -166,7 +166,7 @@ export const AR_POSTS: BlogPost[] = [
 
   {
     slug: "build-strength-power-every-rep-3",
-    category: "العضلات والقوة",
+    categoryName: "العضلات والقوة",
     title: "ابنِ قوتك. أطلق العنان لقوة كل تكرار.",
     description:
       "اكتشف معلومات ذكية ومفيدة عن اللياقة البدنية، والكرياتين، والقوة، والأداء، والتعافي، ونمو العضلات. تعرّف على كيفية دعم الكرياتين لأهدافك التدريبية.",
@@ -182,7 +182,7 @@ export const AR_POSTS: BlogPost[] = [
 
   {
     slug: "build-strength-power-every-rep-4",
-    category: "العضلات والقوة",
+    categoryName: "العضلات والقوة",
     title: "ابنِ قوتك. أطلق العنان لقوة كل تكرار.",
     description:
       "اكتشف معلومات ذكية ومفيدة عن اللياقة البدنية، والكرياتين، والقوة، والأداء، والتعافي، ونمو العضلات. تعرّف على كيفية دعم الكرياتين لأهدافك التدريبية.",
@@ -196,7 +196,7 @@ export const AR_POSTS: BlogPost[] = [
 
   {
     slug: "build-strength-power-every-rep-5",
-    category: "العضلات والقوة",
+    categoryName: "العضلات والقوة",
     title: "ابنِ قوتك. أطلق العنان لقوة كل تكرار.",
     description:
       "اكتشف معلومات ذكية ومفيدة عن اللياقة البدنية، والكرياتين، والقوة، والأداء، والتعافي، ونمو العضلات. تعرّف على كيفية دعم الكرياتين لأهدافك التدريبية.",
@@ -212,7 +212,7 @@ export const AR_POSTS: BlogPost[] = [
 
   {
     slug: "build-strength-power-every-rep-6",
-    category: "العضلات والقوة",
+    categoryName: "العضلات والقوة",
     title: "ابنِ قوتك. أطلق العنان لقوة كل تكرار.",
     description:
       "اكتشف معلومات ذكية ومفيدة عن اللياقة البدنية، والكرياتين، والقوة، والأداء، والتعافي، ونمو العضلات. تعرّف على كيفية دعم الكرياتين لأهدافك التدريبية.",
@@ -230,7 +230,7 @@ export const AR_POSTS: BlogPost[] = [
 export const FA_POSTS: BlogPost[] = [
   {
     slug: "build-strength-power-every-rep-1",
-    category: "عضله و قدرت",
+    categoryName: "عضله و قدرت",
     title: "قدرت بساز. هر تکرار را قدرتمندتر کن.",
     description:
       "با مطالب کاربردی درباره تناسب اندام، کراتین، قدرت، عملکرد، ریکاوری و رشد عضلات آشنا شوید. یاد بگیرید که کراتین چگونه می‌تواند از اهداف تمرینی شما پشتیبانی کند.",
@@ -248,7 +248,7 @@ export const FA_POSTS: BlogPost[] = [
 
   {
     slug: "build-strength-power-every-rep-2",
-    category: "عضله و قدرت",
+    categoryName: "عضله و قدرت",
     title: "قدرت بساز. هر تکرار را قدرتمندتر کن.",
     description:
       "با مطالب کاربردی درباره تناسب اندام، کراتین، قدرت، عملکرد، ریکاوری و رشد عضلات آشنا شوید. یاد بگیرید که کراتین چگونه می‌تواند از اهداف تمرینی شما پشتیبانی کند.",
@@ -264,7 +264,7 @@ export const FA_POSTS: BlogPost[] = [
 
   {
     slug: "build-strength-power-every-rep-3",
-    category: "عضله و قدرت",
+    categoryName: "عضله و قدرت",
     title: "قدرت بساز. هر تکرار را قدرتمندتر کن.",
     description:
       "با مطالب کاربردی درباره تناسب اندام، کراتین، قدرت، عملکرد، ریکاوری و رشد عضلات آشنا شوید. یاد بگیرید که کراتین چگونه می‌تواند از اهداف تمرینی شما پشتیبانی کند.",
@@ -280,7 +280,7 @@ export const FA_POSTS: BlogPost[] = [
 
   {
     slug: "build-strength-power-every-rep-4",
-    category: "عضله و قدرت",
+    categoryName: "عضله و قدرت",
     title: "قدرت بساز. هر تکرار را قدرتمندتر کن.",
     description:
       "با مطالب کاربردی درباره تناسب اندام، کراتین، قدرت، عملکرد، ریکاوری و رشد عضلات آشنا شوید. یاد بگیرید که کراتین چگونه می‌تواند از اهداف تمرینی شما پشتیبانی کند.",
@@ -294,7 +294,7 @@ export const FA_POSTS: BlogPost[] = [
 
   {
     slug: "build-strength-power-every-rep-5",
-    category: "عضله و قدرت",
+    categoryName: "عضله و قدرت",
     title: "قدرت بساز. هر تکرار را قدرتمندتر کن.",
     description:
       "با مطالب کاربردی درباره تناسب اندام، کراتین، قدرت، عملکرد، ریکاوری و رشد عضلات آشنا شوید. یاد بگیرید که کراتین چگونه می‌تواند از اهداف تمرینی شما پشتیبانی کند.",
@@ -310,7 +310,7 @@ export const FA_POSTS: BlogPost[] = [
 
   {
     slug: "build-strength-power-every-rep-6",
-    category: "عضله و قدرت",
+    categoryName: "عضله و قدرت",
     title: "قدرت بساز. هر تکرار را قدرتمندتر کن.",
     description:
       "با مطالب کاربردی درباره تناسب اندام، کراتین، قدرت، عملکرد، ریکاوری و رشد عضلات آشنا شوید. یاد بگیرید که کراتین چگونه می‌تواند از اهداف تمرینی شما پشتیبانی کند.",

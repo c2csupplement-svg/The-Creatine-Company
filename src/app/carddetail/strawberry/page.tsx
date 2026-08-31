@@ -450,303 +450,304 @@ export default function Page() {
         </section>
       </div>
 
-<section className="box-border min-h-0 w-full overflow-hidden bg-[#ffe1eb] px-4 py-[45px] sm:px-5 sm:py-[50px] md:px-[5%] md:py-[60px] lg:min-h-[760px] lg:px-[4%] lg:py-[70px]">
-              <div className="mx-auto flex w-full max-w-[1750px] flex-col items-center gap-10 sm:gap-12 md:grid md:grid-cols-2 md:gap-[30px] lg:min-h-[620px] lg:grid-cols-[1.1fr_.62fr_.52fr] lg:gap-0">
-      
-                <div className="flex h-auto w-full min-w-0 flex-col items-center justify-center p-0 text-center md:col-span-2 md:items-start md:text-left lg:col-span-1 lg:h-full lg:items-start lg:pr-10 lg:pt-[55px]">
-                  <div className="relative w-full">
-                    <h2 className="m-0 flex flex-col items-center font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(48px,13vw,72px)] font-normal leading-[0.82] tracking-[1px] text-[#3d2413] sm:text-[clamp(52px,10vw,82px)] md:items-start md:text-[clamp(60px,7vw,90px)] lg:text-[clamp(52px,5.5vw,105px)] lg:tracking-[2px]">
-                      {isArabic
-                        ? "التغذية"
-                        : isFarsi
-                          ? "تغذیه"
-                          : "NUTRITION &"}
-      
-                      <span className="ml-0 mt-3 inline-block bg-[#d81b60] px-[14px] pb-2 pt-2 font-[Victory_Striker_Sans,Impact,sans-serif] text-[0.82em] text-white -rotate-2 sm:px-[18px] md:ml-[-10px] md:mt-4 md:px-[22px] md:pt-7">
-                        {isArabic
-                          ? "والمكونات"
-                          : isFarsi
-                            ? "و مواد تشکیل‌دهنده"
-                            : "INGREDIENTS"}
-                      </span>
-                    </h2>
-                  </div>
-      
-                  <div className="mt-6 w-full sm:mt-7 md:mt-[25px]">
-                    <p className="m-0 font-mono text-[clamp(10px,2.8vw,14px)] font-normal leading-[1.55] tracking-[0.2px] text-[#7a1835] sm:text-[clamp(11px,2vw,15px)] md:text-[15px] lg:text-[18px]">
-                      {isArabic ? (
-                        <>
-                          كل حصة مصممة بعناية لتمنحك
-                          <br />
-                          مكونات عالية الجودة لدعم أدائك.
-                        </>
-                      ) : isFarsi ? (
-                        <>
-                          هر وعده با دقت فرموله شده تا
-                          <br />
-                          مواد اولیه باکیفیت برای عملکرد شما فراهم کند.
-                        </>
-                      ) : (
-                        <>
-                          Every serving is precisely formulated to deliver
-                          <br className="hidden sm:block" />
-                          high-quality performance ingredients.
-                        </>
-                      )}
-                    </p>
-                  </div>
-      
-                  <div className="mt-10 flex w-full items-start justify-center gap-2 sm:mt-12 sm:gap-4 md:mt-[70px] md:justify-start lg:gap-3">
-                    <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#d81b60] sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
-                      <Ban
-                        strokeWidth={1.5}
-                        className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-12 lg:w-12"
-                      />
-                      <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.5vw,14px)] font-normal leading-[0.95] sm:text-[16px] md:text-[18px] lg:text-[26px]">
-                        {isArabic ? "بدون سكر" : isFarsi ? "بدون شکر" : "NO SUGAR"}
-                      </h3>
-                    </div>
-      
-                    <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#d81b60] sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
-                      <Leaf
-                        strokeWidth={1.5}
-                        className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-12 lg:w-12"
-                      />
-                      <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.2vw,14px)] font-normal leading-[0.95] sm:text-[15px] md:text-[18px] lg:text-[26px]">
-                        {isArabic ? (
-                          <>
-                            خالٍ من
-                            <br />
-                            المواد المحظورة
-                          </>
-                        ) : isFarsi ? (
-                          <>
-                            بدون مواد
-                            <br />
-                            ممنوعه
-                          </>
-                        ) : (
-                           <>
-                            <p className="mb-2">BANNED</p>
-                            <p>SUBSTANCE FREE</p>
-                          </>
-                        )}
-                      </h3>
-                    </div>
-      
-                    <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#d81b60]  sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
-                      <FlaskConical
-                        strokeWidth={1.5}
-                        className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-12 lg:w-12"
-                      />
-                      <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.5vw,14px)] font-normal leading-[0.95] sm:text-[16px] md:text-[18px] lg:text-[26px]">
-                        {isArabic
-                          ? "بدون مواد مالئة"
-                          : isFarsi
-                            ? "بدون پرکننده"
-                            : "NO FILLERS"}
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-      
-                <div className="relative flex h-auto w-full min-w-0 flex-col md:col-span-1 lg:col-span-1 lg:h-full">
-                  <div
-                    className="flex w-full max-w-[700px] flex-col gap-4 font-victory"
-                    dir="ltr"
-                  >
-                    <div className="box-border w-full bg-[#ec407a] p-1">
-                      {[
-                        [
-                          isArabic
-                            ? "كرياتين مونوهيدرات"
-                            : isFarsi
-                              ? "کراتین مونوهیدرات"
-                              : "CREATINE MONOHYDRATE",
-                          isArabic ? "5 غ" : isFarsi ? "۵ گرم" : "5G",
-                        ],
-                        [
-                          isArabic ? "تورين" : isFarsi ? "تائورین" : "TAURINE",
-                          isArabic ? "250 ملغ" : isFarsi ? "۲۵۰ میلی‌گرم" : "250 MG",
-                        ],
-                      ].map(([label, value], index) => (
-                        <div
-                          key={`top-${index}`}
-                          className="box-border flex h-[46px] w-full items-center justify-between border-b border-dotted border-white/85 px-2 text-white last:border-b-0 sm:h-[50px] sm:px-2.5 md:h-[54px] md:px-3 "
-                        >
-                          <span
-                            className="min-w-0 truncate text-[25px]"
-                            dir={isRTL ? "rtl" : "ltr"}
-                          >
-                            {label}
-                          </span>
-      
-                          <strong
-                            className="ml-2 shrink-0 text-[25px]"
-                            dir={isRTL ? "rtl" : "ltr"}
-                          >
-                            {value}
-                          </strong>
-                        </div>
-                      ))}
-                    </div>
-      
-                    <div className="box-border w-full bg-[#ec407a] p-1">
-                      {[
-                        [
-                          isArabic ? "الطاقة" : isFarsi ? "انرژی" : "ENERGY",
-                          isArabic ? "12 سعرة حرارية" : isFarsi ? "۱۲ کیلوکالری" : "12 KCAL",
-                        ],
-                        [
-                          isArabic ? "البروتين" : isFarsi ? "پروتئین" : "PROTEIN",
-                          isArabic ? "3.0 غ" : isFarsi ? "۳.۰ گرم" : "3.0 G",
-                        ],
-                        [
-                          isArabic ? "الكربوهيدرات" : isFarsi ? "کربوهیدرات" : "CARBOHYDRATE",
-                          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-                        ],
-                        [
-                          isArabic ? "إجمالي السكر" : isFarsi ? "قند کل" : "TOTAL SUGAR",
-                          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-                        ],
-                        [
-                          isArabic ? "السكر المضاف" : isFarsi ? "شکر افزوده" : "ADDED SUGAR",
-                          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-                        ],
-                        [
-                          isArabic ? "إجمالي الدهون" : isFarsi ? "چربی کل" : "TOTAL FAT",
-                          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-                        ],
-                        [
-                          isArabic ? "الدهون المشبعة" : isFarsi ? "چربی اشباع" : "SATURATED FAT",
-                          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-                        ],
-                        [
-                          isArabic ? "الدهون المتحولة" : isFarsi ? "چربی ترانس" : "TRANS FAT",
-                          isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
-                        ],
-                        [
-                          isArabic ? "الكوليسترول" : isFarsi ? "کلسترول" : "CHOLESTEROL",
-                          isArabic ? "0 ملغ" : isFarsi ? "۰ میلی‌گرم" : "0 MG",
-                        ],
-                        [
-                          isArabic ? "الصوديوم" : isFarsi ? "سدیم" : "SODIUM",
-                          isArabic ? "0 ملغ" : isFarsi ? "۰ میلی‌گرم" : "0 MG",
-                        ],
-                      ].map(([label, value], index) => (
-                        <div
-                          key={`bottom-${index}`}
-                          className="box-border flex h-[38px] w-full items-center justify-between border-b border-dotted border-white/85 px-2 text-white last:border-b-0 sm:h-[42px] sm:px-2.5 md:h-[46px] md:px-3"
-                        >
-                          <span
-                            className="min-w-0 truncate text-[25px]"
-                            dir={isRTL ? "rtl" : "ltr"}
-                          >
-                            {label}
-                          </span>
-      
-                          <strong
-                            className="ml-2 shrink-0 text-[25px]"
-                            dir={isRTL ? "rtl" : "ltr"}
-                          >
-                            {value}
-                          </strong>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-      
-                  <div className="relative mt-6 flex w-full items-center justify-center md:absolute md:left-[92%] md:top-1/2 md:mt-0 md:w-[220px] md:-translate-y-1/2 md:translate-x-0 md:justify-start lg:left-[90%] lg:w-[260px]">
-                    <Image
-                      src="/images/tt.png"
-                      alt="Creatine Sachet"
-                      width={260}
-                      height={620}
-                      className="h-auto w-[45%] max-w-[210px] object-contain sm:w-[38%] sm:max-w-[250px] md:w-full md:max-w-[220px] lg:max-w-[260px]"
-                    />
-                  </div>
-                </div>
-              </div>
-            </section>
+      <section className="box-border min-h-0 w-full overflow-hidden bg-[#ffe1eb] px-4 py-[45px] sm:px-5 sm:py-[50px] md:px-[5%] md:py-[60px] lg:min-h-[760px] lg:px-[4%] lg:py-[70px]">
+        <div className="mx-auto flex w-full max-w-[1750px] flex-col items-center gap-10 sm:gap-12 md:grid md:grid-cols-2 md:gap-[30px] lg:min-h-[620px] lg:grid-cols-[1.1fr_.62fr_.52fr] lg:gap-0">
 
-
-      <section className="relative flex min-h-[220px] w-full items-center overflow-hidden bg-[#F4FBEA]">
-        <div
-          className="absolute inset-0 z-[1] h-full w-full bg-[#d81b60] [clip-path:polygon(0%_0%,50%_8%,100%_0%,100%_100%,0%_100%)]"
-          dir="ltr"
-        />
-
-        <div className="relative z-[2] w-full overflow-hidden whitespace-nowrap py-[35px]">
-          <motion.div
-            className="flex w-max shrink-0"
-            animate={{
-              x: ["0%", "-50%"],
-            }}
-            transition={{
-              x: {
-                duration: 25,
-                ease: "linear",
-                repeat: Infinity,
-              },
-            }}
+          <div
+            className={`flex h-auto w-full min-w-0 flex-col items-center justify-center p-0 text-center md:col-span-2 lg:col-span-1 lg:h-full lg:pt-[55px] ${isRTL
+                ? "md:items-end md:text-right lg:items-end lg:pl-10"
+                : "md:items-start md:text-left lg:items-start lg:pr-10"
+              }`}
           >
-            <h1 className="m-0 mt-6 flex shrink-0 items-center whitespace-nowrap pr-[60px] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1.09] tracking-[1px] text-white">
-              {isArabic ? (
-                <>
-                  ارتقِ بمستواك مع{" "}
-                  <span className="text-[#ffb6d2]">
-                    الكرياتين
-                  </span>
-                </>
-              ) : isFarsi ? (
-                <>
-                  سطح خود را با{" "}
-                  <span className="text-[#ffb6d2]">
-                    کراتین
-                  </span>{" "}
-                  ارتقا دهید
-                </>
-              ) : (
-                <>
-                  LEVEL UP WITH {" "}
-                  <p className="text-[#ffb6d2] ml-5">
-                     CREATINE
-                  </p>
-                </>
-              )}
-            </h1>
+            <div className="relative w-full">
+              <h2 className="m-0 flex flex-col items-center font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(48px,13vw,72px)] font-normal leading-[0.82] tracking-[1px] text-[#3d2413] sm:text-[clamp(52px,10vw,82px)] md:items-start md:text-[clamp(60px,7vw,90px)] lg:text-[clamp(52px,5.5vw,105px)] lg:tracking-[2px]">
+                {isArabic
+                  ? "التغذية"
+                  : isFarsi
+                    ? "تغذیه"
+                    : "NUTRITION &"}
 
-            <h1
-              aria-hidden="true"
-              className="m-0 mt-6 flex shrink-0 items-center whitespace-nowrap pr-[60px] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1.09] tracking-[1px] text-white"
+                <span className="ml-0 mt-3 inline-block bg-[#d81b60] px-[14px] pb-2 pt-2 font-[Victory_Striker_Sans,Impact,sans-serif] text-[0.82em] text-white -rotate-2 sm:px-[18px] md:ml-[-10px] md:mt-4 md:px-[22px] md:pt-7">
+                  {isArabic
+                    ? "والمكونات"
+                    : isFarsi
+                      ? "و مواد تشکیل‌دهنده"
+                      : "INGREDIENTS"}
+                </span>
+              </h2>
+            </div>
+
+            <div className="mt-6 w-full sm:mt-7 md:mt-[25px]">
+              <p className="m-0 font-mono text-[clamp(10px,2.8vw,14px)] font-normal leading-[1.55] tracking-[0.2px] text-[#7a1835] sm:text-[clamp(11px,2vw,15px)] md:text-[15px] lg:text-[18px]">
+                {isArabic ? (
+                  <>
+                    كل حصة مصممة بعناية لتمنحك
+                    <br />
+                    مكونات عالية الجودة لدعم أدائك.
+                  </>
+                ) : isFarsi ? (
+                  <>
+                    هر وعده با دقت فرموله شده تا
+                    <br />
+                    مواد اولیه باکیفیت برای عملکرد شما فراهم کند.
+                  </>
+                ) : (
+                  <>
+                    Every serving is precisely formulated to deliver
+                    <br className="hidden sm:block" />
+                    high-quality performance ingredients.
+                  </>
+                )}
+              </p>
+            </div>
+
+            <div className="mt-10 flex w-full items-start justify-center gap-2 sm:mt-12 sm:gap-4 md:mt-[70px] md:justify-start lg:gap-3">
+              <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#d81b60] sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
+                <Ban
+                  strokeWidth={1.5}
+                  className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-12 lg:w-12"
+                />
+                <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.5vw,14px)] font-normal leading-[0.95] sm:text-[16px] md:text-[18px] lg:text-[26px]">
+                  {isArabic ? "بدون سكر" : isFarsi ? "بدون شکر" : "NO SUGAR"}
+                </h3>
+              </div>
+
+              <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#d81b60] sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
+                <Leaf
+                  strokeWidth={1.5}
+                  className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-12 lg:w-12"
+                />
+                <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.2vw,14px)] font-normal leading-[0.95] sm:text-[15px] md:text-[18px] lg:text-[26px]">
+                  {isArabic ? (
+                    <>
+                      خالٍ من
+                      <br />
+                      المواد المحظورة
+                    </>
+                  ) : isFarsi ? (
+                    <>
+                      بدون مواد
+                      <br />
+                      ممنوعه
+                    </>
+                  ) : (
+                    <>
+                      <p className="mb-2">BANNED</p>
+                      <p>SUBSTANCE FREE</p>
+                    </>
+                  )}
+                </h3>
+              </div>
+
+              <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-1 text-center text-[#d81b60]  sm:min-w-[110px] sm:px-2 md:min-w-[100px] md:pl-5">
+                <FlaskConical
+                  strokeWidth={1.5}
+                  className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-12 lg:w-12"
+                />
+                <h3 className="m-0 mt-2 whitespace-normal font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(9px,2.5vw,14px)] font-normal leading-[0.95] sm:text-[16px] md:text-[18px] lg:text-[26px]">
+                  {isArabic
+                    ? "بدون مواد مالئة"
+                    : isFarsi
+                      ? "بدون پرکننده"
+                      : "NO FILLERS"}
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative flex h-auto w-full min-w-0 flex-col md:col-span-1 lg:col-span-1 lg:h-full">
+            <div
+              className="flex w-full max-w-[700px] flex-col gap-4 font-victory"
+              dir="ltr"
             >
-              {isArabic ? (
-                <>
-                  ارتقِ بمستواك مع{" "}
-                  <span className="text-[#ffb6d2]">
-                    الكرياتين
-                  </span>
-                </>
-              ) : isFarsi ? (
-                <>
-                  سطح خود را با{" "}
-                  <span className="text-[#ffb6d2]">
-                    کراتین
-                  </span>{" "}
-                  ارتقا دهید
-                </>
-              ) : (
-                <>
-                  LEVEL UP WITH{" "}
-                  <span className="text-[#ffb6d2] ml-5">
-                    CREATINE
-                  </span>
-                </>
-              )}
-            </h1>
-          </motion.div>
+              <div className="box-border w-full bg-[#ec407a] p-1">
+                {[
+                  [
+                    isArabic
+                      ? "كرياتين مونوهيدرات"
+                      : isFarsi
+                        ? "کراتین مونوهیدرات"
+                        : "CREATINE MONOHYDRATE",
+                    isArabic ? "5 غ" : isFarsi ? "۵ گرم" : "5G",
+                  ],
+                  [
+                    isArabic ? "تورين" : isFarsi ? "تائورین" : "TAURINE",
+                    isArabic ? "250 ملغ" : isFarsi ? "۲۵۰ میلی‌گرم" : "250 MG",
+                  ],
+                ].map(([label, value], index) => (
+                  <div
+                    key={`top-${index}`}
+                    className="box-border flex h-[46px] w-full items-center justify-between border-b border-dotted border-white/85 px-2 text-white last:border-b-0 sm:h-[50px] sm:px-2.5 md:h-[54px] md:px-3 "
+                  >
+                    <span
+                      className="min-w-0 truncate text-[25px]"
+                      dir={isRTL ? "rtl" : "ltr"}
+                    >
+                      {label}
+                    </span>
+
+                    <strong
+                      className="ml-2 shrink-0 text-[25px]"
+                      dir={isRTL ? "rtl" : "ltr"}
+                    >
+                      {value}
+                    </strong>
+                  </div>
+                ))}
+              </div>
+
+              <div className="box-border w-full bg-[#ec407a] p-1">
+                {[
+                  [
+                    isArabic ? "الطاقة" : isFarsi ? "انرژی" : "ENERGY",
+                    isArabic ? "12 سعرة حرارية" : isFarsi ? "۱۲ کیلوکالری" : "12 KCAL",
+                  ],
+                  [
+                    isArabic ? "البروتين" : isFarsi ? "پروتئین" : "PROTEIN",
+                    isArabic ? "3.0 غ" : isFarsi ? "۳.۰ گرم" : "3.0 G",
+                  ],
+                  [
+                    isArabic ? "الكربوهيدرات" : isFarsi ? "کربوهیدرات" : "CARBOHYDRATE",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "إجمالي السكر" : isFarsi ? "قند کل" : "TOTAL SUGAR",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "السكر المضاف" : isFarsi ? "شکر افزوده" : "ADDED SUGAR",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "إجمالي الدهون" : isFarsi ? "چربی کل" : "TOTAL FAT",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "الدهون المشبعة" : isFarsi ? "چربی اشباع" : "SATURATED FAT",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "الدهون المتحولة" : isFarsi ? "چربی ترانس" : "TRANS FAT",
+                    isArabic ? "0 غ" : isFarsi ? "۰ گرم" : "0 G",
+                  ],
+                  [
+                    isArabic ? "الكوليسترول" : isFarsi ? "کلسترول" : "CHOLESTEROL",
+                    isArabic ? "0 ملغ" : isFarsi ? "۰ میلی‌گرم" : "0 MG",
+                  ],
+                  [
+                    isArabic ? "الصوديوم" : isFarsi ? "سدیم" : "SODIUM",
+                    isArabic ? "0 ملغ" : isFarsi ? "۰ میلی‌گرم" : "0 MG",
+                  ],
+                ].map(([label, value], index) => (
+                  <div
+                    key={`bottom-${index}`}
+                    className="box-border flex h-[38px] w-full items-center justify-between border-b border-dotted border-white/85 px-2 text-white last:border-b-0 sm:h-[42px] sm:px-2.5 md:h-[46px] md:px-3"
+                  >
+                    <span
+                      className="min-w-0 truncate text-[25px]"
+                      dir={isRTL ? "rtl" : "ltr"}
+                    >
+                      {label}
+                    </span>
+
+                    <strong
+                      className="ml-2 shrink-0 text-[25px]"
+                      dir={isRTL ? "rtl" : "ltr"}
+                    >
+                      {value}
+                    </strong>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div
+              className={`relative mt-6 flex w-full items-center justify-center md:absolute md:top-1/2 md:mt-0 md:w-[220px] md:-translate-y-1/2 md:translate-x-0 lg:w-[260px] ${
+                isRTL
+                  ? "md:right-[92%] md:justify-end lg:right-[90%]"
+                  : "md:left-[92%] md:justify-start lg:left-[90%]"
+              }`}
+            >
+              <Image
+                src="/images/tt.png"
+                alt="Creatine Sachet"
+                width={260}
+                height={620}
+                className="h-auto w-[45%] max-w-[210px] object-contain sm:w-[38%] sm:max-w-[250px] md:w-full md:max-w-[220px] lg:max-w-[260px]"
+              />
+            </div>
+          </div>
         </div>
       </section>
+
+       <section className="relative flex w-full items-center overflow-hidden bg-[#F4FBEA] py-8 md:py-12 lg:py-16">
+              <div
+                className="absolute inset-0 z-[1] h-full w-full bg-[#d81b60] [clip-path:polygon(0%_0%,50%_8%,100%_0%,100%_100%,0%_100%)]"
+                dir="ltr"
+              />
+      
+              <div
+                className="relative z-[2] w-full overflow-hidden whitespace-nowrap py-[35px]"
+                dir="ltr"
+              >
+                <motion.div
+                  className="flex w-max shrink-0"
+                  animate={{
+                    x: ["0%", "-50%"],
+                  }}
+                  transition={{
+                    x: {
+                      duration: 25,
+                      ease: "linear",
+                      repeat: Infinity,
+                    },
+                  }}
+                >
+                  <h1
+                    dir={isRTL ? "rtl" : "ltr"}
+                    className="m-0 flex shrink-0 items-center whitespace-nowrap pr-[clamp(60px,8vw,160px)] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1] tracking-[1px] text-white"
+                  >
+                    {isArabic ? (
+                      <>
+                        ارتقِ بمستواك مع{" "}
+                        <span className="text-[#ffb6d2]">الكرياتين</span>
+                      </>
+                    ) : isFarsi ? (
+                      <>
+                        سطح خود را با <span className="text-[#ffb6d2]">کراتین</span> ارتقا
+                        دهید
+                      </>
+                    ) : (
+                      <>
+                        LEVEL UP WITH <span className="ml-5 text-[#ffb6d2]">CREATINE</span>
+                      </>
+                    )}
+                  </h1>
+      
+                  <h1
+                    aria-hidden="true"
+                    dir={isRTL ? "rtl" : "ltr"}
+                    className="m-0 flex shrink-0 items-center whitespace-nowrap pr-[clamp(60px,8vw,160px)] font-[Victory_Striker_Sans,Impact,sans-serif] text-[clamp(5rem,16vw,16rem)] font-normal leading-[1] tracking-[1px] text-white"
+                  >
+                    {isArabic ? (
+                      <>
+                        ارتقِ بمستواك مع{" "}
+                        <span className="text-[#ffb6d2]">الكرياتين</span>
+                      </>
+                    ) : isFarsi ? (
+                      <>
+                        سطح خود را با <span className="text-[#ffb6d2]">کراتین</span> ارتقا
+                        دهید
+                      </>
+                    ) : (
+                      <>
+                        LEVEL UP WITH <span className="ml-5 text-[#ffb6d2]">CREATINE</span>
+                      </>
+                    )}
+                  </h1>
+                </motion.div>
+              </div>
+            </section>
 
       {/* SUGGESTED USE */}
       <section
@@ -820,11 +821,10 @@ export default function Page() {
                   duration: 0.7,
                   delay: 0.3 + index * 1.2,
                 }}
-                className={`w-auto max-w-[82%] rounded-lg bg-[#ec407a] px-3 py-2 font-mono text-[10px] uppercase leading-[1.4] text-white md:w-[72%] md:max-w-[300px] md:text-[10px] lg:w-[65%] lg:max-w-[420px] lg:px-[18px] lg:py-3 lg:text-[13px] ${
-                  index === 1
+                className={`w-auto max-w-[82%] rounded-lg bg-[#ec407a] px-3 py-2 font-mono text-[10px] uppercase leading-[1.4] text-white md:w-[72%] md:max-w-[300px] md:text-[10px] lg:w-[65%] lg:max-w-[420px] lg:px-[18px] lg:py-3 lg:text-[13px] ${index === 1
                     ? "ml-3 md:ml-5 lg:ml-[42px]"
                     : "ml-0"
-                }`}
+                  }`}
               >
                 <p className="m-0">{text}</p>
               </motion.div>
@@ -970,11 +970,10 @@ export default function Page() {
                         {[1, 2, 3, 4, 5].map((star) => (
                           <FaStar
                             key={star}
-                            className={`text-[15px] ${
-                              star <= review.rating
+                            className={`text-[15px] ${star <= review.rating
                                 ? "text-[#e91e63]"
                                 : "text-[#d1d5db]"
-                            }`}
+                              }`}
                           />
                         ))}
                       </div>

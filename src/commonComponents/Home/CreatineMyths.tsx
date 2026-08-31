@@ -95,28 +95,42 @@ export default function CreatineMyths() {
 
   useEffect(() => {
     const calculateDimensions = () => {
-      if (!trackRef.current) return;
+      const track = trackRef.current;
 
-      const totalWidth = trackRef.current.scrollWidth;
-      const singleLoopWidth = totalWidth / 2;
+      if (!track) return;
 
-      setLoopWidth(singleLoopWidth);
+      const cards = Array.from(
+        track.children
+      ) as HTMLElement[];
 
-      const firstCard = trackRef.current.querySelector(
-        "article"
-      ) as HTMLElement | null;
+      if (!cards.length) return;
 
-      if (firstCard) {
-        const styles = window.getComputedStyle(trackRef.current);
-        const gap = parseFloat(styles.columnGap || styles.gap || "0");
+      const firstLoopCards = cards.slice(0, myths.length);
 
-        setCardWidth(firstCard.offsetWidth + gap);
-      }
+      if (!firstLoopCards.length) return;
 
-      x.set(0);
+      const firstCard = firstLoopCards[0];
+
+      const styles = window.getComputedStyle(track);
+
+      const gap = parseFloat(styles.gap || "0");
+
+      const totalCardsWidth = firstLoopCards.reduce(
+        (total, card) => total + card.offsetWidth,
+        0
+      );
+
+      const calculatedLoopWidth =
+        totalCardsWidth + gap * (firstLoopCards.length - 1);
+
+      setLoopWidth(calculatedLoopWidth);
+
+      setCardWidth(firstCard.offsetWidth + gap);
+
+      x.set(isRtl ? -calculatedLoopWidth : 0);
     };
 
-    calculateDimensions();
+    const timer = window.setTimeout(calculateDimensions, 50);
 
     const resizeObserver = new ResizeObserver(() => {
       calculateDimensions();
@@ -129,10 +143,11 @@ export default function CreatineMyths() {
     window.addEventListener("resize", calculateDimensions);
 
     return () => {
+      window.clearTimeout(timer);
       resizeObserver.disconnect();
       window.removeEventListener("resize", calculateDimensions);
     };
-  }, [isRtl, x]);
+  }, [isRtl, myths.length, x]);
 
   useAnimationFrame((_, delta) => {
     if (isPaused || loopWidth <= 0) return;
@@ -168,27 +183,31 @@ export default function CreatineMyths() {
     let movement: number;
 
     if (isRtl) {
-      movement = direction === "left" ? cardWidth : -cardWidth;
+      movement =
+        direction === "left" ? cardWidth : -cardWidth;
     } else {
-      movement = direction === "left" ? -cardWidth : cardWidth;
+      movement =
+        direction === "left" ? -cardWidth : cardWidth;
     }
 
     let targetX = currentX + movement;
 
-    if (!isRtl && targetX <= -loopWidth) {
-      targetX = 0;
-    }
+    if (!isRtl) {
+      if (targetX <= -loopWidth) {
+        targetX = 0;
+      }
 
-    if (!isRtl && targetX > 0) {
-      targetX = -loopWidth + cardWidth;
-    }
+      if (targetX > 0) {
+        targetX = -loopWidth + cardWidth;
+      }
+    } else {
+      if (targetX >= 0) {
+        targetX = -loopWidth;
+      }
 
-    if (isRtl && targetX >= 0) {
-      targetX = -loopWidth + cardWidth;
-    }
-
-    if (isRtl && targetX < -loopWidth) {
-      targetX = 0;
+      if (targetX < -loopWidth) {
+        targetX = 0;
+      }
     }
 
     animate(x, targetX, {
@@ -202,7 +221,9 @@ export default function CreatineMyths() {
   };
 
   const toggleReadMore = (index: number) => {
-    setExpandedCard((current) => (current === index ? null : index));
+    setExpandedCard((current) =>
+      current === index ? null : index
+    );
   };
 
   return (
@@ -211,7 +232,13 @@ export default function CreatineMyths() {
       className="overflow-hidden bg-[#fdf1da] px-5 py-10 sm:px-10 sm:py-14"
     >
       <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 md:grid-cols-[0.38fr_0.62fr] md:gap-6">
-        <div className="relative z-20 min-w-0 shrink-0 pl-2 sm:pl-4 lg:pl-12">
+        <div
+          className={`relative z-20 min-w-0 shrink-0 ${
+            isRtl
+              ? "pr-2 sm:pr-4 lg:pr-12"
+              : "pl-2 sm:pl-4 lg:pl-12"
+          }`}
+        >
           <span
             className={`${anton.className} block text-[clamp(2rem,3vw,3.5rem)] uppercase leading-none ${
               language !== "en" ? "pb-2" : "pb-0"
@@ -225,6 +252,7 @@ export default function CreatineMyths() {
           </span>
 
           <span
+            dir={isRtl ? "rtl" : "ltr"}
             className={`${anton.className} mt-[-4px] inline-block max-w-full rotate-[-2deg] bg-[#a87847] px-3 py-2 text-[clamp(1.8rem,3.2vw,4rem)] uppercase leading-[0.9] text-white sm:px-5 sm:py-3`}
           >
             {language === "en"
@@ -235,7 +263,10 @@ export default function CreatineMyths() {
           </span>
         </div>
 
-        <div className="relative min-w-0 overflow-hidden pb-16 pt-2">
+        <div
+          className="relative min-w-0 overflow-hidden pb-16 pt-2"
+          dir="ltr"
+        >
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[#fdf1da] via-[#fdf1da]/80 to-transparent sm:w-16" />
 
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[#fdf1da] via-[#fdf1da]/80 to-transparent sm:w-16" />
@@ -254,15 +285,13 @@ export default function CreatineMyths() {
             dragElastic={0.08}
             onDragStart={() => setIsPaused(true)}
             onDragEnd={() => {
-              setTimeout(() => {
+              window.setTimeout(() => {
                 setIsPaused(false);
               }, 300);
             }}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className={`flex w-max cursor-grab gap-5 will-change-transform active:cursor-grabbing ${
-              isRtl ? "flex-row-reverse" : "flex-row"
-            }`}
+            className="flex w-max cursor-grab flex-row gap-5 will-change-transform active:cursor-grabbing"
           >
             {mythLoop.map((myth, index) => {
               const isExpanded = expandedCard === index;
@@ -284,21 +313,25 @@ export default function CreatineMyths() {
                       : "z-0 min-h-[390px]"
                   }`}
                 >
-
                   <div className="mb-0 text-[3rem] leading-none text-[#fdf1da] sm:text-[10rem]">
                     &ldquo;
                   </div>
 
                   <h3
-                    className={`${anton.className} mb-0 text-[1.8rem] uppercase leading-[1.05] sm:mt-3 sm:text-[2rem] lg:-mt-10 lg:text-[2.2rem]`}
+                    className={`${anton.className} mb-0 text-[1.8rem] uppercase leading-[1.05] sm:mt-3 sm:text-[2rem] lg:-mt-10 lg:text-[2.2rem] ${
+                      isRtl ? "text-right" : "text-left"
+                    }`}
                   >
                     {myth.title}
                   </h3>
+
                   <p
                     className={`mt-3 mb-0 flex-1 font-sf text-[21px] font-semibold leading-[1.3] sm:text-[22px] lg:text-[23px] ${
                       isExpanded
                         ? "block overflow-visible"
                         : "line-clamp-3 overflow-hidden"
+                    } ${
+                      isRtl ? "text-right" : "text-left"
                     }`}
                   >
                     {myth.body}
@@ -309,6 +342,7 @@ export default function CreatineMyths() {
                     onClick={() => toggleReadMore(index)}
                     aria-expanded={isExpanded}
                     whileTap={{ scale: 0.96 }}
+                    dir={isRtl ? "rtl" : "ltr"}
                     className={`${anton.className} z-40 mt-6 flex cursor-pointer items-center gap-2 self-end border-0 bg-transparent p-0 text-[1.5rem] uppercase leading-none text-[#fdf1da] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fdf1da] sm:text-[1.6rem] lg:text-[1.7rem]`}
                   >
                     {isRtl
@@ -336,11 +370,12 @@ export default function CreatineMyths() {
             })}
           </motion.div>
 
-
           <div className="absolute bottom-1 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3">
             <button
               type="button"
-              aria-label="Previous card"
+              aria-label={
+                isRtl ? "البطاقة السابقة" : "Previous card"
+              }
               onClick={() => moveCarousel("left")}
               className="flex h-10 w-10 items-center justify-center rounded-full bg-[#502300] text-2xl leading-none text-[#fdf1da] shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95 sm:h-12 sm:w-12"
             >
@@ -349,7 +384,9 @@ export default function CreatineMyths() {
 
             <button
               type="button"
-              aria-label="Next card"
+              aria-label={
+                isRtl ? "البطاقة التالية" : "Next card"
+              }
               onClick={() => moveCarousel("right")}
               className="flex h-10 w-10 items-center justify-center rounded-full bg-[#502300] text-2xl leading-none text-[#fdf1da] shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95 sm:h-12 sm:w-12"
             >

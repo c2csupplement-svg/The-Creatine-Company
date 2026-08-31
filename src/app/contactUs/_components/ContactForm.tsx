@@ -4,6 +4,8 @@ import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import { anton, mono } from "@/commonComponents/fonts";
 import { useLanguage } from "@/app/context/languageUseContent";
+import { contact } from "@/apiservice/contactApi";
+import {toast} from "sonner"
 
 type ContactFormData = {
   fullName: string;
@@ -82,6 +84,12 @@ export default function ContactForm() {
   const [form, setForm] = useState<ContactFormData>(initialForm);
   const [status, setStatus] = useState<FormStatus>("idle");
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("")
+  const [orderNumber, setOrderNumber] = useState("");
+  const [message, setMessage] = useState("");
+
   const { language, isRTL } = useLanguage();
 
   const content = CONTENT[language];
@@ -96,6 +104,34 @@ export default function ContactForm() {
       }));
     };
   }
+
+
+  const handleSendRequest = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+
+    try {
+      const response = await contact({
+        fullName:name,
+        email,
+        subject,
+        orderNumber,
+        message,
+      });
+
+      toast.success(response.message);
+
+      setEmail("");
+      setName("");
+      setSubject("");
+      setOrderNumber("");
+      setMessage("")
+    } catch (err: unknown) {
+      toast.error("Failed to send request")
+      console.error(err);
+    }
+  };
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -188,7 +224,7 @@ export default function ContactForm() {
       </h2>
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSendRequest}
         className="
           mt-5
           flex
@@ -217,8 +253,8 @@ export default function ContactForm() {
             required
             placeholder={content.fullName}
             aria-label={content.fullName}
-            value={form.fullName}
-            onChange={handleChange("fullName")}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             dir={isRTL ? "rtl" : "ltr"}
             className={`
               ${fieldClassName}
@@ -242,8 +278,8 @@ export default function ContactForm() {
             required
             placeholder={content.email}
             aria-label={content.email}
-            value={form.email}
-            onChange={handleChange("email")}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             dir="ltr"
             className={`
               ${fieldClassName}
@@ -279,8 +315,8 @@ export default function ContactForm() {
             required
             placeholder={content.subject}
             aria-label={content.subject}
-            value={form.subject}
-            onChange={handleChange("subject")}
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
             dir={isRTL ? "rtl" : "ltr"}
             className={fieldClassName}
           />
@@ -289,8 +325,8 @@ export default function ContactForm() {
             type="text"
             placeholder={content.orderNumber}
             aria-label={content.orderNumber}
-            value={form.orderNumber}
-            onChange={handleChange("orderNumber")}
+            value={orderNumber}
+            onChange={(e) => setOrderNumber(e.target.value)}
             dir={isRTL ? "rtl" : "ltr"}
             className={fieldClassName}
           />
@@ -301,8 +337,8 @@ export default function ContactForm() {
           rows={5}
           placeholder={content.message}
           aria-label={content.message}
-          value={form.message}
-          onChange={handleChange("message")}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           dir={isRTL ? "rtl" : "ltr"}
           className={`
             ${fieldClassName}

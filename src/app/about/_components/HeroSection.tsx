@@ -74,11 +74,13 @@ function HeroSlides({ activeIndex }: { activeIndex: number }) {
       dir={isRTL ? "rtl" : "ltr"}
       className="
         relative mx-auto
-        h-[190px]
+        h-[250px]
         w-full
-        max-w-[95%]
+        max-w-[96%]
         overflow-hidden
-        sm:h-[200px]
+        min-[376px]:h-[260px]
+        min-[481px]:h-[270px]
+        sm:h-[280px]
         md:h-[220px]
         lg:h-[240px]
         xl:h-[260px]
@@ -100,30 +102,40 @@ function HeroSlides({ activeIndex }: { activeIndex: number }) {
               flex
               items-center
               justify-center
-              px-3
+              px-2
+              min-[376px]:px-3
+              min-[481px]:px-4
+              sm:px-5
+              md:px-3
               text-center
 
               transition-all
               duration-700
               ease-[cubic-bezier(0.22,1,0.36,1)]
 
-              ${isActive
-                ? "z-20 translate-y-0 opacity-100"
-                : isPrevious
-                  ? "z-10 -translate-y-full opacity-0"
-                  : "z-0 translate-y-full opacity-0"
+              ${
+                isActive
+                  ? "z-20 translate-y-0 opacity-100"
+                  : isPrevious
+                    ? "z-10 -translate-y-full opacity-0"
+                    : "z-0 translate-y-full opacity-0"
               }
             `}
           >
             {slide.type === "title" ? (
               <h1
+                dir={isRTL ? "rtl" : "ltr"}
                 className={`
                   m-0
                   max-w-[95%]
                   font-victory
                   font-normal
-                  text-[clamp(1.9rem,7vw,6rem)]
-                  leading-[1.15]
+                  text-[clamp(1.65rem,7vw,6rem)]
+                  min-[376px]:text-[clamp(1.8rem,6.5vw,6rem)]
+                  min-[481px]:text-[clamp(1.9rem,6vw,6rem)]
+                  sm:text-[clamp(2rem,5vw,6rem)]
+                  md:text-[clamp(1.9rem,7vw,6rem)]
+                  leading-[1.1]
                   sm:leading-[1.1]
                   md:leading-[1]
                   lg:leading-[0.92]
@@ -131,7 +143,8 @@ function HeroSlides({ activeIndex }: { activeIndex: number }) {
                   text-white
                   flex
                   flex-col
-                  gap-2
+                  gap-1
+                  sm:gap-2
 
                   ${language === "en" ? "uppercase" : ""}
                 `}
@@ -141,7 +154,7 @@ function HeroSlides({ activeIndex }: { activeIndex: number }) {
                     block
                     underline
                     decoration-2
-                    underline-offset-[6px]
+                    underline-offset-[5px]
                     pb-1
                     sm:pb-1.5
                     md:pb-2
@@ -149,12 +162,13 @@ function HeroSlides({ activeIndex }: { activeIndex: number }) {
                 >
                   {TITLE_LINES[language][0]}
                 </span>
+
                 <span
                   className="
                     block
                     underline
                     decoration-2
-                    underline-offset-[6px]
+                    underline-offset-[5px]
                     md:mt-5
                   "
                 >
@@ -163,32 +177,47 @@ function HeroSlides({ activeIndex }: { activeIndex: number }) {
               </h1>
             ) : (
               <p
+                dir={isRTL ? "rtl" : "ltr"}
+                lang={language === "fa" ? "fa" : language === "ar" ? "ar" : "en"}
                 className="
-    m-0
-    w-full
-    max-w-[95%]
-    sm:max-w-[90%]
-    md:max-w-[42rem]
-    lg:max-w-[50rem]
-    xl:max-w-[58rem]
+                  m-0
+                  w-full
+                  max-w-[98%]
 
-    font-tungsten
-    font-semibold
-    text-white
+                  min-[376px]:max-w-[94%]
+                  min-[481px]:max-w-[92%]
+                  sm:max-w-[90%]
 
-    text-[clamp(1.25rem,5vw,6rem)]
-    sm:text-[clamp(1.5rem,4vw,7rem)]
-    md:text-[clamp(1.5rem,1vw,4rem)]
-    lg:text-[clamp(2rem,2vw,6rem)]
+                  md:max-w-[42rem]
+                  lg:max-w-[50rem]
+                  xl:max-w-[58rem]
 
-    leading-[1.35]
-    sm:leading-[1.4]
-    md:leading-[1.45]
+                  font-tungsten
+                  font-semibold
+                  text-white
 
-    tracking-[0.01em]
-  "
+                  text-[clamp(1.05rem,4.2vw,1.55rem)]
+                  min-[376px]:text-[clamp(1.1rem,4vw,1.6rem)]
+                  min-[481px]:text-[clamp(1.15rem,3.8vw,1.7rem)]
+                  sm:text-[clamp(1.2rem,3.5vw,1.8rem)]
+
+                  md:text-[clamp(1.5rem,1vw,4rem)]
+                  lg:text-[clamp(2rem,2vw,6rem)]
+
+                  leading-[1.45]
+                  min-[376px]:leading-[1.45]
+                  min-[481px]:leading-[1.45]
+                  sm:leading-[1.4]
+
+                  md:leading-[1.45]
+
+                  tracking-[0.01em]
+                  [unicode-bidi:plaintext]
+                "
               >
-                {slide.content.toUpperCase()}
+                {language === "en"
+                  ? slide.content.toUpperCase()
+                  : slide.content}
               </p>
             )}
           </div>
@@ -247,7 +276,6 @@ export default function HeroSection() {
     };
   }, [language]);
 
-
   useEffect(() => {
     setActiveIndex(0);
   }, [language]);
@@ -258,7 +286,7 @@ export default function HeroSection() {
       dir={isRTL ? "rtl" : "ltr"}
       className="
         relative
-        h-[220vh]
+        h-[300vh]
         w-full
         max-w-full
         overflow-clip
