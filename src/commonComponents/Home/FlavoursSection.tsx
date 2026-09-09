@@ -81,7 +81,45 @@ const [isMounted, setIsMounted] = useState(false);
 useEffect(() => {
   setIsMounted(true);
 }, []);
+  useEffect(() => {
+    const slider = sliderRef.current;
 
+    if (!slider) return;
+
+    const handleScroll = () => {
+      const slides = slider.querySelectorAll(".flavour-slide");
+
+      if (!slides.length) return;
+
+      const sliderRect = slider.getBoundingClientRect();
+      const sliderCenter = sliderRect.left + sliderRect.width / 2;
+
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      slides.forEach((slide, index) => {
+        const slideRect = slide.getBoundingClientRect();
+        const slideCenter = slideRect.left + slideRect.width / 2;
+
+        const distance = Math.abs(slideCenter - sliderCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setCurrentIndex(closestIndex);
+    };
+
+    slider.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      slider.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const scrollSlider = (direction: "left" | "right") => {
     const slider = sliderRef.current;
 
