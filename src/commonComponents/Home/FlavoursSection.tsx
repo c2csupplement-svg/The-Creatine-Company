@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { anton } from "../fonts";
 import { useLanguage } from "@/app/context/languageUseContent";
 
@@ -75,7 +75,12 @@ export default function FlavoursSection() {
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+const [currentIndex, setCurrentIndex] = useState(0);
+const [isMounted, setIsMounted] = useState(false);
+
+useEffect(() => {
+  setIsMounted(true);
+}, []);
 
   const scrollSlider = (direction: "left" | "right") => {
     const slider = sliderRef.current;
@@ -194,7 +199,7 @@ export default function FlavoursSection() {
           </div>
 
           <Link
-            href="/carddetail/blueberry"
+            href={FLAVOURS[currentIndex].link}
             className="group mt-10 inline-block"
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-[#502300] px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-amber-500 hover:to-amber-600 hover:shadow-xl active:translate-y-0">
@@ -262,7 +267,7 @@ export default function FlavoursSection() {
             <button
               type="button"
               onClick={() => scrollSlider("left")}
-              disabled={currentIndex === 0}
+              disabled={!isMounted || currentIndex === 0}
               aria-label={
                 currentLanguage === "fa"
                   ? "طعم قبلی"
@@ -279,6 +284,7 @@ export default function FlavoursSection() {
               type="button"
               onClick={() => scrollSlider("right")}
               disabled={
+                !isMounted ||
                 currentIndex === FLAVOURS.length - 1
               }
               aria-label={

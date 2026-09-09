@@ -291,7 +291,17 @@ export default function CreatineMyths() {
             }}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="flex w-max cursor-grab flex-row gap-5 will-change-transform active:cursor-grabbing"
+            className="
+              flex
+              w-max
+              flex-row
+              gap-3
+              cursor-grab
+              will-change-transform
+              active:cursor-grabbing
+              touch-pan-y
+              sm:gap-5
+            "
           >
             {mythLoop.map((myth, index) => {
               const isExpanded = expandedCard === index;
@@ -299,26 +309,57 @@ export default function CreatineMyths() {
               return (
                 <motion.article
                   key={`${myth.title}-${index}`}
-                  layout
+                  
                   dir={isRtl ? "rtl" : "ltr"}
                   transition={{
-                    layout: {
-                      duration: 0.35,
-                      ease: "easeInOut",
-                    },
+                   
                   }}
-                  className={`relative box-border flex w-[300px] shrink-0 flex-col rounded-[20px] border-[3px] bg-gradient-to-br from-[#d99a55] via-[#a8703c] to-[#7a4d28] p-6 text-[#fdf1da] shadow-lg sm:w-[340px] sm:p-7 lg:w-[400px] lg:p-8 ${
-                    isExpanded
-                      ? "z-30 min-h-[520px] shadow-2xl"
-                      : "z-0 min-h-[390px]"
-                  }`}
+                  className={`
+                        relative
+                        box-border
+                        flex
+                        w-[255px]
+                        shrink-0
+                        flex-col
+                        overflow-hidden
+                        rounded-[18px]
+                        border-2
+                        border-[#fdf1da]/20
+                        bg-gradient-to-br
+                        from-[#d99a55]
+                        via-[#a8703c]
+                        to-[#7a4d28]
+                        p-5
+                        text-[#fdf1da]
+                        shadow-lg
+
+                        sm:w-[320px]
+                        sm:rounded-[20px]
+                        sm:border-[3px]
+                        sm:p-6
+
+                        lg:w-[380px]
+                        lg:p-7
+
+                        ${isExpanded ? "shadow-2xl" : ""}
+                      `}
                 >
-                  <div className="mb-0 text-[3rem] leading-none text-[#fdf1da] sm:text-[10rem]">
-                    &ldquo;
-                  </div>
+                    <div
+                      className="
+                        mb-2
+                        text-[3.5rem]
+                        leading-[0.7]
+                        text-[#fdf1da]/80
+                        sm:mb-1
+                        sm:text-[6rem]
+                        lg:text-[7rem]
+                      "
+                    >
+                      &ldquo;
+                    </div>
 
                   <h3
-                    className={`${anton.className} mb-0 text-[1.8rem] uppercase leading-[1.05] sm:mt-3 sm:text-[2rem] lg:-mt-10 lg:text-[2.2rem] ${
+                    className={`${anton.className} mb-0 text-[1.45rem] uppercase leading-[1.02] sm:mt-3 sm:text-[1.9rem] lg:-mt-10 lg:text-[2.2rem] ${
                       isRtl ? "text-right" : "text-left"
                     }`}
                   >
@@ -326,14 +367,33 @@ export default function CreatineMyths() {
                   </h3>
 
                   <p
-                    className={`mt-3 mb-0 flex-1 font-sf text-[21px] font-semibold leading-[1.3] sm:text-[22px] lg:text-[23px] ${
-                      isExpanded
-                        ? "block overflow-visible"
-                        : "line-clamp-3 overflow-hidden"
-                    } ${
-                      isRtl ? "text-right" : "text-left"
-                    }`}
-                  >
+                    className={`
+                        mt-3
+                        mb-0
+                        flex-1
+                        font-sf
+                        text-[15px]
+                        font-medium
+                        leading-[1.45]
+
+                        sm:text-[17px]
+                        sm:leading-[1.5]
+
+                        lg:text-[19px]
+
+                        ${
+                          isExpanded
+                            ? "max-h-[150px] overflow-y-auto pr-1"
+                            : "line-clamp-4 overflow-hidden"
+                        }
+
+                        ${
+                          isRtl
+                            ? "text-right"
+                            : "text-left"
+                        }
+                      `}
+                                        >
                     {myth.body}
                   </p>
 
@@ -343,7 +403,33 @@ export default function CreatineMyths() {
                     aria-expanded={isExpanded}
                     whileTap={{ scale: 0.96 }}
                     dir={isRtl ? "rtl" : "ltr"}
-                    className={`${anton.className} z-40 mt-6 flex cursor-pointer items-center gap-2 self-end border-0 bg-transparent p-0 text-[1.5rem] uppercase leading-none text-[#fdf1da] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fdf1da] sm:text-[1.6rem] lg:text-[1.7rem]`}
+                    className={`
+                      ${anton.className}
+                      mt-4
+                      flex
+                      w-fit
+                      cursor-pointer
+                      items-center
+                      gap-1.5
+                      self-end
+                      border-0
+                      border-b
+                      border-[#fdf1da]/60
+                      bg-transparent
+                      pb-1
+                      text-[1.05rem]
+                      uppercase
+                      leading-none
+                      text-[#fdf1da]
+                      transition-all
+                      duration-200
+                      hover:border-[#fdf1da]
+                      hover:opacity-80
+                      focus:outline-none
+                      focus-visible:ring-2
+                      focus-visible:ring-[#fdf1da]
+                      sm:text-[1.2rem]
+                    `}
                   >
                     {isRtl
                       ? isExpanded
@@ -358,9 +444,14 @@ export default function CreatineMyths() {
                         : "READ MORE"}
 
                     <span
-                      className={`text-[1.3rem] leading-none sm:text-[1.4rem] ${
-                        isRtl ? "rotate-180" : ""
-                      }`}
+                      className={`
+                        text-[1rem]
+                        transition-transform
+                        duration-200
+                        sm:text-[1.1rem]
+                        ${isExpanded ? "rotate-[-90deg]" : ""}
+                        ${isRtl ? "rotate-180" : ""}
+                      `}
                     >
                       →
                     </span>
