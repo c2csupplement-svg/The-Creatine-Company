@@ -93,7 +93,7 @@ export default function HomeHero() {
 
       <div className="absolute inset-0 bg-black/10" />
 
-      <NavigationMenu backgroundImage="/images/hero-home.png" />
+      {/* <NavigationMenu backgroundImage="/images/hero-home.png" /> */}
 
       <Navbar />
 

@@ -300,6 +300,8 @@ export default function HeroSection() {
         min-[1200px]:h-[260vh]
       "
     >
+
+       <Navbar />
       <div
         className="
           sticky
@@ -328,7 +330,7 @@ export default function HeroSection() {
 
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
-        <Navbar />
+       
 
         <div
           className="
