@@ -99,22 +99,22 @@ export default function WhyChooseUs() {
                 : feature.faTitle;
 
           return (
-            <article
-              key={feature.title}
-              className={`flex min-w-0 flex-col rounded-xl bg-[#a87847] p-6 text-white transition-transform duration-300 hover:-translate-y-1 min-[376px]:p-6 sm:p-6 sm:text-[1rem] md:p-5 md:text-[1rem] lg:p-6 lg:text-[1.08rem] xl:p-7 xl:text-[1.18rem] 2xl:p-9 2xl:text-[1.28rem] min-[1600px]:p-9 min-[1600px]:text-[1.3rem] min-[1920px]:rounded-2xl min-[1920px]:p-10 min-[1920px]:text-[1.35rem] ${
-                isRTL ? "items-end text-right" : "items-start text-left"
-              }`}
-            >
-              <Icon
-                className="mb-4 h-8 w-8 shrink-0 sm:h-8 sm:w-8 md:h-8 md:w-8 lg:h-9 lg:w-9 xl:h-10 xl:w-10 2xl:h-11 2xl:w-11 min-[1920px]:mb-5 min-[1920px]:h-11 min-[1920px]:w-11"
-              />
+                <article
+                  key={feature.title}
+                  className={`flex min-w-0 flex-row items-center gap-4 rounded-xl bg-[#a87847] p-6 text-white transition-transform duration-300 hover:-translate-y-1 min-[376px]:p-6 sm:p-6 sm:text-[1rem] md:p-5 md:text-[1rem] lg:gap-5 lg:p-6 lg:text-[1.08rem] xl:p-7 xl:text-[1.18rem] 2xl:gap-6 2xl:p-9 2xl:text-[1.28rem] min-[1600px]:p-9 min-[1600px]:text-[1.3rem] min-[1920px]:rounded-2xl min-[1920px]:p-10 min-[1920px]:text-[1.35rem] ${
+                    isRTL ? "flex-row-reverse text-right" : "text-left"
+                  }`}
+                >
+                  <Icon
+                    className="h-8 w-8 shrink-0 sm:h-8 sm:w-8 md:h-8 md:w-8 lg:h-9 lg:w-9 xl:h-10 xl:w-10 2xl:h-11 2xl:w-11 min-[1920px]:h-11 min-[1920px]:w-11"
+                  />
 
-              <span
-                className={`${anton.className} text-[1rem] uppercase leading-[1.2] min-[376px]:text-[1.05rem] sm:text-[1rem] md:text-[1rem] lg:text-[1.08rem] xl:text-[1.18rem] 2xl:text-[1.28rem] min-[1600px]:text-[1.3rem] min-[1920px]:text-[1.35rem]`}
-              >
-                {title}
-              </span>
-            </article>
+                  <span
+                    className={`${anton.className} text-[1rem] uppercase leading-[1.2] min-[376px]:text-[1.05rem] sm:text-[1rem] md:text-[1rem] lg:text-[1.08rem] xl:text-[1.18rem] 2xl:text-[1.28rem] min-[1600px]:text-[1.3rem] min-[1920px]:text-[1.35rem]`}
+                  >
+                    {title}
+                  </span>
+                </article>
           );
         })}
       </div>

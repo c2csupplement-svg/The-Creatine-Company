@@ -1,8 +1,5 @@
 "use client";
 
-import {
-  FaStar,
-} from "react-icons/fa";
 import Footer from "@/commonComponents/Footer";
 import Navbar from "@/commonComponents/Navbar";
 import Image from "next/image";
@@ -11,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/app/context/languageUseContent";
 import { motion, useAnimation } from "framer-motion";
 import { Ban, Leaf, FlaskConical } from "lucide-react";
-
+import ReviewsSection from "@/app/carddetail/components/ReviewsSection";
 const products = [
   {
     id: 1,
@@ -39,89 +36,7 @@ const products = [
   },
 ];
 
-type Review = {
-  id: number;
-  name: string;
-  date: string;
-  rating: number;
-  text: string;
-  arText: string;
-  faText: string;
-};
 
-const reviews: Review[] = [
-  {
-    id: 1,
-    name: "RAHUL S.",
-    date: "12-07-26",
-    rating: 5,
-    text: "Being a college student, spending ₹1,500 upfront on a big tub was always a stretch. Getting quality creatine for just ₹1 a day has made a huge difference for my budget. It feels just as good as the expensive imported brands.",
-    arText:
-      "بصفتي طالبًا جامعيًا، كان دفع 1500 روبية مقدمًا مقابل عبوة كبيرة أمرًا صعبًا دائمًا. الحصول على كرياتين عالي الجودة مقابل روبية واحدة فقط يوميًا أحدث فرقًا كبيرًا في ميزانيتي. أشعر أنه بجودة العلامات التجارية المستوردة باهظة الثمن نفسها.",
-    faText:
-      "به عنوان یک دانشجو، پرداخت ۱۵۰۰ روپیه برای یک بسته بزرگ همیشه برای بودجه‌ام سخت بود. دریافت کراتین باکیفیت فقط با روزی ۱ روپیه تفاوت بزرگی در هزینه‌هایم ایجاد کرده است. کیفیت آن به اندازه برندهای وارداتی گران‌قیمت خوب است.",
-  },
-  {
-    id: 2,
-    name: "KABIR M.",
-    date: "05-08-26",
-    rating: 3,
-    text: "Honestly, I thought ₹1 creatine had to be too good to be true. I scanned the QR code, checked the NABL lab report for my batch, and decided to give it a try. It mixes really well, and my lifts have been improving. For the price, it is seriously impressive.",
-    arText:
-      "بصراحة، اعتقدت أن الكرياتين بسعر روبية واحدة لا يمكن أن يكون حقيقيًا. قمت بمسح رمز QR، وراجعت تقرير مختبر NABL الخاص بالدفعة التي حصلت عليها، وقررت تجربته. يمتزج بشكل جيد جدًا، وقد بدأت ألاحظ تحسنًا في أوزاني أثناء التمرين. بالنسبة لهذا السعر، فهو مذهل حقًا.",
-    faText:
-      "راستش فکر می‌کردم کراتین با قیمت ۱ روپیه نمی‌تواند آن‌قدر خوب باشد. کد QR را اسکن کردم، گزارش آزمایشگاه NABL مربوط به محصول خودم را بررسی کردم و تصمیم گرفتم آن را امتحان کنم. به‌خوبی حل می‌شود و رکوردهای تمرینی‌ام هم در حال بهتر شدن هستند. با توجه به قیمت، واقعاً فوق‌العاده است.",
-  },
-  {
-    id: 3,
-    name: "ANJALI D.",
-    date: "28-07-26",
-    rating: 4,
-    text: "Every monsoon, my old creatine tub would absorb moisture and turn into a hard block. These foil sachets have been a lifesaver. The powder stays completely dry, and I no longer have to dig around for a scoop.",
-    arText:
-      "في كل موسم أمطار، كانت عبوة الكرياتين القديمة تمتص الرطوبة وتتحول إلى كتلة صلبة. هذه الأكياس المصنوعة من رقائق الألومنيوم كانت حلًا رائعًا بالنسبة لي. يبقى المسحوق جافًا تمامًا، ولم أعد بحاجة إلى البحث عن الملعقة.",
-    faText:
-      "هر فصل باران، قوطی قدیمی کراتینم رطوبت جذب می‌کرد و به یک توده سفت تبدیل می‌شد. این ساشه‌های فویلی واقعاً نجات‌بخش بوده‌اند. پودر کاملاً خشک می‌ماند و دیگر لازم نیست دنبال پیمانه بگردم.",
-  },
-  {
-    id: 4,
-    name: "ROHIT K.",
-    date: "02-08-26",
-    rating: 5,
-    text: "The mixability is honestly amazing. Cheap creatine usually leaves that gritty stuff at the bottom of the shaker, but this dissolves really quickly. I just tear open a sachet, mix it into my morning drink, and I am good to go.",
-    arText:
-      "قابلية الذوبان مذهلة بصراحة. عادةً ما يترك الكرياتين الرخيص رواسب خشنة في قاع الخلاط، لكن هذا المنتج يذوب بسرعة كبيرة. كل ما أفعله هو فتح الكيس وخلطه مع مشروبي الصباحي، وأكون جاهزًا للانطلاق.",
-    faText:
-      "قابلیت حل شدن آن واقعاً عالی است. کراتین‌های ارزان معمولاً ذراتی در کف شیکر باقی می‌گذارند، اما این محصول خیلی سریع حل می‌شود. فقط ساشه را باز می‌کنم، آن را با نوشیدنی صبحگاهی‌ام مخلوط می‌کنم و آماده‌ام.",
-  },
-  {
-    id: 5,
-    name: "VIKRAM T.",
-    date: "14-06-26",
-    rating: 4.5,
-    text: "I travel a lot for work, and carrying loose powder in my luggage was always inconvenient. Now I just keep a few sachets in my laptop bag. Opening a fresh sachet at the hotel gym is simple and hassle-free.",
-    arText:
-      "أسافر كثيرًا بسبب العمل، وكان حمل المسحوق السائب في أمتعتي أمرًا غير مريح دائمًا. الآن أحتفظ ببضعة أكياس في حقيبة الكمبيوتر المحمول. فتح كيس جديد في صالة الفندق الرياضية أمر بسيط وسهل للغاية.",
-    faText:
-      "به خاطر کار زیاد سفر می‌کنم و حمل پودر در چمدان همیشه دردسرساز بود. حالا چند ساشه را در کیف لپ‌تاپم نگه می‌دارم. باز کردن یک ساشه تازه در باشگاه هتل بسیار ساده و بدون دردسر است.",
-  },
-];
-
-const arabicReviews: Record<number, string> = {
-  1: "كطالب جامعي، كان دفع مبلغ كبير مقدمًا مقابل علبة كرياتين أمرًا صعبًا على ميزانيتي. الحصول على كرياتين بجودة ممتازة بسعر مناسب يوميًا أحدث فرقًا كبيرًا بالنسبة لي. وبصراحة، أشعر أنه ينافس العلامات المستوردة الأغلى بكثير.",
-  2: "بصراحة، كنت أعتقد أن الكرياتين بهذا السعر قد لا يكون موثوقًا. لكنني مسحت رمز QR واطلعت على تقرير المختبر المعتمد الخاص بالدفعة، وقررت تجربته. يذوب بشكل ممتاز، ولاحظت تحسنًا في أوزاني أثناء التمرين. بالنسبة للسعر، التجربة ممتازة.",
-  3: "خلال موسم الأمطار، كان الكرياتين القديم يمتص الرطوبة ويتحول إلى كتلة صلبة. هذه الأكياس المغلقة أصبحت الحل المثالي بالنسبة لي. المسحوق يبقى جافًا تمامًا، ولم أعد أبحث عن الملعقة داخل العلبة.",
-  4: "سهولة الذوبان رائعة فعلًا. عادةً ما تترك أنواع الكرياتين الرخيصة بقايا في قاع الشيكَر، لكن هذا النوع يذوب بسرعة كبيرة. أفتح الكيس، أخلطه مع مشروبي الصباحي، وانتهى الأمر.",
-  5: "أسافر كثيرًا بسبب العمل، وكان حمل مسحوق الكرياتين في الأمتعة أمرًا غير مريح. الآن أضع عدة أكياس في حقيبة اللابتوب، وأفتح كيسًا جديدًا في النادي بسهولة ودون أي عناء.",
-};
-
-const farsiReviews: Record<number, string> = {
-  1: "به عنوان یک دانشجو، پرداخت مبلغ زیادی برای خرید یک بسته بزرگ کراتین همیشه برای بودجه من سخت بود. دریافت کراتین باکیفیت با هزینه‌ای مناسب در هر روز تفاوت بزرگی برای من ایجاد کرده است. کیفیت آن نیز واقعاً با برندهای وارداتی گران‌تر قابل مقایسه است.",
-  2: "صادقانه فکر می‌کردم کراتین با این قیمت نمی‌تواند قابل اعتماد باشد. اما کد QR را اسکن کردم، گزارش آزمایشگاهی مربوط به محصول را بررسی کردم و تصمیم گرفتم آن را امتحان کنم. به‌خوبی حل می‌شود و پیشرفت خوبی در تمریناتم داشته‌ام. با توجه به قیمت، واقعاً عالی است.",
-  3: "هر سال در فصل باران، کراتین قبلی من رطوبت جذب می‌کرد و به یک توده سفت تبدیل می‌شد. این ساشه‌های فویلی واقعاً نجات‌دهنده بودند. پودر کاملاً خشک می‌ماند و دیگر نیازی نیست دنبال پیمانه بگردم.",
-  4: "حل شدن این کراتین واقعاً عالی است. کراتین‌های ارزان معمولاً ته شیکر رسوب باقی می‌گذارند، اما این محصول خیلی سریع حل می‌شود. فقط ساشه را باز می‌کنم، آن را با نوشیدنی صبحگاهی‌ام مخلوط می‌کنم و آماده‌ام.",
-  5: "به دلیل کار زیاد سفر می‌کنم و حمل پودر کراتین در چمدان همیشه دردسر داشت. حالا چند ساشه را داخل کیف لپ‌تاپم می‌گذارم و در باشگاه هتل به‌راحتی یک ساشه تازه استفاده می‌کنم.",
-};
 
 export default function Page() {
   const { language } = useLanguage();
@@ -131,64 +46,14 @@ export default function Page() {
   const isFarsi = language === "fa";
   const isRTL = isArabic || isFarsi;
 
-  const [sortBy, setSortBy] = useState("most-recent");
-  const [isOpen, setIsOpen] = useState(false);
   const [suggestVisible, setSuggestVisible] = useState(false);
   const [mangoCurrentIndex, setGreenCurrentIndex] = useState(0);
 
   const suggestRef = useRef<HTMLElement>(null);
   const mangoSliderRef = useRef<HTMLDivElement>(null);
-  const sortRef = useRef<HTMLDivElement>(null);
 
-  const sortedReviews = [...reviews].sort((a, b) => {
-    if (sortBy === "highest") return b.rating - a.rating;
-    if (sortBy === "lowest") return a.rating - b.rating;
-    return b.id - a.id;
-  });
 
-  const sortOptions = [
-    {
-      value: "most-recent",
-      label: isArabic ? "الأحدث" : isFarsi ? "جدیدترین" : "MOST RECENT",
-    },
-    {
-      value: "highest",
-      label: isArabic
-        ? "الأعلى تقييمًا"
-        : isFarsi
-          ? "بالاترین امتیاز"
-          : "HIGHEST RATING",
-    },
-    {
-      value: "lowest",
-      label: isArabic
-        ? "الأقل تقييمًا"
-        : isFarsi
-          ? "کمترین امتیاز"
-          : "LOWEST RATING",
-    },
-  ];
 
-  const getSortLabel = () =>
-    sortOptions.find((option) => option.value === sortBy)?.label ??
-    sortOptions[0].label;
-
-  const handleSort = (value: string) => {
-    setSortBy(value);
-    setIsOpen(false);
-  };
-
-  const getReviewText = (review: Review) => {
-    if (isArabic) {
-      return arabicReviews[review.id] ?? review.arText;
-    }
-
-    if (isFarsi) {
-      return farsiReviews[review.id] ?? review.faText;
-    }
-
-    return review.text;
-  };
 
   useEffect(() => {
     const section = suggestRef.current;
@@ -211,23 +76,6 @@ export default function Page() {
 
     return () => observer.disconnect();
   }, []);
-
-  // Close the sort dropdown when clicking outside of it
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        sortRef.current &&
-        !sortRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
 
   useEffect(() => {
     const slider = mangoSliderRef.current;
@@ -922,121 +770,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="relative w-full overflow-visible bg-[#F4FBEA] text-[#29420F]">
-        <div className="box-border flex min-h-[90px] w-full flex-col items-start justify-center gap-3 border-b border-[#b8c7f5] px-[4%] py-4 sm:min-h-[115px] sm:flex-row sm:items-center sm:justify-between sm:py-0">
-          <p className="m-0 font-[Victory_Striker_Sans,Impact,sans-serif] text-[20px] text-[#5F9F18] sm:text-[24px] md:text-[28px]">
-            {isArabic
-              ? "1-10 من أصل 98 تقييمًا"
-              : isFarsi
-                ? "۱-۱۰ از ۹۸ نظر"
-                : "1-10 OF 98 REVIEWS"}
-          </p>
-
-          <div className="relative w-full sm:w-auto" ref={sortRef}>
-            <button
-              type="button"
-              onClick={() => setIsOpen((prev) => !prev)}
-              aria-expanded={isOpen}
-              className="flex w-full items-center justify-between gap-3 rounded-full border border-[#5F9F18] bg-white px-4 py-2.5 font-[Victory_Striker_Sans,Impact,sans-serif] text-[13px] tracking-[0.5px] text-[#5F9F18] sm:w-auto sm:text-[15px]"
-            >
-              {getSortLabel()}
-              <span
-                className={`inline-block transition-transform duration-200 ${
-                  isOpen ? "rotate-180" : ""
-                }`}
-                aria-hidden="true"
-              >
-                ▾
-              </span>
-            </button>
-
-            {isOpen && (
-              <ul className="absolute z-20 mt-2 w-full min-w-[200px] overflow-hidden rounded-xl border border-[#DCE8CB] bg-white shadow-[0_10px_30px_rgba(36,72,200,.15)] sm:right-0 sm:w-auto">
-                {sortOptions.map((option) => (
-                  <li key={option.value}>
-                    <button
-                      type="button"
-                      onClick={() => handleSort(option.value)}
-                      className={`block w-full px-4 py-3 text-left font-sans text-[13px] sm:text-[14px] ${
-                        sortBy === option.value
-                          ? "bg-[#F4FBEA] font-semibold text-[#5F9F18]"
-                          : "text-[#29420F] hover:bg-[#F4FBEA]"
-                      }`}
-                    >
-                      {option.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-
-        <div
-          className="relative w-full overflow-hidden py-[30px] sm:py-10"
-          onMouseEnter={() => control.stop()}
-          onMouseLeave={() =>
-            control.start({
-              x: ["0%", "calc(-50% - 9px)"],
-              transition: {
-                duration: 30,
-                ease: "linear",
-                repeat: Infinity,
-              },
-            })
-          }
-        >
-          <motion.div
-            animate={control}
-            className="flex w-max flex-row gap-[15px]"
-          >
-            {[...sortedReviews, ...sortedReviews].map(
-              (review, index) => (
-                <article
-                  key={`${review.id}-${index}`}
-                  dir={isRTL ? "rtl" : "ltr"}
-                  className="box-border w-[380px] shrink-0 rounded-[18px] border border-[#DCE8CB] bg-white px-6 py-[22px] shadow-[0_8px_24px_rgba(36,72,200,.08)] max-[768px]:w-[320px]"
-                >
-                  <div className="w-full">
-                    <div className="flex w-full items-start justify-between gap-5">
-                      <div>
-                        <h3 className="m-0 font-[Victory_Striker_Sans,Impact,sans-serif] text-lg font-bold leading-[1.3] text-[#171717]">
-                          {review.name}
-                        </h3>
-
-                        <p className="mt-1.5 font-[Victory_Striker_Sans,Impact,sans-serif] text-[13px] leading-[1.4] text-gray-500">
-                          {review.date}
-                        </p>
-                      </div>
-
-                      <div className="flex shrink-0 items-center gap-[3px]">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <FaStar
-                            key={star}
-                            className={`text-[15px] ${
-                              star <= review.rating
-                                ? "text-[#78BE20]"
-                                : "text-[#d1d5db]"
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    <p className="mt-[18px] font-sans text-[15px] leading-[1.7] text-gray-600">
-                      &quot;{getReviewText(review)}&quot;
-                    </p>
-                  </div>
-                </article>
-              )
-            )}
-          </motion.div>
-
-          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-[70px] bg-gradient-to-r from-[#F4FBEA] to-transparent" />
-
-          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-[70px] bg-gradient-to-l from-[#F4FBEA] to-transparent" />
-        </div>
-      </section>
+      <ReviewsSection />
 
       <Footer />
     </main>

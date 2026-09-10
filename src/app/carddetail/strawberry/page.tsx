@@ -15,6 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/app/context/languageUseContent";
 import { motion, useAnimation } from "framer-motion";
 import { Ban, Leaf, FlaskConical } from "lucide-react";
+import ReviewsSection from "@/app/carddetail/components/ReviewsSection";
 
 const ratings = [
   { stars: 5, count: 42, percentage: 88 },
@@ -143,60 +144,13 @@ export default function Page() {
   const isFarsi = language === "fa";
   const isRTL = isArabic || isFarsi;
 
-  const [sortBy, setSortBy] = useState("most-recent");
-  const [isOpen, setIsOpen] = useState(false);
   const [suggestVisible, setSuggestVisible] = useState(false);
   const [mangoCurrentIndex, setGreenCurrentIndex] = useState(0);
 
   const suggestRef = useRef<HTMLElement>(null);
   const mangoSliderRef = useRef<HTMLDivElement>(null);
 
-  const sortedReviews = [...reviews].sort((a, b) => {
-    if (sortBy === "highest") {
-      return b.rating - a.rating;
-    }
 
-    if (sortBy === "lowest") {
-      return a.rating - b.rating;
-    }
-
-    return b.id - a.id;
-  });
-
-  const getSortLabel = () => {
-    if (sortBy === "highest") {
-      if (isArabic) return "الأعلى تقييمًا";
-      if (isFarsi) return "بالاترین امتیاز";
-      return "HIGHEST RATING";
-    }
-
-    if (sortBy === "lowest") {
-      if (isArabic) return "الأقل تقييمًا";
-      if (isFarsi) return "کمترین امتیاز";
-      return "LOWEST RATING";
-    }
-
-    if (isArabic) return "الأحدث";
-    if (isFarsi) return "جدیدترین";
-    return "MOST RECENT";
-  };
-
-  const handleSort = (value: string) => {
-    setSortBy(value);
-    setIsOpen(false);
-  };
-
-  const getReviewText = (review: Review) => {
-    if (isArabic) {
-      return arabicReviews[review.id] ?? review.arText;
-    }
-
-    if (isFarsi) {
-      return farsiReviews[review.id] ?? review.faText;
-    }
-
-    return review.text;
-  };
 
   useEffect(() => {
     const section = suggestRef.current;
@@ -916,83 +870,8 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <ReviewsSection />
 
-      {/* REVIEWS */}
-      <section className="relative w-full overflow-visible bg-[#fff0f5] text-[#5e1730]">
-        <div className="flex min-h-[115px] w-full box-border items-center justify-between border-b border-[#e4a9bb] px-[4%]">
-          <p className="m-0 font-[Victory_Striker_Sans,Impact,sans-serif] text-[28px] text-[#d81b60]">
-            {isArabic
-              ? "1-10 من أصل 98 تقييمًا"
-              : isFarsi
-                ? "۱-۱۰ از ۹۸ نظر"
-                : "1-10 OF 98 REVIEWS"}
-          </p>
-        </div>
-
-        <div
-          className="relative w-full overflow-hidden py-10"
-          onMouseEnter={() => control.stop()}
-          onMouseLeave={() =>
-            control.start({
-              x: ["0%", "calc(-50% - 9px)"],
-              transition: {
-                duration: 30,
-                ease: "linear",
-                repeat: Infinity,
-              },
-            })
-          }
-        >
-          <motion.div
-            animate={control}
-            className="flex w-max flex-row gap-[15px]"
-          >
-            {[...sortedReviews, ...sortedReviews].map(
-              (review, index) => (
-                <article
-                  key={`${review.id}-${index}`}
-                  dir={isRTL ? "rtl" : "ltr"}
-                  className="box-border w-[min(380px,calc(100vw-32px))] shrink-0 rounded-[18px] border border-gray-200 bg-white px-5 py-5 sm:w-[340px] sm:px-6 sm:py-[22px] md:w-[380px] shadow-[0_8px_24px_rgba(216,27,96,.08)]"
-                >
-                  <div className="w-full">
-                    <div className="flex w-full items-start justify-between gap-5">
-                      <div>
-                        <h3 className="m-0 font-[Victory_Striker_Sans,Impact,sans-serif] text-lg font-bold leading-[1.3] text-[#171717]">
-                          {review.name}
-                        </h3>
-
-                        <p className="mt-1.5 font-[Victory_Striker_Sans,Impact,sans-serif] text-[13px] leading-[1.4] text-gray-500">
-                          {review.date}
-                        </p>
-                      </div>
-
-                      <div className="flex shrink-0 items-center gap-[3px]">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <FaStar
-                            key={star}
-                            className={`text-[15px] ${star <= review.rating
-                                ? "text-[#e91e63]"
-                                : "text-[#d1d5db]"
-                              }`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    <p className="mt-[18px] font-sans text-[15px] leading-[1.7] text-gray-600">
-                      "{getReviewText(review)}"
-                    </p>
-                  </div>
-                </article>
-              )
-            )}
-          </motion.div>
-
-          <div className="absolute bottom-0 top-0 z-10 left-0 w-[70px] pointer-events-none bg-gradient-to-r from-[#fff0f5] to-transparent" />
-
-          <div className="absolute bottom-0 top-0 z-10 right-0 w-[70px] pointer-events-none bg-gradient-to-l from-[#fff0f5] to-transparent" />
-        </div>
-      </section>
 
       <Footer />
     </main>

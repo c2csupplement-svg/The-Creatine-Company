@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { anton } from "../fonts";
 import { useLanguage } from "@/app/context/languageUseContent";
 
@@ -75,8 +75,51 @@ export default function FlavoursSection() {
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+const [currentIndex, setCurrentIndex] = useState(0);
+const [isMounted, setIsMounted] = useState(false);
 
+useEffect(() => {
+  setIsMounted(true);
+}, []);
+  useEffect(() => {
+    const slider = sliderRef.current;
+
+    if (!slider) return;
+
+    const handleScroll = () => {
+      const slides = slider.querySelectorAll(".flavour-slide");
+
+      if (!slides.length) return;
+
+      const sliderRect = slider.getBoundingClientRect();
+      const sliderCenter = sliderRect.left + sliderRect.width / 2;
+
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      slides.forEach((slide, index) => {
+        const slideRect = slide.getBoundingClientRect();
+        const slideCenter = slideRect.left + slideRect.width / 2;
+
+        const distance = Math.abs(slideCenter - sliderCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setCurrentIndex(closestIndex);
+    };
+
+    slider.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      slider.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   const scrollSlider = (direction: "left" | "right") => {
     const slider = sliderRef.current;
 
@@ -194,7 +237,7 @@ export default function FlavoursSection() {
           </div>
 
           <Link
-            href="/carddetail/blueberry"
+            href={FLAVOURS[currentIndex].link}
             className="group mt-10 inline-block"
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-[#502300] px-6 py-3 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-amber-500 hover:to-amber-600 hover:shadow-xl active:translate-y-0">
@@ -262,7 +305,7 @@ export default function FlavoursSection() {
             <button
               type="button"
               onClick={() => scrollSlider("left")}
-              disabled={currentIndex === 0}
+              disabled={!isMounted || currentIndex === 0}
               aria-label={
                 currentLanguage === "fa"
                   ? "طعم قبلی"
@@ -279,6 +322,7 @@ export default function FlavoursSection() {
               type="button"
               onClick={() => scrollSlider("right")}
               disabled={
+                !isMounted ||
                 currentIndex === FLAVOURS.length - 1
               }
               aria-label={
